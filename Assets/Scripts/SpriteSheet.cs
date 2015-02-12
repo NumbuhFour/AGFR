@@ -5,14 +5,15 @@ public class SpriteSheet : MonoBehaviour {
 	
 	public Texture2D sheet;
 	public int tileResolution = 16;
+	
+	private Color[][] tiles;
 
 	// Use this for initialization
 	void Start () {
-		Color[][] tiles = ChopUpTiles();
-		Texture2D tex = new Texture2D((tileResolution+2)*25-2, (tileResolution+2)*25-2);
+		tiles = ChopUpTiles();
 		//tex.SetPixels(tiles[0]);
 		
-		Color grid = new Color(0f,1f,0f,0.0f);
+		/*Color grid = new Color(0f,1f,0f,0.0f);
 		
 		for(int x = 0; x<25; x++){
 			for(int y = 0; y<25*18; y++){
@@ -30,11 +31,12 @@ public class SpriteSheet : MonoBehaviour {
 		tex.filterMode = FilterMode.Point;
 		tex.Apply ();
 		Debug.Log("RAWR " + tiles[0][0] + " " + tiles[0][5] + " " + tiles[0][2]);
-		this.renderer.sharedMaterials[0].mainTexture = tex;
+		this.renderer.sharedMaterials[0].mainTexture = tex;*/
 	}
 	
 	
 	Color[][] ChopUpTiles() {
+		Debug.Log("ASFASDGF");
 		int numTilesPerRow = sheet.width / tileResolution;
 		int numRows = sheet.height / tileResolution;
 		
@@ -42,11 +44,16 @@ public class SpriteSheet : MonoBehaviour {
 		
 		for(int y=0; y<numRows; y++) {
 			for(int x=0; x<numTilesPerRow; x++) {
-				tiles[y*numTilesPerRow + x] = sheet.GetPixels( x*tileResolution , y*tileResolution, tileResolution, tileResolution );
+				tiles[y*numTilesPerRow + x] = sheet.GetPixels( x*tileResolution , (numRows - (y+1))*tileResolution, tileResolution, tileResolution );
 			}
 		}
 		
 		return tiles;
+	}
+	
+	public Color[] GetPixelData(int spriteIndex){
+	if(tiles == null) tiles = ChopUpTiles();
+		return tiles[spriteIndex];
 	}
 	
 	/*void BuildTexture() {

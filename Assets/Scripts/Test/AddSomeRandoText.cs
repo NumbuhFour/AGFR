@@ -18,7 +18,7 @@ public class AddSomeRandoText : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		long time = (long)(Time.time*1000);
-		if(time - lastTime >= delay && done < text.Length-1){
+		if(time - lastTime >= delay && done < 3){
 			lastTime = (long)(Time.time*1000);
 			chat.PushText(text[done,0], text[done,1]);
 			done++;

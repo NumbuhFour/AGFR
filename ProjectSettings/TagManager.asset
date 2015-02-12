@@ -45,6 +45,14 @@ TagManager:
     userID: 6
     uniqueID: 3843557911
     locked: 0
+  - name: Entities
+    userID: 8
+    uniqueID: 2439685193
+    locked: 0
+  - name: Float Entities
+    userID: 9
+    uniqueID: 3291789241
+    locked: 0
   - name: Outlines
     userID: 2
     uniqueID: 107247271
@@ -64,4 +72,8 @@ TagManager:
   - name: Default
     userID: 0
     uniqueID: 0
+    locked: 0
+  - name: HUD Effects
+    userID: 7
+    uniqueID: 2793775621
     locked: 0

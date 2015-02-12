@@ -4,20 +4,19 @@
 		"height": 11,
 		"spawn": [5,5]
 	},
-	"tiles": {
-		"wall": { "sprite": 0, "main_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solid": true },
-		"red wall": { "sprite": 0, "main_color": { "r": 1.0, "g": 0.5, "b": 0.2, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solid": true },
-		"floor": { "sprite": 1, "main_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solid": false }
-	},
-	"map":[[0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0]]
+	"tiles": [
+		{ "name": "wall", 		"sprite": 1, "main_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 1 },
+		{ "name":"red wall", 	"sprite": 1, "main_color": { "r": 1.0, "g": 0.5, "b": 0.2, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 1 },
+		{ "name":"floor", 		"sprite": 2, "main_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 0 }],
+	"map":[["wall","wall","wall","wall","wall","wall","wall","wall","wall","wall","wall"],
+			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
+			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
+			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
+			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
+			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","floor"],
+			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
+			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
+			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
+			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
+			["wall","wall","wall","wall","wall","wall","wall","wall","wall","wall","wall"]]
 }
