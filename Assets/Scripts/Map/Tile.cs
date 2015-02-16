@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using SimpleJSON;
+using System.Collections.Generic;
 
 public class Tile {
 	
@@ -58,5 +59,17 @@ public class Tile {
 				data[i] = result;
 		}
 	}
-
+	
+	public void OnEntityEnter(Entity e, TileData data){
+		data["highlight"] = Color.red;
+	}
+	public void OnEntityExit(Entity e, TileData data){
+		data["highlight"] = Color.clear;
+	}
+	public void OnEntityAttack(Entity e, TileData data){
+		
+	}
+	public void Update(TileData data){
+	
+	}
 }

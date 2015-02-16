@@ -8,12 +8,12 @@ public class Player : Entity {
 	private long lastTime;
 
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
 		lastTime = (int)(Time.time*1000);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public override void Update () {
 		long time = (int)(Time.time*1000);
 		if(time - lastTime > moveDelay) {
 			int horiz = (int)Input.GetAxisRaw("Horizontal");

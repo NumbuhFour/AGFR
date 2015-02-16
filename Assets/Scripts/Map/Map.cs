@@ -9,17 +9,20 @@ public class Map : MonoBehaviour {
 	public TextAsset blargh;
 	public SpriteSheet sheet;
 	public Color background = Color.green;//new Color(32f/255f,32f/255f,32f/255f,0f);
+	public Transform entityContainer;
 
-	private Vector2 MAPDIM = new Vector2(25,25);
+	public static Vector2 MAPDIM = new Vector2(25,25);
 	
-	private Tile emptyTile;
-	private Tile errTile;
+	public static Tile emptyTile;
+	public static Tile errTile;
 	
 	private Dictionary<string, Tile> tiles = new Dictionary<string,Tile>();
 	private string[,] map;
 	private Vector2 dimensions;
 	private Vector2 spawn;
 	private JSONNode data;
+	
+	private TileData[,] tileData;
 
 	public Tile GetTile(string name) { return tiles[name]; }
 	public string[,] MapData { get { return map; } }
@@ -29,7 +32,8 @@ public class Map : MonoBehaviour {
 	
 	public Tile GetTileAt(int x, int y) { 
 		if(x < 0 || x >= MAPDIM.x) return errTile;
-		Vector2 offset = new Vector2((int)((MAPDIM.x-this.dimensions.x)/2),
+		if(y < 0 || y >= MAPDIM.y) return errTile;
+		Vector2 offset = new Vector2((int)((MAPDIM.x-this.dimensions.x)/2), //Offset to center
 		                             (int)((MAPDIM.y-this.dimensions.y)/2));
 		int xo = x - (int)offset.x;
 		int yo = y - (int)offset.y;
@@ -37,6 +41,16 @@ public class Map : MonoBehaviour {
 		if(xo < 0 || xo >= Dimensions.x) return emptyTile;
 		if(yo < 0 || yo >= Dimensions.y) return emptyTile;
 		return tiles[map[xo,yo]]; 
+	}
+	
+	public void SetTileAt(int x, int y, string tile){
+		map[x,y] = tile;
+		RepaintMap();
+	}
+	
+	public TileData GetTileDataAt(int x, int y){
+		if(tileData[x,y] == null) tileData[x,y] = new TileData(x,y);
+		return tileData[x,y];
 	}
 
 	// Use this for initialization
@@ -52,9 +66,9 @@ public class Map : MonoBehaviour {
 		dimensions = new Vector2(data["info"]["width"].AsInt, data["info"]["height"].AsInt);
 		spawn = new Vector2(data["info"]["spawn"][0].AsInt, data["info"]["spawn"][1].AsInt);
 		map = new string[(int)dimensions.x,(int)dimensions.y];
+		tileData = new TileData[(int)MAPDIM.x,(int)MAPDIM.y];
 		PopulateTiles(data["tiles"]);
 		PopulateMap(data["map"]);
-		RepaintMap();
 	}
 	
 	private void PopulateMap(JSONNode mapData){
@@ -65,31 +79,43 @@ public class Map : MonoBehaviour {
 		}
 	}
 	
-	private void PopulateTiles(JSONNode tileData){
-		int count = tileData.Count;
+	private void PopulateTiles(JSONNode tileJData){
+		int count = tileJData.Count;
 		for (int i = 0; i < count; i++){
-			JSONNode t = tileData[i];
+			JSONNode t = tileJData[i];
 			tiles[t["name"]] = new Tile(t, sheet);
 		}
 	}
 	
 	public void RepaintMap(){
-		Texture2D tex = new Texture2D((sheet.tileResolution+2)*(int)MAPDIM.x-2, (sheet.tileResolution+2)*(int)MAPDIM.y-2);
+		int tileSize = sheet.tileResolution+2;
+		Texture2D tex = new Texture2D(tileSize*(int)MAPDIM.x-2, tileSize*(int)MAPDIM.y-2);
 		
-		Vector2 offset = new Vector2((int)((MAPDIM.x-this.dimensions.x)/2),
-									 (int)((MAPDIM.y-this.dimensions.y)/2));
-		
-		for(int x = 0; x<25*18; x++){
-			for(int y = 0; y<25*18; y++){
+		for(int x = 0; x<MAPDIM.x*tileSize; x++){ //Clear
+			for(int y = 0; y<MAPDIM.y*tileSize; y++){
 				tex.SetPixel(x,y,background);
 			}
 		}
 		for(int x = 0; x<MAPDIM.x; x++){
 			for(int y = 0; y<MAPDIM.y; y++){
-				//int xo = (int)(x+offset.x);
-				//int yo = (int)(y+offset.y);
 				Color[] pixels = GetPixelsAt(x,y);
-				tex.SetPixels(x*18,y*18,sheet.tileResolution, sheet.tileResolution, pixels);
+				tex.SetPixels(x*tileSize,y*tileSize,sheet.tileResolution, sheet.tileResolution, pixels);
+				Tile t = GetTileAt(x,y);
+				if(t != errTile && t != emptyTile){
+					TileData td = GetTileDataAt(x,y);
+					object get = td["highlight"];
+					if(get == null) continue;
+					Color highlight = (Color)get;
+					if(highlight != Color.clear){
+						int max = this.sheet.tileResolution+1;
+						for(int hx = -1; hx <= max; hx++){
+							for(int hy = -1; hy <= max; hy++){
+								if(hx == -1 || hy == -1 || hx == max || hy == max) //Only edges
+								   tex.SetPixel(x*tileSize+hx,y*tileSize+hy,highlight);
+							}
+						}
+					}
+				}
 			}
 		}
 		
@@ -98,9 +124,30 @@ public class Map : MonoBehaviour {
 		this.renderer.sharedMaterials[0].mainTexture = tex;
 	}
 	
+	public void NotifyMove(Entity e, Vector2 to, Vector2 from){
+		Tile toTile = GetTileAt((int)to.x, (int)to.y);
+		TileData toData = GetTileDataAt((int)to.x,(int)to.y);
+		Tile fromTile = GetTileAt((int)from.x, (int)from.y);
+		TileData fromData = GetTileDataAt((int)from.x,(int)from.y);
+		
+		fromTile.OnEntityExit(e,fromData);
+		toTile.OnEntityEnter(e,toData);
+	}
 	
 	// Update is called once per frame
 	void Update () {
+		for(int x = 0; x<MAPDIM.x; x++){
+			for(int y = 0; y<MAPDIM.y; y++){
+				Tile t = GetTileAt (x,y);
+				if(t == errTile || t == emptyTile) continue;
+				
+				TileData data = GetTileDataAt(x,y);
+				t.Update(data);
+			}
+		}
+	}
 	
+	void LateUpdate(){
+		RepaintMap();
 	}
 }

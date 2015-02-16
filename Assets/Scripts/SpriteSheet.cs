@@ -36,7 +36,6 @@ public class SpriteSheet : MonoBehaviour {
 	
 	
 	Color[][] ChopUpTiles() {
-		Debug.Log("ASFASDGF");
 		int numTilesPerRow = sheet.width / tileResolution;
 		int numRows = sheet.height / tileResolution;
 		

@@ -5,6 +5,12 @@ TextureImporter:
     21300000: inv_spaces_empty
     21300002: inv_spaces_1
     21300004: inv_spaces_2
+    21300006: inv_spaces_empty_sel
+    21300008: inv_spaces_1_sel
+    21300010: inv_spaces_2_sel
+    21300012: inv_spaces_empty_err
+    21300014: inv_spaces_1_err
+    21300016: inv_spaces_2_err
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -50,31 +56,91 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 132
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: inv_spaces_1
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 132
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: inv_spaces_2
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 132
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: inv_spaces_empty_sel
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 66
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: inv_spaces_1_sel
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 66
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: inv_spaces_2_sel
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 66
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: inv_spaces_empty_err
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 66
         height: 66
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: inv_spaces_1
+    - name: inv_spaces_1_err
       rect:
         serializedVersion: 2
         x: 66
         y: 0
         width: 66
         height: 66
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: inv_spaces_2
+    - name: inv_spaces_2_err
       rect:
         serializedVersion: 2
         x: 132
         y: 0
         width: 66
         height: 66
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
