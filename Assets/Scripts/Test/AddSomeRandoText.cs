@@ -4,8 +4,8 @@ using System.Collections;
 public class AddSomeRandoText : MonoBehaviour {
 
 	public ChatManager chat;
-	public string[,] text = {{"[<color=red>Cheese</color>]: ", "Yargen <color=red>FlargenM</color>!"},{"[Taters]: ", "Muchas Gravy!"},{"[Tatasaers]: ", "asfas Gsdfasdfravy!"}};
-	public int delay = 3000;
+	public string[,] text = {{"[<color=red>Cheese</color>]: ", "Yargen FlargenM!"},{"[Taters]: ", "Muchas Gravy rawrawra awrawrasdas awrasdasdasdas adasda adsdada asdadad ad ad adaasd!"},{"[Tatasaers]: ", "asfas Gsdfasdfravy!"}};
+	public int delay = 0;
 	private long lastTime;
 	private int done = 1;
 

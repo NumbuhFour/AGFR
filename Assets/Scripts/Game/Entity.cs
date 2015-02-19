@@ -4,7 +4,12 @@ using System.Collections;
 public class Entity : MonoBehaviour {
 	
 	public Map map;
+	public EntityLayer entlayer;
 	public Vector2 loc;
+	public string name;
+	
+	private Vector2 lastLoc = new Vector2(-1,-1);
+	public Vector2 LastLoc { get{ return lastLoc; } }
 	
 	// Use this for initialization
 	public virtual void Start () {
@@ -16,19 +21,29 @@ public class Entity : MonoBehaviour {
 	}
 	
 	public void Move(Vector2 dir){
+		if(dir == Vector2.zero) return;
 		if(CanMove(dir)) {
-			map.NotifyMove(this, loc+dir, loc);
+			entlayer.NotifyMove(this, loc+dir, loc);
+			lastLoc = loc;
 			loc += dir;
 			this.transform.localPosition = loc*18;
 		}
 	}
 	
+	public void SetPos(Vector2 pos, bool resetLastLoc=false){
+		if(resetLastLoc)lastLoc = pos;
+		else lastLoc = pos;
+		
+		entlayer.NotifyMove(this, pos, new Vector2(-1,-1));
+		loc = pos;
+		this.transform.localPosition = loc*18;
+	}
+	
 	public bool CanMove(Vector2 dir){
-		Vector2 pos = this.transform.localPosition;
-		Vector2 newPos = this.transform.localPosition;
-		pos *= 1f/18f;
-		newPos *= 1f/18f;
-		newPos +=  dir;
+		Vector2 pos = loc;
+		Vector2 newPos = loc;
+		newPos += dir;
+		if(entlayer.Occupied(newPos)) return false;
 		
 		Tile to = map.GetTileAt((int)newPos.x, (int)newPos.y);
 		Tile fro = map.GetTileAt((int)pos.x, (int)pos.y);

@@ -7,6 +7,7 @@ public class ChatManager : MonoBehaviour {
 	public Text topTextBox;
 	public Text botTextBox;
 	public int typeDelay = 10;
+	public int maxLength = 35;
 	
 	private string lastMsg = "";
 	private string[] messages = {"",""};
@@ -30,7 +31,10 @@ public class ChatManager : MonoBehaviour {
 	}
 	
 	public void PushText(string head, string msg){
-		messages[1] = lastMsg;
+		while (typingIndex < typingMsg.Length-1){ //Finish typing
+			AddNextLetter();
+		}
+		messages[1] = messages[0];
 		messages[0] = head;
 		
 		lastMsg = head + msg;
@@ -43,7 +47,7 @@ public class ChatManager : MonoBehaviour {
 		string add = "" + typingMsg[typingIndex];
 		typingIndex ++;
 		
-		if(add == "<"){
+		/*if(add == "<"){
 			while(typingMsg[typingIndex] != '>'){
 				add += "" + typingMsg[typingIndex];
 				typingIndex++;
@@ -52,8 +56,14 @@ public class ChatManager : MonoBehaviour {
 				add += "" + typingMsg[typingIndex];
 				typingIndex++;
 			}
-		}
+		}*/
 		messages[0] += add;
+		if(typingIndex >= maxLength && typingIndex != typingMsg.Length-1){
+			messages[1] = messages[0];
+			messages[0] = "";
+			typingMsg = typingMsg.Substring(typingIndex);
+			typingIndex = 0;
+		}
 		if(typingIndex > typingMsg.Length -1)
 			typingMsg = "";
 			

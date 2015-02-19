@@ -2,47 +2,47 @@ fileFormatVersion: 2
 guid: 5aa96122a954ad542aadff4eeeb1399c
 TextureImporter:
   fileIDToRecycleName:
-    21300000: entites_0
-    21300002: entites_1
-    21300004: entites_2
-    21300006: entites_3
-    21300008: entites_4
-    21300010: entites_5
-    21300012: entites_6
+    21300000: player
+    21300002: player_east
+    21300004: player_south
+    21300006: player_west
+    21300008: player_north
+    21300010: spike_retracted
+    21300012: spike_extended
     21300014: entites_7
-    21300016: entites_8
-    21300018: entites_9
-    21300020: entites_10
-    21300022: entites_11
-    21300024: entites_12
-    21300026: entites_13
-    21300028: entites_14
-    21300030: entites_15
-    21300032: entites_16
-    21300034: entites_17
-    21300036: entites_18
-    21300038: entites_19
-    21300040: entites_20
-    21300042: entites_21
-    21300044: entites_22
-    21300046: entites_23
-    21300048: entites_24
-    21300050: entites_25
-    21300052: entites_26
-    21300054: entites_27
-    21300056: entites_28
-    21300058: entites_29
-    21300060: entites_30
-    21300062: entites_31
-    21300064: entites_32
-    21300066: entites_33
-    21300068: entites_34
-    21300070: entites_35
-    21300072: entites_36
-    21300074: entites_37
-    21300076: entites_38
-    21300078: entites_39
-    21300080: entites_40
+    21300016: slime_0
+    21300018: slime_1
+    21300020: beam_0
+    21300022: beam_1
+    21300024: loot_0
+    21300026: loot_1
+    21300028: loot_2
+    21300030: wood_crate
+    21300032: iron_crate
+    21300034: spider_west
+    21300036: spider_east
+    21300038: statue_west
+    21300040: statue_east
+    21300042: ghost_west
+    21300044: ghost_east
+    21300046: troll
+    21300048: goblin
+    21300050: bomb_0
+    21300052: bomb_1
+    21300054: fairy_0
+    21300056: fairy_1
+    21300058: shade_rise_0
+    21300060: shade_rise_1
+    21300062: shade_rise_2
+    21300064: shade_rise_3
+    21300066: shade_rise_4
+    21300068: shade_rise_5
+    21300070: shade_rise_6
+    21300072: shade_0
+    21300074: shade_1
+    21300076: shade_2
+    21300078: shade_3
+    21300080: cracked_wall
     21300082: entites_41
     21300084: entites_42
     21300086: entites_43
@@ -107,7 +107,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: entites_0
+    - name: player
       rect:
         serializedVersion: 2
         x: 0
@@ -117,7 +117,7 @@ TextureImporter:
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_1
+    - name: player_east
       rect:
         serializedVersion: 2
         x: 16
@@ -127,7 +127,7 @@ TextureImporter:
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_2
+    - name: player_south
       rect:
         serializedVersion: 2
         x: 32
@@ -137,7 +137,7 @@ TextureImporter:
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_3
+    - name: player_west
       rect:
         serializedVersion: 2
         x: 48
@@ -147,7 +147,7 @@ TextureImporter:
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_4
+    - name: player_north
       rect:
         serializedVersion: 2
         x: 64
@@ -157,77 +157,7 @@ TextureImporter:
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_5
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 496
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_6
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 496
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_7
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 496
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_8
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 496
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_9
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 496
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_10
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 496
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_11
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 496
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_12
+    - name: spike_retracted
       rect:
         serializedVersion: 2
         x: 0
@@ -237,7 +167,7 @@ TextureImporter:
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_13
+    - name: spike_extended
       rect:
         serializedVersion: 2
         x: 16
@@ -247,127 +177,77 @@ TextureImporter:
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_14
+    - name: slime_0
       rect:
         serializedVersion: 2
-        x: 32
-        y: 480
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_15
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 480
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_16
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 480
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_17
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 480
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_18
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 480
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_19
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 480
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_20
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 480
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_21
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 480
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_22
-      rect:
-        serializedVersion: 2
-        x: 64
+        x: 0
         y: 464
         width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_23
+    - name: slime_1
       rect:
         serializedVersion: 2
-        x: 112
+        x: 16
         y: 464
         width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_24
+    - name: beam_0
       rect:
         serializedVersion: 2
-        x: 128
-        y: 464
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_25
-      rect:
-        serializedVersion: 2
-        x: 128
+        x: 0
         y: 448
         width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_26
+    - name: beam_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 448
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: loot_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 432
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: loot_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 432
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: loot_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 432
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wood_crate
       rect:
         serializedVersion: 2
         x: 0
@@ -377,7 +257,7 @@ TextureImporter:
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_27
+    - name: iron_crate
       rect:
         serializedVersion: 2
         x: 16
@@ -387,177 +267,7 @@ TextureImporter:
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_28
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 416
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_29
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 416
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_30
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 416
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_31
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 416
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_32
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 416
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_33
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 416
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_34
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 416
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_35
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 416
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_36
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 416
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_37
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 416
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_38
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 416
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_39
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 416
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_40
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 416
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_41
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 416
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_42
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 416
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_43
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 416
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_44
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 416
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_45
+    - name: spider_west
       rect:
         serializedVersion: 2
         x: 0
@@ -567,7 +277,7 @@ TextureImporter:
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_46
+    - name: spider_east
       rect:
         serializedVersion: 2
         x: 16
@@ -577,171 +287,221 @@ TextureImporter:
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_47
+    - name: statue_west
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: statue_east
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 384
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ghost_west
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 368
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ghost_east
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 368
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: troll
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 352
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goblin
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bomb_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bomb_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 320
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fairy_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 304
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fairy_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 304
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: shade_rise_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: shade_rise_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 288
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: shade_rise_2
       rect:
         serializedVersion: 2
         x: 32
-        y: 400
+        y: 288
         width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_48
+    - name: shade_rise_3
       rect:
         serializedVersion: 2
         x: 48
-        y: 400
+        y: 288
         width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_49
+    - name: shade_rise_4
       rect:
         serializedVersion: 2
         x: 64
-        y: 400
+        y: 288
         width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_50
+    - name: shade_rise_5
       rect:
         serializedVersion: 2
         x: 80
-        y: 400
+        y: 288
         width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_51
+    - name: shade_rise_6
       rect:
         serializedVersion: 2
         x: 96
-        y: 400
+        y: 288
         width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_52
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 400
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_53
+    - name: shade_0
       rect:
         serializedVersion: 2
         x: 128
-        y: 400
+        y: 288
         width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_54
+    - name: shade_1
       rect:
         serializedVersion: 2
         x: 144
-        y: 400
+        y: 288
         width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_55
+    - name: shade_2
       rect:
         serializedVersion: 2
         x: 160
-        y: 400
+        y: 288
         width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_56
+    - name: shade_3
       rect:
         serializedVersion: 2
         x: 176
-        y: 400
+        y: 288
         width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_57
+    - name: cracked_wall
       rect:
         serializedVersion: 2
-        x: 192
-        y: 400
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_58
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 400
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_59
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 400
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_60
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 400
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_61
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 400
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_62
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 400
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: entites_63
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 400
+        x: 0
+        y: 272
         width: 16
         height: 16
       alignment: 6

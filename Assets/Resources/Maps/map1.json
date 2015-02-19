@@ -5,9 +5,9 @@
 		"spawn": [5,5]
 	},
 	"tiles": [
-		{ "name": "wall", 		"sprite": 1, "main_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 1 },
-		{ "name":"red wall", 	"sprite": 1, "main_color": { "r": 1.0, "g": 0.5, "b": 0.2, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 1 },
-		{ "name":"floor", 		"sprite": 2, "main_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 0 }],
+		{ "name": "wall", 		"sprite": 32, "main_color": { "r": 0.376, "g": 0.420, "b": 0.361, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 1 },
+		{ "name":"red wall", 	"sprite": 32, "main_color": { "r": 0.192, "g": 0.184, "b": 0.176, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 1 },
+		{ "name":"floor", 		"sprite": 35, "main_color": { "r": 0.192, "g": 0.184, "b": 0.176, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 0 }],
 	"map":[["wall","wall","wall","wall","wall","wall","wall","wall","wall","wall","wall"],
 			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
 			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],

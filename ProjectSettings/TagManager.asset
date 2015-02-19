@@ -5,6 +5,8 @@ TagManager:
   tags:
   - InvItem
   - InvSlot
+  - Enemy
+  - HealthBar
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -47,13 +49,25 @@ TagManager:
     userID: 6
     uniqueID: 3843557911
     locked: 0
+  - name: Noise
+    userID: 10
+    uniqueID: 1688175597
+    locked: 0
   - name: Entities
     userID: 8
     uniqueID: 2439685193
     locked: 0
+  - name: Sprites
+    userID: 11
+    uniqueID: 1428618897
+    locked: 0
   - name: Float Entities
     userID: 9
     uniqueID: 3291789241
+    locked: 0
+  - name: HUD Effects
+    userID: 7
+    uniqueID: 2793775621
     locked: 0
   - name: Outlines
     userID: 2
@@ -74,8 +88,4 @@ TagManager:
   - name: Default
     userID: 0
     uniqueID: 0
-    locked: 0
-  - name: HUD Effects
-    userID: 7
-    uniqueID: 2793775621
     locked: 0

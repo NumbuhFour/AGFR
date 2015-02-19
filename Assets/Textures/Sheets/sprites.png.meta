@@ -39,6 +39,43 @@ TextureImporter:
     21300068: whipbody_west
     21300070: explosion_7
     21300072: whipbody_north
+    21300074: sword_east
+    21300076: sword_south
+    21300078: sword_west
+    21300080: sword_north
+    21300082: arrow_
+    21300084: arrow_
+    21300086: arrow_
+    21300088: arrow_
+    21300090: laser_
+    21300092: laser_
+    21300094: laser_
+    21300096: laser_
+    21300098: sprites_12
+    21300100: sprites_13
+    21300102: sprites_14
+    21300104: sprites_15
+    21300106: sprites_16
+    21300108: sprites_17
+    21300110: sprites_18
+    21300112: sprites_19
+    21300114: boom_0
+    21300116: boom_1
+    21300118: boom_2
+    21300120: boom_3
+    21300122: boom_4
+    21300124: boom_5
+    21300126: boom_6
+    21300128: boom_7
+    21300130: whip_head_east
+    21300132: whip_head_south
+    21300134: whip_head_west
+    21300136: whip_head_north
+    21300138: whip_head_east
+    21300140: whip_head_south
+    21300142: whip_head_west
+    21300144: whip_head_north
+    21300146: sprites_36
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -61,7 +98,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 1024
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -80,7 +117,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: slash_east
+    - name: sword_east
       rect:
         serializedVersion: 2
         x: 0
@@ -90,7 +127,7 @@ TextureImporter:
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: arrow_east
+    - name: sword_south
       rect:
         serializedVersion: 2
         x: 16
@@ -100,7 +137,7 @@ TextureImporter:
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: g_lazer_east
+    - name: sword_west
       rect:
         serializedVersion: 2
         x: 32
@@ -110,7 +147,7 @@ TextureImporter:
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: b_laser_
+    - name: sword_north
       rect:
         serializedVersion: 2
         x: 48
@@ -120,297 +157,217 @@ TextureImporter:
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: r_laser_
+    - name: arrow_
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arrow_
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 480
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arrow_
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 480
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arrow_
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 480
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 464
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 464
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 464
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 464
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: boom_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 416
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: boom_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 416
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: boom_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 416
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: boom_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 416
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: boom_4
       rect:
         serializedVersion: 2
         x: 64
-        y: 496
+        y: 416
         width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: explosion_0
+    - name: boom_5
       rect:
         serializedVersion: 2
         x: 80
-        y: 496
+        y: 416
         width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: whiphead_east
+    - name: boom_6
       rect:
         serializedVersion: 2
         x: 96
-        y: 496
+        y: 416
         width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: blank
+    - name: boom_7
       rect:
         serializedVersion: 2
         x: 112
-        y: 496
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: slash_south
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 480
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: arrow_south
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 480
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: g_lazer_south
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 480
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: b_laser_south
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 480
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: r_laser_south
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 480
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: explosion_1
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 480
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: whiphead_south
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 480
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: slash_west
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 464
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: arrow_west
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 464
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: g_lazer_west
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 464
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: b_laser_west
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 464
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: r_laser_west
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 464
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: explosion_2
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 464
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: whiphead_west
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 464
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: slash_north
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 448
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: arrow_north
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 448
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: g_lazer_north
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 448
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: b_laser_north
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 448
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: r_laser_north
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 448
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: explosion_3
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 448
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: whiphead_north
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 448
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: explosion_4
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 432
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: whipbody_east
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 432
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: explosion_5
-      rect:
-        serializedVersion: 2
-        x: 80
         y: 416
         width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: whipbody_south
+    - name: whip_head_east
       rect:
         serializedVersion: 2
-        x: 96
-        y: 416
+        x: 0
+        y: 400
         width: 16
         height: 16
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: explosion_6
+    - name: whip_head_south
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 400
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: whip_head_west
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 400
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: whip_head_north
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 400
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: whip_head_east
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 400
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: whip_head_south
       rect:
         serializedVersion: 2
         x: 80
@@ -420,7 +377,7 @@ TextureImporter:
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: whipbody_west
+    - name: whip_head_west
       rect:
         serializedVersion: 2
         x: 96
@@ -430,21 +387,11 @@ TextureImporter:
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: explosion_7
+    - name: whip_head_north
       rect:
         serializedVersion: 2
-        x: 80
-        y: 384
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: whipbody_north
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 384
+        x: 112
+        y: 400
         width: 16
         height: 16
       alignment: 6

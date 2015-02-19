@@ -7,7 +7,7 @@ public class Tile {
 	
 	private SpriteSheet sheet;
 	
-	private string name;
+	public string name;
 	private int spriteIndex;
 	private Color mainColor;
 	private Color swapColor;
@@ -61,10 +61,8 @@ public class Tile {
 	}
 	
 	public void OnEntityEnter(Entity e, TileData data){
-		data["highlight"] = Color.red;
 	}
 	public void OnEntityExit(Entity e, TileData data){
-		data["highlight"] = Color.clear;
 	}
 	public void OnEntityAttack(Entity e, TileData data){
 		
