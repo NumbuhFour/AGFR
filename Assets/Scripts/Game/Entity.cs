@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Entity : MonoBehaviour {
+public class Entity : MonoBehaviour, INamed {
 	
 	public Map map;
 	public EntityLayer entlayer;
@@ -10,6 +10,8 @@ public class Entity : MonoBehaviour {
 	
 	private Vector2 lastLoc = new Vector2(-1,-1);
 	public Vector2 LastLoc { get{ return lastLoc; } }
+	
+	public string Name() { return name; }
 	
 	// Use this for initialization
 	public virtual void Start () {

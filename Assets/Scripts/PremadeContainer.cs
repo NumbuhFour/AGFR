@@ -8,7 +8,7 @@ public class PremadeContainer : ScriptableObject {
 	public GameObject this[string key] {
 		get {
 			foreach(GameObject go in prefabs){
-				if(go.GetComponent<Entity>().name == key) return go;
+				if(((INamed)go.GetComponent(typeof(INamed))).Name() == key) return go;
 			}
 			return null;
 		}

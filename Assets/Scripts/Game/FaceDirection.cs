@@ -8,11 +8,8 @@ public class FaceDirection : MonoBehaviour {
 	[Header("East,North,West,South,Idle")]
 	public Sprite[] directions;
 	
-	private Entity ent;
 	// Use this for initialization
 	void Start () {
-		ent = this.GetComponent<Entity>();
-		SetDirection("East");
 	}
 	
 	public void SetDirection(string direction){

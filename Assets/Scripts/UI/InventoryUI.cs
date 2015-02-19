@@ -3,10 +3,12 @@ using System.Collections;
 
 public class InventoryUI : MonoBehaviour {
 
-	public SpriteSheet sheet;
+	public PremadeContainer items;
+
 	public LayerMask UILayer;
 	private InvTile currentlyDragging = null;
 	private InvSlot lastSlot = null;
+	private InvSlot lastSlotLocation = null;
 	
 	public GameObject tilePrefab;
 	
@@ -17,7 +19,8 @@ public class InventoryUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		AddItem (new Item(0,sheet,Item.Types.GENERIC));
+		AddItem (items["iron dagger"]);
+		AddItem (items["green potion"]);
 	}
 	
 	// Update is called once per frame
@@ -28,7 +31,7 @@ public class InventoryUI : MonoBehaviour {
 		}
 		Camera cam = Camera.main;
 		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-		if(Input.GetMouseButton(0)){
+		if(Input.GetMouseButton(0) && currentlyDragging){
 			RaycastHit hit;
 			if(Physics.Raycast(ray,out hit,1000,UILayer)){
 				GameObject hitGo = hit.collider.gameObject;
@@ -42,6 +45,7 @@ public class InventoryUI : MonoBehaviour {
 	}
 	
 	public void SetCurrentlyDragging(InvTile tile){
+		this.lastSlotLocation  = tile.Slot;
 		this.currentlyDragging = tile;
 	}
 	
@@ -55,17 +59,26 @@ public class InventoryUI : MonoBehaviour {
 			GameObject hitGo = hit.collider.gameObject;
 			if(hitGo.tag == "InvSlot"){
 				slot = hitGo.GetComponent<InvSlot>();
-				if(CanPlace(currentlyDragging, slot)){
-					currentlyDragging.Slot = slot;
-				}else {
-					currentlyDragging.Slot = currentlyDragging.Slot;
+				if(CanPlace(currentlyDragging, slot)){ //Moving to new slot
+					if(lastSlotLocation.type == Item.Types.EQUIPMENT || lastSlotLocation.type == Item.Types.ARMOR){
+						currentlyDragging.Item.SendMessage("OnUnequip");
+					}
+					SwapSlots(lastSlotLocation, slot);
+					//currentlyDragging.Slot = slot; 
+					if(slot.type == Item.Types.EQUIPMENT || slot.type == Item.Types.ARMOR){
+						currentlyDragging.Item.SendMessage("OnEquip");
+					}
+				}else { 
+					//Reset Slot
+					currentlyDragging.Slot = lastSlotLocation;
 				}
 			}else{
 				//Drop
-				currentlyDragging.Slot = currentlyDragging.Slot;
+				currentlyDragging.Slot = lastSlotLocation;
 			}
 		}else {
-			currentlyDragging.Slot = currentlyDragging.Slot;
+			//Reset slot
+			currentlyDragging.Slot = lastSlotLocation;
 		}
 		
 		currentlyDragging = null;
@@ -77,17 +90,53 @@ public class InventoryUI : MonoBehaviour {
 	}
 	
 	public bool CanPlace(InvTile item, InvSlot slot){
-		return item.Item.type == slot.type || slot.type == Item.Types.GENERIC;
+		//Checking swap item
+		if(slot.Tile){
+			InvTile other = slot.Tile;
+			if(other.Type != lastSlotLocation.type && lastSlotLocation.type != Item.Types.GENERIC) return false;
+		}
+		
+		return item.Type == slot.type || slot.type == Item.Types.GENERIC;
 	}
 	
 	public bool isDragging{
 		get {return currentlyDragging != null;}
 	}
 	
-	public void AddItem(Item item){
+	public void AddItem(GameObject itemPrefab){
+		if(!HasOpenSlot()) return;
+		GameObject item = (GameObject)Instantiate(itemPrefab);
 		GameObject add = (GameObject)Instantiate(tilePrefab);
 		add.transform.parent = this.transform;
-		add.GetComponent<InvTile>().Init(this,this.sheet, item);
+		add.GetComponent<InvTile>().Init(this, item, this.inventory[GetNextEmptySlot()]);
 		//add.transform.posinventory[0]
+	}
+	
+	public void SwapSlots(InvSlot a, InvSlot b){
+		InvTile ta = a.Tile;
+		InvTile tb = b.Tile;
+		
+		if(ta) ta.Slot = b;
+		else b.Tile = null;
+		
+		if(tb) tb.Slot = a;
+		else a.Tile = null;
+		
+	}
+	
+	public GameObject GetWeapon(){
+		return this.equipment[0].item;
+	}
+	
+	public int GetNextEmptySlot(){
+		for (int i = 0; i < inventory.Length; i++){
+			InvSlot slot = inventory[i];
+			if(!slot.Tile) return i;
+		}
+		return -1;
+	}
+	
+	public bool HasOpenSlot(){
+		return this.GetNextEmptySlot() > -1;
 	}
 }

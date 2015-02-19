@@ -1,19 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Item {
-
-	public SpriteSheet sheet;
-	public int spriteIndex;
+public class Item : MonoBehaviour, INamed {
 	public enum Types { GENERIC, ARMOR, EQUIPMENT }
+
+	public string name;
+	public int count = 1;
 
 	public Types type = Types.GENERIC;
 	
-	public Item (int sprite, SpriteSheet sheet, Types type) {
-		this.spriteIndex = sprite;
-		this.sheet = sheet;
-		this.type = type;
-	}
+	public string Name() { return name; }
 	
 	void OnUse(){
 		
@@ -23,6 +19,10 @@ public class Item {
 	
 	}
 	void OnUnequip(){
+	
+	}
+	
+	void OnSwing(string direction){
 	
 	}
 }

@@ -62,13 +62,15 @@ public class InvSlot : MonoBehaviour {
 		get { return tile; }
 		set {
 			this.tile = value;
-			Vector3 pos = tile.transform.position;
-			Vector3 mPos = this.transform.position;
-			tile.transform.position = new Vector3(mPos.x, mPos.y, pos.z);
+			if(tile) {
+				Vector3 pos = tile.transform.position;
+				Vector3 mPos = this.transform.position;
+				tile.transform.position = new Vector3(mPos.x, mPos.y, pos.z);
+			}
 		}
 	}
 	
-	public Item item{
+	public GameObject item{
 		get{ 
 			if(Tile == null) return null;
 			return Tile.Item; 

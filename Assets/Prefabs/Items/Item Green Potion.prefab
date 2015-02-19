@@ -8,12 +8,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  - 212: {fileID: 21200000}
-  - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
+  - 212: {fileID: 21200000}
   m_Layer: 0
-  m_Name: SwordSprite
-  m_TagString: Player
+  m_Name: Item Green Potion
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -38,29 +37,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5b8471806c08304bb5cf7cb8a73c2f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ca673bdea3c2544a9e2d893251be144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directions:
-  - {fileID: 21300074, guid: 6879bcdf8856b8e43981753ae3b1f15b, type: 3}
-  - {fileID: 21300080, guid: 6879bcdf8856b8e43981753ae3b1f15b, type: 3}
-  - {fileID: 21300078, guid: 6879bcdf8856b8e43981753ae3b1f15b, type: 3}
-  - {fileID: 21300076, guid: 6879bcdf8856b8e43981753ae3b1f15b, type: 3}
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e65fc60ae256774cab030d5c82dd06b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  map: {fileID: 0}
-  entlayer: {fileID: 0}
-  loc: {x: 0, y: 0}
-  name: sprite_sword
+  name: green potion
+  count: 1
+  type: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -73,15 +55,15 @@ SpriteRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: bbe970ba399a9d94fa14ec883b863f9b, type: 2}
+  - {fileID: 2100000, guid: b06daa019b60c824f8dc0789667dc591, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 1428618897
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300074, guid: 6879bcdf8856b8e43981753ae3b1f15b, type: 3}
+  m_SortingLayerID: 51924757
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300010, guid: 858903bd8ee8ccc4ab4839459a639b7f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

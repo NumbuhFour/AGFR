@@ -12,10 +12,8 @@ GameObject:
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400004}
-  - 114: {fileID: 11400006}
-  - 114: {fileID: 11400008}
   m_Layer: 0
-  m_Name: Player
+  m_Name: SwordSprite
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,11 +39,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44acfd20ed8de9245b27783791ccea20, type: 3}
+  m_Script: {fileID: 11500000, guid: d5b8471806c08304bb5cf7cb8a73c2f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDelay: 200
-  tapDelay: 50
+  directions:
+  - {fileID: 21300074, guid: 6879bcdf8856b8e43981753ae3b1f15b, type: 3}
+  - {fileID: 21300080, guid: 6879bcdf8856b8e43981753ae3b1f15b, type: 3}
+  - {fileID: 21300078, guid: 6879bcdf8856b8e43981753ae3b1f15b, type: 3}
+  - {fileID: 21300076, guid: 6879bcdf8856b8e43981753ae3b1f15b, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -60,7 +61,7 @@ MonoBehaviour:
   map: {fileID: 0}
   entlayer: {fileID: 0}
   loc: {x: 0, y: 0}
-  name: player
+  name: sword swing
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -69,41 +70,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46509ff8d8ed6174d91a71405137de29, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ad509d1b8fd63442a51363ffdc20b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  invulnDuration: 1500
---- !u!114 &11400006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef9e8679f3d97724c9950c3632f2e098, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blinkColor: {r: 1, g: .632352948, b: .632352948, a: 1}
-  flashPercent: .200000003
---- !u!114 &11400008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5b8471806c08304bb5cf7cb8a73c2f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  directions:
-  - {fileID: 21300002, guid: 5aa96122a954ad542aadff4eeeb1399c, type: 3}
-  - {fileID: 21300008, guid: 5aa96122a954ad542aadff4eeeb1399c, type: 3}
-  - {fileID: 21300006, guid: 5aa96122a954ad542aadff4eeeb1399c, type: 3}
-  - {fileID: 21300004, guid: 5aa96122a954ad542aadff4eeeb1399c, type: 3}
-  - {fileID: 21300000, guid: 5aa96122a954ad542aadff4eeeb1399c, type: 3}
+  duration: 50
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -116,16 +86,16 @@ SpriteRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: bbe970ba399a9d94fa14ec883b863f9b, type: 2}
+  - {fileID: 2100000, guid: 3053b51753c8bab41a3d14fd28ed3343, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 2439685193
+  m_SortingLayerID: 1428618897
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5aa96122a954ad542aadff4eeeb1399c, type: 3}
-  m_Color: {r: .654411793, g: .654411793, b: .654411793, a: 1}
+  m_Sprite: {fileID: 21300074, guid: 6879bcdf8856b8e43981753ae3b1f15b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -14,7 +14,7 @@ GameObject:
   - 65: {fileID: 6500000}
   - 114: {fileID: 11400002}
   m_Layer: 0
-  m_Name: Item
+  m_Name: Item UI Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +38,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -82,8 +82,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca673bdea3c2544a9e2d893251be144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sheet: {fileID: 0}
-  spriteIndex: 0
+  name: 
+  count: 0
   type: 2
 --- !u!114 &11400002
 MonoBehaviour:
@@ -97,7 +97,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invMan: {fileID: 0}
-  sheet: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

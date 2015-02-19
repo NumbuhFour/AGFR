@@ -778,7 +778,6 @@ GameObject:
   - 4: {fileID: 348302186}
   - 114: {fileID: 348302185}
   - 114: {fileID: 348302187}
-  - 114: {fileID: 348302188}
   m_Layer: 0
   m_Name: Bodiless
   m_TagString: Untagged
@@ -823,19 +822,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sheet: {fileID: 2800000, guid: c2671b94bcd59a34ab90bfca16e9cd6b, type: 3}
-  tileResolution: 16
---- !u!114 &348302188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 348302184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 521771b4b0cc8f04eba85dfd5630ca9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sheet: {fileID: 2800000, guid: 858903bd8ee8ccc4ab4839459a639b7f, type: 3}
   tileResolution: 16
 --- !u!1 &371293434
 GameObject:
@@ -1513,7 +1499,7 @@ GameObject:
   - 114: {fileID: 855804443}
   m_Layer: 0
   m_Name: Entities
-  m_TagString: Untagged
+  m_TagString: EntityLayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2355,6 +2341,7 @@ GameObject:
   - 4: {fileID: 1252276210}
   - 212: {fileID: 1252276209}
   - 114: {fileID: 1252276211}
+  - 114: {fileID: 1252276212}
   m_Layer: 0
   m_Name: Inventory
   m_TagString: Untagged
@@ -2412,7 +2399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9634379c258795642b404dfbec45bc64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sheet: {fileID: 348302188}
+  items: {fileID: 11400000, guid: 0b015e9c339b6e543bd03c7f1471e42b, type: 2}
   UILayer:
     serializedVersion: 2
     m_Bits: 32
@@ -2437,6 +2424,18 @@ MonoBehaviour:
   - {fileID: 1849629906}
   - {fileID: 661861761}
   mapCol: {fileID: 0}
+--- !u!114 &1252276212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1252276208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8478f2b0e674cd042a7f3f8d71aaa3dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inv: {fileID: 1252276211}
 --- !u!1 &1320176244
 GameObject:
   m_ObjectHideFlags: 0
@@ -3529,7 +3528,7 @@ GameObject:
   - 114: {fileID: 1891309897}
   m_Layer: 0
   m_Name: Sprites
-  m_TagString: Untagged
+  m_TagString: SpriteLayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
