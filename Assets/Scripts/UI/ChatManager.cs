@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
+[AddComponentMenu("Scripts/UI/Chat Manager")]
 public class ChatManager : MonoBehaviour {
 	
 	public Text topTextBox;

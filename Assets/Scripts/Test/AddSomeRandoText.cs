@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Test/AddSomeRandoText")]
 public class AddSomeRandoText : MonoBehaviour {
 
 	public ChatManager chat;

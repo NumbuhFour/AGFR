@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Game/Face Direction")]
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Entity))]
 public class FaceDirection : MonoBehaviour {

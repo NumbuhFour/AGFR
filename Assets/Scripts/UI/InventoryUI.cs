@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/UI/Inventory UI")]
 public class InventoryUI : MonoBehaviour {
 
 	public PremadeContainer items;
@@ -108,7 +109,8 @@ public class InventoryUI : MonoBehaviour {
 		GameObject item = (GameObject)Instantiate(itemPrefab);
 		GameObject add = (GameObject)Instantiate(tilePrefab);
 		add.transform.parent = this.transform;
-		add.GetComponent<InvTile>().Init(this, item, this.inventory[GetNextEmptySlot()]);
+		INamed namer = (INamed)item.GetComponent(typeof(INamed));
+		add.GetComponent<InvTile>().Init(this, item, this.inventory[GetNextMatchingSlot(namer.Name())]);
 		//add.transform.posinventory[0]
 	}
 	
@@ -128,15 +130,21 @@ public class InventoryUI : MonoBehaviour {
 		return this.equipment[0].item;
 	}
 	
-	public int GetNextEmptySlot(){
+	public int GetNextMatchingSlot(string itemName=null){
+		int firstEmpty = -1;
 		for (int i = 0; i < inventory.Length; i++){
 			InvSlot slot = inventory[i];
-			if(!slot.Tile) return i;
+			if(!slot.Tile) firstEmpty = i;
+			else {
+				INamed namer = (INamed)slot.Tile.Item.GetComponent(typeof(INamed));
+				if(namer.Name() == itemName) 
+					return i;
+			}
 		}
-		return -1;
+		return firstEmpty;
 	}
 	
 	public bool HasOpenSlot(){
-		return this.GetNextEmptySlot() > -1;
+		return this.GetNextMatchingSlot() > -1;
 	}
 }

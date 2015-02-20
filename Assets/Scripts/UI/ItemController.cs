@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/UI/Item Controller")]
 public class ItemController : MonoBehaviour {
 
 	public InventoryUI inv;

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[AddComponentMenu("Scripts/Map/Map")]
 public class Map : MonoBehaviour {
 
 	public SpriteSheet sheet;

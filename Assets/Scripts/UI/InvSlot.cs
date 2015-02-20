@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/UI/Inventory Slot")]
 [RequireComponent(typeof(BoxCollider))]
 public class InvSlot : MonoBehaviour {
 

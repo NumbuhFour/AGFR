@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Game/Player/Player Health Bar")]
 [RequireComponent(typeof(HealthTracker))]
 public class PlayerHealthBar : MonoBehaviour {
 	public Color blinkColor = new Color(255,200,180);
@@ -9,7 +11,6 @@ public class PlayerHealthBar : MonoBehaviour {
 	private GameObject healthBar;
 	private HealthTracker health;
 	
-	private Flash flash = null;
 	void Start() {
 		this.health = GetComponent<HealthTracker>();
 		this.healthBar = GameObject.FindGameObjectWithTag("HealthBar");
@@ -20,12 +21,10 @@ public class PlayerHealthBar : MonoBehaviour {
 		float scale = (float)health.Health / (float)health.maxHealth;
 		healthBar.transform.localScale = new Vector3(1,scale, 1);
 		
-		if(scale <= flashPercent && flash == null){
-			flash = healthBar.AddComponent<Flash>();
-			flash.Init(-1,500,200,blinkColor);
-		}else if(scale > flashPercent && flash != null){
-			Destroy(flash);
-			flash = null;
+		if(scale <= flashPercent){
+			GameObject.FindGameObjectWithTag("DyingOverlay").GetComponent<Image>().enabled = true;
+		}else if(scale > flashPercent){
+			GameObject.FindGameObjectWithTag("DyingOverlay").GetComponent<Image>().enabled = false;
 		}
 	}
 }

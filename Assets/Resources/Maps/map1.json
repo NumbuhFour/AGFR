@@ -18,5 +18,7 @@
 			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
 			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
 			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
-			["wall","wall","wall","wall","wall","wall","wall","wall","wall","wall","wall"]]
+			["wall","wall","wall","wall","wall","wall","wall","wall","wall","wall","wall"]],
+	"entities":[ 
+		{ "name":"green slime", "x":10, "y":10 }]
 }

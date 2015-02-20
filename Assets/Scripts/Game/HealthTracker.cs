@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Game/Health Tracker")]
 public class HealthTracker : MonoBehaviour {
 
 	public int maxHealth = 10;

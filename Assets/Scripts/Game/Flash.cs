@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Game/Flash Color")]
 public class Flash : MonoBehaviour {
 
 	public int duration;

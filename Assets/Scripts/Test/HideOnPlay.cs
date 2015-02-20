@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Test/HideOnPlay")]
 public class HideOnPlay : MonoBehaviour {
 
 	// Use this for initialization

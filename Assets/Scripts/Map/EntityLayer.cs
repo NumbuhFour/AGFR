@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Map/Entity Layer")]
 public class EntityLayer : MonoBehaviour {
 	public Map map;
 	private Entity[,] entCols;

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Game/AI/Wander")]
 [RequireComponent(typeof(Entity))]
 public class Wander : MonoBehaviour {
 

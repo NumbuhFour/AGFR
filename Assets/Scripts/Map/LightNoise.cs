@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Map/Light Noise")]
 public class LightNoise : MonoBehaviour {
 
 	public Map map;

@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Game/Items/Item")]
 public class Item : MonoBehaviour, INamed {
 	public enum Types { GENERIC, ARMOR, EQUIPMENT }
 
 	public string name;
 	public int count = 1;
+	
+	//Can only one fit in stack?
+	public bool singular = true;
 
 	public Types type = Types.GENERIC;
 	

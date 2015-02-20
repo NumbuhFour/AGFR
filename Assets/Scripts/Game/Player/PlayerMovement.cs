@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Game/Player/Player Movement")]
 [RequireComponent(typeof(Entity))]
 [RequireComponent(typeof(FaceDirection))]
 public class PlayerMovement : MonoBehaviour {

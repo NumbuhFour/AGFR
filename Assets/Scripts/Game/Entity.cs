@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Game/Entity")]
 public class Entity : MonoBehaviour, INamed {
 	
 	public Map map;

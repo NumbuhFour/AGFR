@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Game/Items/Spawn Sprite On Swing")]
 public class SpawnSpriteOnSwing : MonoBehaviour {
 
 	public PremadeContainer sprites;

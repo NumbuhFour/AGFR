@@ -2,6 +2,7 @@
 using System.Collections;
 using SimpleJSON;
 
+[AddComponentMenu("Scripts/Map/Map Loader")]
 public class MapLoader : MonoBehaviour {
 	public Map map;
 	public EntityLayer entities;
@@ -32,6 +33,8 @@ public class MapLoader : MonoBehaviour {
 		map.Init(dimensions, spawn);
 		PopulateTiles(data["tiles"]);
 		PopulateMap(data["map"]);
+		if(data["entities"] != null)
+			PopulateEntities(data["entities"]);
 	}
 	
 	private void PopulateMap(JSONNode mapData){
@@ -49,6 +52,17 @@ public class MapLoader : MonoBehaviour {
 		for (int i = 0; i < count; i++){
 			JSONNode t = tileJData[i];
 			map.SetTile(t["name"], new Tile(t, map.sheet));
+		}
+	}
+	
+	private void PopulateEntities(JSONNode tileJData){
+		int count = tileJData.Count;
+		for (int i = 0; i < count; i++){
+			JSONNode t = tileJData[i];
+			int x = t["x"].AsInt;
+			int y = t["y"].AsInt;
+			string name = t["name"];
+			entities.SpawnEntity(entityList[name],new Vector2(x,y));
 		}
 	}
 }

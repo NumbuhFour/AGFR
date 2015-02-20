@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Map/Map Render")]
 public class MapRender : MonoBehaviour {
 	
 	public Color backgroundColor = new Color(32f/255f,32f/255f,32f/255f,1f);

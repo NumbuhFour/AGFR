@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Game/Sprites/Die After Time")]
 public class DieAfterTime : MonoBehaviour {
 
 	public int duration = 400;

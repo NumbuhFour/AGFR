@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Game/AI/Touch Damage")]
 [RequireComponent(typeof(Entity))]
 public class TouchDamage : MonoBehaviour {
 	public int delayBeforeFirstHit = 0;
