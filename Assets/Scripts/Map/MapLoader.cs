@@ -42,7 +42,15 @@ public class MapLoader : MonoBehaviour {
 		                             (int)((Map.MAPDIM.y-this.dimensions.y)/2));
 		for(int x = 0; x < dimensions.x; x++){
 			for(int y = 0; y < dimensions.y; y++){
-				map.SetTileAt(x + (int)offset.x,y + (int)offset.y,mapData[y][x]);
+				JSONNode tile = mapData[y][x];
+				if(tile.GetType() == typeof(SimpleJSON.JSONClass)){
+					map.SetTileAt(x + (int)offset.x,y + (int)offset.y, tile["name"]);
+					Tile t = map.GetTile(tile["name"]);
+					t.ReadData(map.GetTileDataAt(x + (int)offset.x,y + (int)offset.y));
+				}
+				else {
+					map.SetTileAt(x + (int)offset.x,y + (int)offset.y, tile);
+				}
 			}
 		}
 	}

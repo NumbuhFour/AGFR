@@ -9,6 +9,8 @@ TagManager:
   - HealthBar
   - EntityLayer
   - SpriteLayer
+  - DyingOverlay
+  - Chat
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

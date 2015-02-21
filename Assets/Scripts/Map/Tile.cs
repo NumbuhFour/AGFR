@@ -70,4 +70,7 @@ public class Tile {
 	public void Update(TileData data){
 	
 	}
+	
+	public virtual void ReadData(TileData data){
+	}
 }
