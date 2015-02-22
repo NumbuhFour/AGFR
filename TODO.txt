@@ -1,0 +1,9 @@
+Major TOD:
+	-Sound
+	-Lighting
+	-Shades
+	-Proper color text
+	-Secret overlay
+	
+Minor TODO:
+	-Sword swing sprite changes direction based on spin
