@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PremadeContainer : ScriptableObject {
+public class PremadeContainer : ScriptableObject , INamed {
 
+	public string name;
 	public GameObject[] prefabs;
+	
+	public string Name(){ return this.name; }
 	
 	public GameObject this[string key] {
 		get {

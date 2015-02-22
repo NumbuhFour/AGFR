@@ -28,9 +28,9 @@ public class Tile {
 		this.sheet = sheet;
 		name = data["name"];
 		JSONNode mcNode = data["main_color"];
-		mainColor = new Color(mcNode["r"].AsFloat,mcNode["g"].AsFloat,mcNode["b"].AsFloat,mcNode["a"].AsFloat);
+		mainColor = MapLoader.ReadColor(mcNode);
 		JSONNode sNode = data["swap_color"];
-		swapColor = new Color(sNode["r"].AsFloat,sNode["g"].AsFloat,sNode["b"].AsFloat,sNode["a"].AsFloat);
+		swapColor = MapLoader.ReadColor(sNode);
 		solidity = data["solidity"].AsInt;
 		spriteIndex = data["sprite"].AsInt;
 		
@@ -60,17 +60,17 @@ public class Tile {
 		}
 	}
 	
-	public void OnEntityEnter(Entity e, TileData data){
+	public virtual void OnEntityEnter(Entity e, TileData data){
 	}
-	public void OnEntityExit(Entity e, TileData data){
+	public virtual void OnEntityExit(Entity e, TileData data){
 	}
-	public void OnEntityAttack(Entity e, TileData data){
+	public virtual void OnEntityAttack(Entity e, TileData data){
 		
 	}
-	public void Update(TileData data){
+	public virtual void Update(TileData data){
 	
 	}
 	
-	public virtual void ReadData(TileData data){
+	public virtual void ReadData(JSONNode node, TileData data){
 	}
 }

@@ -42,11 +42,11 @@ public class MapLoader : MonoBehaviour {
 		                             (int)((Map.MAPDIM.y-this.dimensions.y)/2));
 		for(int x = 0; x < dimensions.x; x++){
 			for(int y = 0; y < dimensions.y; y++){
-				JSONNode tile = mapData[y][x];
+				JSONNode tile = mapData[(int)dimensions.y-y-1][x];
 				if(tile.GetType() == typeof(SimpleJSON.JSONClass)){
 					map.SetTileAt(x + (int)offset.x,y + (int)offset.y, tile["name"]);
 					Tile t = map.GetTile(tile["name"]);
-					t.ReadData(map.GetTileDataAt(x + (int)offset.x,y + (int)offset.y));
+					t.ReadData(tile, map.GetTileDataAt(x + (int)offset.x,y + (int)offset.y));
 				}
 				else {
 					map.SetTileAt(x + (int)offset.x,y + (int)offset.y, tile);
@@ -72,5 +72,22 @@ public class MapLoader : MonoBehaviour {
 			string name = t["name"];
 			entities.SpawnEntity(entityList[name],new Vector2(x,y));
 		}
+	}
+	
+	public static Color ReadColor(JSONNode colorNode){
+		float r = colorNode["r"].AsFloat;
+		float g = colorNode["g"].AsFloat;
+		float b = colorNode["b"].AsFloat;
+		float a = colorNode["a"].AsFloat;
+		if(r > 1 || g > 1 || b > 1){
+			r /= 255f;
+			g /= 255f;
+			b /= 255f;
+		}
+		if(a > 1){ //Alpha seperate because I forget to change that sometimes
+			a /= 255f;
+		}
+		return new Color(r,g,b,a);
+		
 	}
 }

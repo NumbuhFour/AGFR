@@ -2,23 +2,25 @@
 	"info": {
 		"width": 11,
 		"height": 11,
-		"spawn": [5,5]
+		"spawn": [5,5],
+		"lightsOut": 0,
+		"haunter": 0
 	},
 	"tiles": [
 		{ "name": "wall", 		"sprite": 32, "main_color": { "r": 0.376, "g": 0.420, "b": 0.361, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 1 },
-		{ "name":"red wall", 	"sprite": 32, "main_color": { "r": 0.192, "g": 0.184, "b": 0.176, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 1 },
-		{ "name":"floor", 		"sprite": 35, "main_color": { "r": 0.192, "g": 0.184, "b": 0.176, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 0 },
-		{ "name":"button", 	"sprite": 32, "main_color": { "r": 0.5692, "g": 0.184, "b": 0.176, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 1 }],
-	"map":[["wall","wall","wall","wall","wall","wall","wall","wall","wall","wall","wall"],
+		{ "name":"dark floor", 	"sprite": 2, "main_color": { "r": 50, "g": 50, "b": 50, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 1 },
+		{ "name":"floor", 		"sprite": 2, "main_color": { "r": 70, "g": 70, "b": 70, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 0 },
+		{ "name":"button", 		"sprite": 129, "main_color": { "r": 0.192, "g": 0.184, "b": 0.176, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 0 }],
+	"map":[["wall","wall","wall","wall","wall","floor","wall","wall","wall","wall","wall"],
 			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
-			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
-			["wall","floor","floor","floor",{"name":"button","action":"toggle lights"},"floor","floor","floor","floor","floor","wall"],
-			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
+			["wall","floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","floor","wall"],
+			["wall","floor","dark floor","dark floor",{"name":"button","action":"toggle lights"},"dark floor","dark floor","dark floor","dark floor","floor","wall"],
+			["wall","floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","floor","wall"],
+			["wall","floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","floor","wall"],
+			["wall","floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","floor","wall"],
+			["wall","floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","floor","wall"],
+			["wall","floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","floor","wall"],
 			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","floor"],
-			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
-			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
-			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
-			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","wall"],
 			["wall","wall","wall","wall","wall","wall","wall","wall","wall","wall","wall"]],
 	"entities":[ 
 		{ "name":"green slime", "x":10, "y":10 }]

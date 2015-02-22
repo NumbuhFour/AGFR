@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using SimpleJSON;
+using System;
 public class SpriteSheet : MonoBehaviour {
 	
 	public Texture2D sheet;
@@ -51,8 +52,11 @@ public class SpriteSheet : MonoBehaviour {
 	}
 	
 	public Color[] GetPixelData(int spriteIndex){
-	if(tiles == null) tiles = ChopUpTiles();
-		return tiles[spriteIndex];
+		if(tiles == null) tiles = ChopUpTiles();
+		Color[] source = tiles[spriteIndex];
+		Color[] rtn = new Color[source.Length];
+		Array.Copy(source,rtn,source.Length);
+		return rtn;
 	}
 	
 	/*void BuildTexture() {
