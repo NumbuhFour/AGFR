@@ -44,6 +44,7 @@ public class MapLoader : MonoBehaviour {
 			for(int y = 0; y < dimensions.y; y++){
 				JSONNode tile = mapData[(int)dimensions.y-y-1][x];
 				if(tile.GetType() == typeof(SimpleJSON.JSONClass)){
+					Debug.Log("TILE THING " + tile["name"]);
 					map.SetTileAt(x + (int)offset.x,y + (int)offset.y, tile["name"]);
 					Tile t = map.GetTile(tile["name"]);
 					t.ReadData(tile, map.GetTileDataAt(x + (int)offset.x,y + (int)offset.y));
@@ -59,7 +60,7 @@ public class MapLoader : MonoBehaviour {
 		int count = tileJData.Count;
 		for (int i = 0; i < count; i++){
 			JSONNode t = tileJData[i];
-			map.SetTile(t["name"], new Tile(t, map.sheet));
+			map.SetTile(t["name"], MakeTileInstance(t["name"], t, map.sheet));
 		}
 	}
 	
@@ -89,5 +90,12 @@ public class MapLoader : MonoBehaviour {
 		}
 		return new Color(r,g,b,a);
 		
+	}
+	
+	public static Tile MakeTileInstance(string type, JSONNode file, SpriteSheet sheet){
+		switch(type){
+		default: return new Tile(file,sheet);
+		case "button": return new Button(file,sheet);
+		}
 	}
 }

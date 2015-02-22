@@ -52,6 +52,7 @@ public class LightNoise : MonoBehaviour {
 					if(lightsOut){
 						float theta = (Time.time*50)/darkChangePeriod + Random.Range(0,darkChangePeriod);
 						float sine = Mathf.Sin(theta)*10;
+						draw.r = draw.g = draw.b = 0;
 						draw.a = Random.Range(min,max) + sine/255;
 					}else{
 						draw.a = Random.Range(min,max);

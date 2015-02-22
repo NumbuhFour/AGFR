@@ -11,6 +11,8 @@ TagManager:
   - SpriteLayer
   - DyingOverlay
   - Chat
+  - Bodiless
+  - LightOverlay
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -53,13 +55,13 @@ TagManager:
     userID: 6
     uniqueID: 3843557911
     locked: 0
-  - name: Noise
-    userID: 10
-    uniqueID: 1688175597
-    locked: 0
   - name: Entities
     userID: 8
     uniqueID: 2439685193
+    locked: 0
+  - name: Noise
+    userID: 10
+    uniqueID: 1688175597
     locked: 0
   - name: Sprites
     userID: 11
