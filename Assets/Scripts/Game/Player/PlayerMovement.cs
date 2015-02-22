@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour {
 			if(vert != 0 && vert != lastVert) vertMostRecent = true;
 			
 			if(deltaHold > moveDelay || (change && delta > tapDelay)) {
-				Debug.Log("MOVE " + deltaHold + " " + delta + " " + change);
 				Vector2 delt = new Vector2();
 				
 				if(vertMostRecent){ //Changes preference order based on last key pressed

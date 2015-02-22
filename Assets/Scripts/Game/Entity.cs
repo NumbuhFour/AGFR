@@ -33,6 +33,23 @@ public class Entity : MonoBehaviour, INamed {
 		}
 	}
 	
+	public void Knock(string direction, int amt){
+		Vector2 push = Direction.ConvertToVector(direction);
+		for(int i = 1; i <= amt; i++){
+			Vector2 mul = push * i;
+			bool can = CanMove(mul);
+			if(!can){
+				if(i != 1) { //Must be against wall if it equals 1 and failed already
+					this.Move(push*(i-1));//Only some of distance available, go there
+				}
+				break;//Reached obstacle
+			}else if(can && amt == i){//Full reach of knock available
+				this.Move(mul);
+				break;
+			}
+		}
+	}
+	
 	public void SetPos(Vector2 pos, bool resetLastLoc=false){
 		if(resetLastLoc)lastLoc = pos;
 		else lastLoc = pos;
@@ -51,5 +68,9 @@ public class Entity : MonoBehaviour, INamed {
 		Tile to = map.GetTileAt((int)newPos.x, (int)newPos.y);
 		Tile fro = map.GetTileAt((int)pos.x, (int)pos.y);
 		return to.Solidity <= fro.Solidity;
+	}
+	
+	public void Death(){
+		Destroy (this.gameObject);
 	}
 }
