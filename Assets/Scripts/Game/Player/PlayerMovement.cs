@@ -8,8 +8,9 @@ public class PlayerMovement : MonoBehaviour {
 
 	public int moveDelay = 150;
 	public int tapDelay = 50;
-
+	
 	private long lastTime;
+	private long lastTimeHold;
 	
 	private Entity ent;
 	private FaceDirection dir;
@@ -27,36 +28,41 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(Game.Paused) return;
 		long time = (int)(Time.time*1000);
 		int horiz = (int)Input.GetAxisRaw("Horizontal");
 		int vert = (int)Input.GetAxisRaw("Vertical");
 		long delta = time-lastTime;
-		
-		if(horiz != 0 && horiz != lastHoriz) vertMostRecent = false;
-		if(vert != 0 && vert != lastVert) vertMostRecent = true;
-		
-		if(delta > moveDelay || ((lastHoriz != horiz || lastVert != vert) && delta > tapDelay)) {
+		long deltaHold= time-lastTimeHold;
+		bool change = (lastHoriz != horiz || lastVert != vert);
+		if(horiz != 0 || vert != 0){
+			if(horiz != 0 && horiz != lastHoriz) vertMostRecent = false;
+			if(vert != 0 && vert != lastVert) vertMostRecent = true;
 			
-			Vector2 delt = new Vector2();
-			
-			if(vertMostRecent){ //Changes preference order
-				if(vert != 0){
-					delt.y = vert;
-				}else if(horiz != 0){
-					delt.x = horiz;
+			if(deltaHold > moveDelay || (change && delta > tapDelay)) {
+				Debug.Log("MOVE " + deltaHold + " " + delta + " " + change);
+				Vector2 delt = new Vector2();
+				
+				if(vertMostRecent){ //Changes preference order based on last key pressed
+					if(vert != 0){
+						delt.y = vert;
+					}else if(horiz != 0){
+						delt.x = horiz;
+					}
+				}else {
+					if(horiz != 0){
+						delt.x = horiz;
+					}else if(vert != 0){
+						delt.y = vert;
+					}
 				}
-			}else {
-				if(horiz != 0){
-					delt.x = horiz;
-				}else if(vert != 0){
-					delt.y = vert;
-				}
+				ent.Move (delt);
+				SetDirection(delt);
+				lastTime = time;
+				lastTimeHold = time;
 			}
-			ent.Move (delt);
-			SetDirection(delt);
-			lastTime = time;
+			//if(change || (horiz==0 && vert==0)) lastTimeHold = time; //For when tapping makes it think its held
 		}
-		
 		lastHoriz = horiz;
 		lastVert = vert;
 	}

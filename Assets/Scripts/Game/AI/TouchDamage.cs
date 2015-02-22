@@ -19,6 +19,7 @@ public class TouchDamage : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(Game.Paused) return;
 		bool lastCompany = hasCompany;
 		hasCompany = CheckNeighbors();
 		if(hasCompany){
