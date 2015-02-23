@@ -11,6 +11,8 @@ public class Flash : MonoBehaviour {
 	public Color blinkColor = Color.red;
 
 	public string id = "";
+	
+	public string colorKey = "Swap";
 
 	private int timer = 0;
 	private Color orig;
@@ -27,26 +29,31 @@ public class Flash : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rend = this.GetComponent<SpriteRenderer>();
-		orig = rend.color;
+		orig = rend.material.GetColor("_Swap");
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		timer += (int)(GameTime.deltaTime*1000);
 		if(duration != -1 && timer > duration){
-			rend.color = orig;
+			rend.material.SetColor ("_Swap",orig);
 			if(onDestroy != "") this.gameObject.SendMessage(onDestroy);
 			Destroy(this);
 			return;
 		}
 		
 		if(timer%(period+pause) < period){
-			rend.color = blinkColor;
+			rend.material.SetColor ("_Swap",blinkColor);
 		}else{
-			rend.color = orig;
+			rend.material.SetColor ("_Swap",orig);
 		}
 	}
 	public void Reset(){
 		timer = 0;
+		rend.material.SetColor ("_Swap",orig);
+	}
+	
+	public void OnDestroy(){
+		rend.material.SetColor ("_Swap",orig);
 	}
 }

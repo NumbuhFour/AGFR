@@ -852,6 +852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37925d26cacd66146b5b9a360e7e5870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseOverlay: {fileID: 473229806}
 --- !u!1 &371293434
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +863,7 @@ GameObject:
   - 224: {fileID: 371293435}
   - 222: {fileID: 371293437}
   - 114: {fileID: 371293436}
+  - 114: {fileID: 371293438}
   m_Layer: 5
   m_Name: BottomText
   m_TagString: Untagged
@@ -920,6 +922,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 371293434}
+--- !u!114 &371293438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 371293434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d03ab17c991f2084ea8188fef4f539f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  period: 400
+  pause: 400
+  blinkColor: {r: .588235259, g: .588235259, b: .588235259, a: 1}
 --- !u!1 &406688534
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,7 +1094,7 @@ GameObject:
   - 114: {fileID: 473229808}
   m_Layer: 5
   m_Name: Paused
-  m_TagString: Untagged
+  m_TagString: PauseOverlay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1656,6 +1672,7 @@ GameObject:
   - 223: {fileID: 915326610}
   - 114: {fileID: 915326609}
   - 114: {fileID: 915326608}
+  - 114: {fileID: 915326612}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -1736,6 +1753,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &915326612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 915326607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e5d9a920976974a92dcd3e61624dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseReleased: 1
 --- !u!1 &989199088
 GameObject:
   m_ObjectHideFlags: 0
@@ -3001,7 +3030,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1523697954}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 1077351063, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -3291,6 +3320,7 @@ GameObject:
   - 224: {fileID: 1632492184}
   - 222: {fileID: 1632492186}
   - 114: {fileID: 1632492185}
+  - 114: {fileID: 1632492187}
   m_Layer: 5
   m_Name: Subtext
   m_TagString: Untagged
@@ -3340,13 +3370,26 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: press [enter] to unpause
+  m_Text: press [PAUSE] to continue
 --- !u!222 &1632492186
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1632492183}
+--- !u!114 &1632492187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1632492183}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db63b2fa34e4a8a4db3245c5aa80ea23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputAxis: 
+  substitute: 246b6579
 --- !u!1 &1682546752
 GameObject:
   m_ObjectHideFlags: 0
@@ -3633,6 +3676,7 @@ GameObject:
   - 224: {fileID: 2053378117}
   - 222: {fileID: 2053378119}
   - 114: {fileID: 2053378118}
+  - 114: {fileID: 2053378120}
   m_Layer: 5
   m_Name: TopText
   m_TagString: Untagged
@@ -3689,6 +3733,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2053378116}
+--- !u!114 &2053378120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2053378116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d03ab17c991f2084ea8188fef4f539f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  period: 400
+  pause: 400
+  blinkColor: {r: .588235259, g: .588235259, b: .588235259, a: 1}
 --- !u!1 &2098265381
 GameObject:
   m_ObjectHideFlags: 0

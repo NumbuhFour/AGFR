@@ -4,7 +4,6 @@ Major TOD:
 	-Shades
 	-Proper color text
 	-Secret overlay
-	-Make time manager that accounts for pause
 	
 Minor TODO:
 	-Sword swing sprite changes direction based on spin

@@ -14,23 +14,46 @@ public class ChatManager : MonoBehaviour {
 	private string typingMsg = "";
 	private int typingIndex = 0;
 	
+	private bool isPaused = false;
+	private bool isWaiting = false;
+	private GameObject finishCall = null;
+	
 	private long lastTime;
 	// Use this for initialization
 	void Start () {
-		lastTime = (long)(GameTime.time*1000);
+		lastTime = (long)(GameTime.chatTime*1000);
 		UpdateTextBoxes();
+		foreach(Text t in boxes){
+			t.gameObject.GetComponent<FlashText>().enabled = false;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		long time = (long)(GameTime.time*1000);
+		long time = (long)(GameTime.chatTime*1000);
 		if(time - lastTime >= typeDelay){
 			lastTime = time;
-			if(typingMsg != "") AddNextLetter();
+			if(typingMsg != "")
+				AddNextLetter();
+		}
+		
+		if(isWaiting && Input.GetAxis("Use") > 0){
+			isWaiting = false;
+			isPaused = false;
+			Game.Paused = false;
+			foreach(Text t in boxes){
+				t.gameObject.GetComponent<FlashText>().Stop ();
+			}
+			if(finishCall) 
+				finishCall.SendMessage("OnFinishText");
 		}
 	}
 	
-	public void PushText(string head, string msg){
+	public void PushText(string head, string msg, bool pause=false, GameObject finishCall=null){
+		this.finishCall = finishCall;
+		isPaused |= pause;
+		if(pause) Game.NoMenuPauseGame();
+	
 		while (typingIndex < typingMsg.Length-1){ //Finish typing
 			AddNextLetter();
 		}
@@ -64,10 +87,22 @@ public class ChatManager : MonoBehaviour {
 			typingMsg = typingMsg.Substring(typingIndex);
 			typingIndex = 0;
 		}
-		if(typingIndex > typingMsg.Length -1)
+		if(typingIndex > typingMsg.Length -1){
 			typingMsg = "";
+			OnFinishText();
+		}
 			
 		UpdateTextBoxes();
+	}
+	
+	private void OnFinishText(){
+		if(isPaused) {
+			isWaiting = true;
+			foreach(Text t in boxes){
+				t.gameObject.GetComponent<FlashText>().enabled = true;
+			}
+		}else if(finishCall) 
+			finishCall.SendMessage("OnFinishText");
 	}
 	
 	private void UpdateTextBoxes(){

@@ -1,3 +1,6 @@
 Editor GUI components will be on one atlas.
 	-Thought it might be easier to just split it. Theres no real reason to split it anyway. 
 	I kinda forgot why i didnt for the game area
+
+GameTime versus built in Time
+	-Alterations based on Time.deltaTime or Time.time can't account for pause

@@ -15,6 +15,7 @@ public class MenuKeyInput : MonoBehaviour {
 		float pause = Input.GetAxisRaw("Pause");
 		if(pause > 0 && pauseReleased){
 			Game.Paused = !Game.Paused;
+			Game.ChatPause = Game.Paused;
 			pauseReleased = false;
 		}
 		
