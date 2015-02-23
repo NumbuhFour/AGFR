@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400004}
+  - 114: {fileID: 11400006}
   m_Layer: 0
   m_Name: SwordSprite
   m_TagString: Player
@@ -47,6 +48,7 @@ MonoBehaviour:
   - {fileID: 21300080, guid: 6879bcdf8856b8e43981753ae3b1f15b, type: 3}
   - {fileID: 21300078, guid: 6879bcdf8856b8e43981753ae3b1f15b, type: 3}
   - {fileID: 21300076, guid: 6879bcdf8856b8e43981753ae3b1f15b, type: 3}
+  direction: 
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -74,6 +76,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 50
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ed6c753be6fc34282936aec2c26e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  knockback: 1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

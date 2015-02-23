@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46509ff8d8ed6174d91a71405137de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  maxHealth: 3
   invulnDuration: 1500
 --- !u!212 &21200000
 SpriteRenderer:

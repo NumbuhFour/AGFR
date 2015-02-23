@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 [AddComponentMenu("Scripts/UI/Chat Manager")]
 public class ChatManager : MonoBehaviour {
-	
-	public Text topTextBox;
-	public Text botTextBox;
+	public Text[] boxes;
 	public int typeDelay = 10;
 	public int maxLength = 35;
 	
@@ -72,7 +71,8 @@ public class ChatManager : MonoBehaviour {
 	}
 	
 	private void UpdateTextBoxes(){
-		botTextBox.text = messages[0];
-		topTextBox.text = messages[1];
+		for(int i = 0; i < boxes.Length && i < messages.Length; i++){
+			boxes[i].text = messages[i];
+		}
 	}
 }
