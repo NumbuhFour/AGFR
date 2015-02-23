@@ -3,7 +3,9 @@ using System.Collections;
 
 [AddComponentMenu("Scripts/Game")]
 public class Game : MonoBehaviour {
-
+	
+	public GameObject pauseOverlay;
+	
 	private static Game instance;
 	public static Game Instance { get { return instance; } }
 
@@ -13,7 +15,7 @@ public class Game : MonoBehaviour {
 		set {
 			bool change = Instance.paused != value;
 			Instance.paused = value;
-			
+			Instance.pauseOverlay.SetActive(Instance.paused);
 		}
 	}
 		
