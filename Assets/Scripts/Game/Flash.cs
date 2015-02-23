@@ -32,7 +32,7 @@ public class Flash : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		timer += (int)(Time.deltaTime*1000);
+		timer += (int)(GameTime.deltaTime*1000);
 		if(duration != -1 && timer > duration){
 			rend.color = orig;
 			if(onDestroy != "") this.gameObject.SendMessage(onDestroy);

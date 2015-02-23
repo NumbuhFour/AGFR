@@ -31,7 +31,7 @@ public class LightNoise : MonoBehaviour {
 	private float timer = 0;
 
 	void Update(){
-		timer += Time.deltaTime*1000f;
+		timer += GameTime.deltaTime*1000f;
 		if(((minAlpha != min || maxAlpha != max) && !lightsOut ) || (lightsOut && timer > lightsOutFrames)){
 			Regenerate();
 			timer = 0;
@@ -50,7 +50,7 @@ public class LightNoise : MonoBehaviour {
 					Random.seed = x * (int)Map.MAPDIM.x + y;
 					Color draw = color;
 					if(lightsOut){
-						float theta = (Time.time*50)/darkChangePeriod + Random.Range(0,darkChangePeriod);
+						float theta = (GameTime.time*50)/darkChangePeriod + Random.Range(0,darkChangePeriod);
 						float sine = Mathf.Sin(theta)*10;
 						draw.r = draw.g = draw.b = 0;
 						draw.a = Random.Range(min,max) + sine/255;

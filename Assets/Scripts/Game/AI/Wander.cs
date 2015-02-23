@@ -18,7 +18,7 @@ public class Wander : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Game.Paused) return;
-		timer += (int)(Time.deltaTime*1000);
+		timer += (int)(GameTime.deltaTime*1000);
 		if(!holdStill && timer >= delay){
 			timer = 0;
 			int randX = Random.Range(-1,2);

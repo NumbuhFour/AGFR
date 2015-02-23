@@ -23,13 +23,13 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
 		ent = GetComponent<Entity>();
 		dir = GetComponent<FaceDirection>();
-		lastTime = (int)(Time.time*1000);
+		lastTime = (int)(GameTime.time*1000);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(Game.Paused) return;
-		long time = (int)(Time.time*1000);
+		long time = (int)(GameTime.time*1000);
 		int horiz = (int)Input.GetAxisRaw("Horizontal");
 		int vert = (int)Input.GetAxisRaw("Vertical");
 		long delta = time-lastTime;

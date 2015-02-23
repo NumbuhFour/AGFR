@@ -17,13 +17,13 @@ public class ChatManager : MonoBehaviour {
 	private long lastTime;
 	// Use this for initialization
 	void Start () {
-		lastTime = (long)(Time.time*1000);
+		lastTime = (long)(GameTime.time*1000);
 		UpdateTextBoxes();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		long time = (long)(Time.time*1000);
+		long time = (long)(GameTime.time*1000);
 		if(time - lastTime >= typeDelay){
 			lastTime = time;
 			if(typingMsg != "") AddNextLetter();
@@ -40,7 +40,7 @@ public class ChatManager : MonoBehaviour {
 		lastMsg = head + msg;
 		typingMsg = msg;
 		typingIndex = 0;
-		lastTime = (long)(Time.time*1000);
+		lastTime = (long)(GameTime.time*1000);
 	}
 	
 	private void AddNextLetter(){

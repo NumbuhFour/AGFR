@@ -25,7 +25,7 @@ public class TouchDamage : MonoBehaviour {
 		if(hasCompany){
 			this.gameObject.SendMessage("HoldStill");
 			if(lastCompany){
-				timer += (int)(Time.deltaTime * 1000);
+				timer += (int)(GameTime.deltaTime * 1000);
 				
 				if(!initalHit){
 					if(timer >= delayBeforeFirstHit){

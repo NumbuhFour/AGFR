@@ -12,15 +12,15 @@ public class AddSomeRandoText : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		lastTime = (long)(Time.time*1000);
+		lastTime = (long)(GameTime.time*1000);
 		chat.PushText(text[0,0], text[0,1]);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		long time = (long)(Time.time*1000);
+		long time = (long)(GameTime.time*1000);
 		if(time - lastTime >= delay && done < 3){
-			lastTime = (long)(Time.time*1000);
+			lastTime = (long)(GameTime.time*1000);
 			chat.PushText(text[done,0], text[done,1]);
 			done++;
 		}
