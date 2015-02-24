@@ -19,5 +19,8 @@ public class SpawnSpriteOnSwing : MonoBehaviour {
 		Vector2 dir = Direction.ConvertToVector(direction);
 		Entity e = spriteLayer.SpawnEntity(sprites[spriteName], player.loc + dir).GetComponent<Entity>();
 		e.GetComponent<FaceDirection>().SetDirection(direction);
+		//try{
+		e.SendMessage("SetOwner", player);
+		//}catch(UnityException e){} //No sendmessage reciever
 	}
 }

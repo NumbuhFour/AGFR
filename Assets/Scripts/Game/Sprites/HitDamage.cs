@@ -10,6 +10,7 @@ public class HitDamage : MonoBehaviour {
 	
 	private Entity sprite;
 	private EntityLayer entLayer;
+	private Entity owner;
 	
 	private bool hit = false;
 	// Use this for initialization
@@ -22,7 +23,7 @@ public class HitDamage : MonoBehaviour {
 	void Update () {
 		if(!hit){
 			Entity target = entLayer.GetEntityAt(sprite.loc);
-			if(target){
+			if(target && target != owner){
 				hit = true;
 				HealthTracker health = target.GetComponent<HealthTracker>();
 				if(!health) return;
@@ -34,5 +35,9 @@ public class HitDamage : MonoBehaviour {
 				}
 			}
 		}
+	}
+	
+	void SetOwner(Entity e){ //Called by SendMessage, sets creator of the swing
+		owner = e;
 	}
 }

@@ -7,4 +7,5 @@ Major TOD:
 	
 Minor TODO:
 	-Sword swing sprite changes direction based on spin
-	-Attack sprites dont attack issuer
+	X Attack sprites dont attack issuer
+	-Player Double Stepping when spamming WASDWASDWASD
