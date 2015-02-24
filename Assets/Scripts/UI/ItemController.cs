@@ -15,6 +15,7 @@ public class ItemController : MonoBehaviour {
 	private int lastVert = 0;
 	// Update is called once per frame
 	void Update () {
+		if(Game.Paused) return;
 		if(inv.GetWeapon() == null) return;
 		
 		int horiz = (int)Input.GetAxisRaw("FireHorizontal");

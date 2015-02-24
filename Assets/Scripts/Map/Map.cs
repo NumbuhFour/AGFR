@@ -74,6 +74,7 @@ public class Map : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(Game.Paused) return;
 		for(int x = 0; x<MAPDIM.x; x++){
 			for(int y = 0; y<MAPDIM.y; y++){
 				Tile t = GetTileAt (x,y);

@@ -20,7 +20,7 @@ public class InventoryUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		AddItem (items["iron dagger"]);
+		SetItem (equipment[0], items["iron dagger"]);
 		AddItem (items["green potion"]);
 	}
 	
@@ -113,6 +113,14 @@ public class InventoryUI : MonoBehaviour {
 		add.GetComponent<InvTile>().Init(this, item, this.inventory[GetNextMatchingSlot(namer.Name())]);
 		//add.transform.posinventory[0]
 	}
+	public void SetItem(InvSlot slot, GameObject itemPrefab){
+		GameObject item = (GameObject)Instantiate(itemPrefab);
+		GameObject add = (GameObject)Instantiate(tilePrefab);
+		add.transform.parent = this.transform;
+		INamed namer = (INamed)item.GetComponent(typeof(INamed));
+		add.GetComponent<InvTile>().Init(this, item, slot);
+		//add.transform.posinventory[0]
+	}
 	
 	public void SwapSlots(InvSlot a, InvSlot b){
 		InvTile ta = a.Tile;
@@ -134,8 +142,9 @@ public class InventoryUI : MonoBehaviour {
 		int firstEmpty = -1;
 		for (int i = 0; i < inventory.Length; i++){
 			InvSlot slot = inventory[i];
-			if(!slot.Tile) firstEmpty = i;
-			else {
+			if(!slot.Tile) {
+				if(firstEmpty == -1) firstEmpty = i;
+			}else {
 				INamed namer = (INamed)slot.Tile.Item.GetComponent(typeof(INamed));
 				if(namer.Name() == itemName) 
 					return i;
