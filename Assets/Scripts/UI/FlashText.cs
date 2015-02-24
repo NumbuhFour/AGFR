@@ -29,7 +29,7 @@ public class FlashText : MonoBehaviour {
 	void Update () {
 		timer += (int)(Time.deltaTime*1000);
 		
-		if(timer%(period+pause) < period){
+		if(timer%(period+pause) > pause){
 			text.color = blinkColor;
 		}else{
 			text.color = orig;

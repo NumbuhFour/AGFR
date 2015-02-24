@@ -5,6 +5,8 @@ using System;
 
 [AddComponentMenu("Scripts/UI/Chat Manager")]
 public class ChatManager : MonoBehaviour {
+	public enum PauseMode { NO_PAUSE, PAUSE_GAME, STOP_AFTER_FINISH }; //Stop_after requires pause_game
+
 	public Text[] boxes;
 	public int typeDelay = 10;
 	public int maxLength = 35;
@@ -14,11 +16,12 @@ public class ChatManager : MonoBehaviour {
 	private string typingMsg = "";
 	private int typingIndex = 0;
 	
-	private bool isPaused = false;
+	private PauseMode mode = PauseMode.NO_PAUSE;
 	private bool isWaiting = false;
-	private GameObject finishCall = null;
+	private MonoBehaviour finishCall = null;
 	
 	private long lastTime;
+	public bool pauseReleased = true;
 	// Use this for initialization
 	void Start () {
 		lastTime = (long)(GameTime.chatTime*1000);
@@ -26,6 +29,17 @@ public class ChatManager : MonoBehaviour {
 		foreach(Text t in boxes){
 			t.gameObject.GetComponent<FlashText>().enabled = false;
 		}
+	}
+	
+	private void CheckKeys(){
+		float pause = Input.GetAxisRaw("Pause");
+		if(pause > 0 && pauseReleased){
+			Game.Paused = !Game.Paused;
+			Game.ChatPause = Game.Paused;
+			pauseReleased = false;
+		}
+		
+		if(pause <= 0) pauseReleased = true;
 	}
 	
 	// Update is called once per frame
@@ -39,7 +53,7 @@ public class ChatManager : MonoBehaviour {
 		
 		if(isWaiting && Input.GetAxis("Use") > 0){
 			isWaiting = false;
-			isPaused = false;
+			this.mode = PauseMode.NO_PAUSE;
 			Game.Paused = false;
 			foreach(Text t in boxes){
 				t.gameObject.GetComponent<FlashText>().Stop ();
@@ -49,11 +63,14 @@ public class ChatManager : MonoBehaviour {
 		}
 	}
 	
-	public void PushText(string head, string msg, bool pause=false, GameObject finishCall=null){
+	public void PushText(string head, string msg, PauseMode mode=PauseMode.NO_PAUSE, MonoBehaviour finishCall=null){
 		this.finishCall = finishCall;
-		isPaused |= pause;
-		if(pause) Game.NoMenuPauseGame();
-	
+		this.mode = mode;
+		if(this.mode != PauseMode.NO_PAUSE) Game.NoMenuPauseGame();
+		foreach(Text t in boxes){
+			t.gameObject.GetComponent<FlashText>().Stop ();
+		}
+		
 		while (typingIndex < typingMsg.Length-1){ //Finish typing
 			AddNextLetter();
 		}
@@ -96,11 +113,9 @@ public class ChatManager : MonoBehaviour {
 	}
 	
 	private void OnFinishText(){
-		if(isPaused) {
+		if(mode == PauseMode.STOP_AFTER_FINISH) {
 			isWaiting = true;
-			foreach(Text t in boxes){
-				t.gameObject.GetComponent<FlashText>().enabled = true;
-			}
+			boxes[0].gameObject.GetComponent<FlashText>().enabled = true;
 		}else if(finishCall) 
 			finishCall.SendMessage("OnFinishText");
 	}

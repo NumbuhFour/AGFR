@@ -65,8 +65,11 @@ public class Map : MonoBehaviour {
 	public void SetTile(string name, Tile t){
 		tiles[name] = t;
 	}
-
-	void Start () {
+	
+	public void UseTile(Vector2 loc, Entity e){
+		Tile t = GetTileAt((int)loc.x, (int)loc.y);
+		TileData dat = GetTileDataAt((int)loc.x, (int)loc.y);
+		t.OnUse(e, dat);
 	}
 	
 	// Update is called once per frame

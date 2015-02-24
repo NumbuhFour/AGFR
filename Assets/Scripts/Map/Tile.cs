@@ -26,7 +26,7 @@ public class Tile {
 	
 	public Tile(JSONNode data, SpriteSheet sheet){
 		this.sheet = sheet;
-		name = data["name"];
+		name = data["name"].Value;
 		JSONNode mcNode = data["main_color"];
 		mainColor = MapLoader.ReadColor(mcNode);
 		JSONNode sNode = data["swap_color"];
@@ -65,10 +65,10 @@ public class Tile {
 	public virtual void OnEntityExit(Entity e, TileData data){
 	}
 	public virtual void OnEntityAttack(Entity e, TileData data){
-		
 	}
 	public virtual void Update(TileData data){
-	
+	}
+	public virtual void OnUse(Entity e, TileData data){
 	}
 	
 	public virtual void ReadData(JSONNode node, TileData data){

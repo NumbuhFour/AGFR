@@ -44,8 +44,8 @@ public class MapLoader : MonoBehaviour {
 			for(int y = 0; y < dimensions.y; y++){
 				JSONNode tile = mapData[(int)dimensions.y-y-1][x];
 				if(tile.GetType() == typeof(SimpleJSON.JSONClass)){
-					map.SetTileAt(x + (int)offset.x,y + (int)offset.y, tile["name"]);
-					Tile t = map.GetTile(tile["name"]);
+					map.SetTileAt(x + (int)offset.x,y + (int)offset.y, tile["style"].Value);
+					Tile t = map.GetTile(tile["style"].Value);
 					t.ReadData(tile, map.GetTileDataAt(x + (int)offset.x,y + (int)offset.y));
 				}
 				else {
@@ -59,7 +59,10 @@ public class MapLoader : MonoBehaviour {
 		int count = tileJData.Count;
 		for (int i = 0; i < count; i++){
 			JSONNode t = tileJData[i];
-			map.SetTile(t["name"], MakeTileInstance(t["name"], t, map.sheet));
+			string name = t["name"].Value;
+			string type = t["type"].Value;
+			if(type == null) type = "tile";
+			map.SetTile(name, MakeTileInstance(type, t, map.sheet));
 		}
 	}
 	
@@ -69,7 +72,7 @@ public class MapLoader : MonoBehaviour {
 			JSONNode t = tileJData[i];
 			int x = t["x"].AsInt;
 			int y = t["y"].AsInt;
-			string name = t["name"];
+			string name = t["name"].Value;
 			entities.SpawnEntity(entityList[name],new Vector2(x,y));
 		}
 	}
@@ -95,6 +98,7 @@ public class MapLoader : MonoBehaviour {
 		switch(type){
 		default: return new Tile(file,sheet);
 		case "button": return new Button(file,sheet);
+		case "sign": return new Sign(file,sheet);
 		}
 	}
 }

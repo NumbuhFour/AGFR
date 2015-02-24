@@ -342,6 +342,7 @@ MonoBehaviour:
   - {fileID: 2053378118}
   typeDelay: 10
   maxLength: 35
+  pauseReleased: 1
 --- !u!1 &153065924
 GameObject:
   m_ObjectHideFlags: 0
@@ -3320,7 +3321,6 @@ GameObject:
   - 224: {fileID: 1632492184}
   - 222: {fileID: 1632492186}
   - 114: {fileID: 1632492185}
-  - 114: {fileID: 1632492187}
   m_Layer: 5
   m_Name: Subtext
   m_TagString: Untagged
@@ -3377,19 +3377,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1632492183}
---- !u!114 &1632492187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1632492183}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db63b2fa34e4a8a4db3245c5aa80ea23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputAxis: 
-  substitute: 246b6579
 --- !u!1 &1682546752
 GameObject:
   m_ObjectHideFlags: 0
