@@ -9,3 +9,7 @@ Minor TODO:
 	-Sword swing sprite changes direction based on spin
 	X Attack sprites dont attack issuer
 	-Player Double Stepping when spamming WASDWASDWASD
+	-Swing sprite damage change based on item
+	XLootbags intangible
+	XFix merging items on pickup
+	-Fix on potion use

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [AddComponentMenu("Scripts/UI/Inventory UI")]
 public class InventoryUI : MonoBehaviour {
@@ -7,6 +8,9 @@ public class InventoryUI : MonoBehaviour {
 	public PremadeContainer items;
 
 	public LayerMask UILayer;
+	public Canvas itemCountCanvas;
+	public GameObject itemCountPrefab;
+	
 	private InvTile currentlyDragging = null;
 	private InvSlot lastSlot = null;
 	private InvSlot lastSlotLocation = null;
@@ -104,21 +108,39 @@ public class InventoryUI : MonoBehaviour {
 		get {return currentlyDragging != null;}
 	}
 	
-	public void AddItem(GameObject itemPrefab){
-		if(!HasOpenSlot()) return;
+	public int AddItem(GameObject itemPrefab, int count=1){
+		if(!HasOpenSlot()) return -1;
+		//Making item object
 		GameObject item = (GameObject)Instantiate(itemPrefab);
 		GameObject add = (GameObject)Instantiate(tilePrefab);
-		add.transform.parent = this.transform;
-		INamed namer = (INamed)item.GetComponent(typeof(INamed));
-		add.GetComponent<InvTile>().Init(this, item, this.inventory[GetNextMatchingSlot(namer.Name())]);
+		GameObject counter = (GameObject)Instantiate(itemCountPrefab);
+		add.transform.SetParent (this.transform);
+		counter.transform.SetParent(this.itemCountCanvas.transform);
+		
+		//Placing in inventory
+		Item itemstack = item.GetComponent<Item>();
+		itemstack.Count = count;
+		int putSlot = GetNextMatchingSlot(itemstack, true);
+		if(putSlot == -1){ //Merged or inv full
+			count = itemstack.Count;
+			Destroy (item);
+			Destroy (add);
+			Destroy (counter);
+			return count;
+		}else {
+			add.GetComponent<InvTile>().Init(this, item, this.inventory[putSlot], counter); //Empty slot, place there
+			return 0;
+		}
 		//add.transform.posinventory[0]
 	}
 	public void SetItem(InvSlot slot, GameObject itemPrefab){
 		GameObject item = (GameObject)Instantiate(itemPrefab);
 		GameObject add = (GameObject)Instantiate(tilePrefab);
-		add.transform.parent = this.transform;
+		GameObject counter = (GameObject)Instantiate(itemCountPrefab);
+		add.transform.SetParent (this.transform);
+		counter.transform.SetParent(this.itemCountCanvas.transform);
 		INamed namer = (INamed)item.GetComponent(typeof(INamed));
-		add.GetComponent<InvTile>().Init(this, item, slot);
+		add.GetComponent<InvTile>().Init(this, item, slot, counter);
 		//add.transform.posinventory[0]
 	}
 	
@@ -138,19 +160,30 @@ public class InventoryUI : MonoBehaviour {
 		return this.equipment[0].item;
 	}
 	
-	public int GetNextMatchingSlot(string itemName=null){
+	public int GetNextMatchingSlot(Item item=null, bool merge=true){
 		int firstEmpty = -1;
 		for (int i = 0; i < inventory.Length; i++){
 			InvSlot slot = inventory[i];
 			if(!slot.Tile) {
+				if(item == null) return i;
 				if(firstEmpty == -1) firstEmpty = i;
-			}else {
-				INamed namer = (INamed)slot.Tile.Item.GetComponent(typeof(INamed));
-				if(namer.Name() == itemName) 
-					return i;
+			}else if(item != null) {
+				Item found = slot.Tile.Item.GetComponent<Item>();
+				if(found.Name() == item.Name()) {
+					if(merge){
+						int rem = found.maxCount - found.Count;
+						found.Count = Mathf.Min (item.Count + found.Count, found.maxCount);
+						item.Count = Mathf.Max(0, item.Count - rem);
+						if(item.Count <= 0){
+							return -1; //Merged completely, no more item
+						}
+					}else {
+						return i; //Slot found matching item
+					}
+				}
 			}
 		}
-		return firstEmpty;
+		return firstEmpty; //First empty slot
 	}
 	
 	public bool HasOpenSlot(){

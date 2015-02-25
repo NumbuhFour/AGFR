@@ -27,6 +27,7 @@ public class FlashText : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(!text) return;
 		timer += (int)(Time.deltaTime*1000);
 		
 		if(timer%(period+pause) > pause){
@@ -36,15 +37,18 @@ public class FlashText : MonoBehaviour {
 		}
 	}
 	public void Reset(){
+		if(!text) return;
 		timer = 0;
 		text.color = orig;
 	}
 	
 	public void OnDestroy(){
+		if(!text) return;
 		text.color = orig;
 	}
 	
 	public void Stop(){
+		if(!text) return;
 		text.color = orig;
 		this.enabled = false;
 	}

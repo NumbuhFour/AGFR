@@ -12,6 +12,7 @@ public class InvTile : MonoBehaviour {
 	private Vector3 offset;
 	private InvSlot slot;
 	private GameObject item;
+	private GameObject counter;
 	
 	public InvSlot Slot{ 
 		get { return slot; } 
@@ -23,12 +24,15 @@ public class InvTile : MonoBehaviour {
 		}
 	}
 	
-	public void Init(InventoryUI invMan, GameObject item, InvSlot slot){
+	public void Init(InventoryUI invMan, GameObject item, InvSlot slot, GameObject counter){
 		this.invMan = invMan;
 		this.item = item;
 		item.transform.parent = this.transform;
 		item.transform.localPosition = Vector3.zero;
 		this.Slot = slot;
+		this.counter = counter;
+		counter.SendMessage("SetCount", this.ItemStack.Count);
+		counter.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, counter.transform.position.z);
 	}
 	
 	public GameObject Item{
@@ -50,8 +54,11 @@ public class InvTile : MonoBehaviour {
 		
 		if(item == null || !this.item.activeSelf){
 			Slot.Tile = null;
+			Destroy (this.counter);
 			Destroy(this.gameObject);
 		}
+		Vector3 curPosition = transform.position;
+		counter.transform.position = new Vector3(curPosition.x, curPosition.y, counter.transform.position.z);
 	}
 	
 	
@@ -69,11 +76,16 @@ public class InvTile : MonoBehaviour {
 		Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
 		curPosition.z = lockedZ;
 		transform.position = curPosition;
+		counter.transform.position = new Vector3(curPosition.x, curPosition.y, counter.transform.position.z);
 	}
 	void OnMouseUp(){
 		Screen.showCursor = true;
 		invMan.DragStopped();
 		Item.GetComponent<SpriteRenderer>().sortingOrder = 1; //Bring to front;
+	}
+	
+	void OnItemCountChange(){ //Called by child item SendMessage
+		this.counter.SendMessage("SetCount", ItemStack.Count);
 	}
 	
 }

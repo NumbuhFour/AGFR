@@ -14,6 +14,7 @@ TagManager:
   - Bodiless
   - LightOverlay
   - PauseOverlay
+  - Inventory
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -83,6 +84,10 @@ TagManager:
   - name: Inventory
     userID: 3
     uniqueID: 51924757
+    locked: 0
+  - name: Inventory Text
+    userID: 12
+    uniqueID: 1793739391
     locked: 0
   - name: Chat
     userID: 4

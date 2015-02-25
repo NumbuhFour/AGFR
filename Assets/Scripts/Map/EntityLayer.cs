@@ -28,7 +28,8 @@ public class EntityLayer : MonoBehaviour {
 			Tile fromTile = map.GetTileAt((int)from.x, (int)from.y);
 			TileData fromData = map.GetTileDataAt((int)from.x,(int)from.y);
 			fromTile.OnEntityExit(e,fromData);
-			entCols[(int)from.x, (int)from.y] = null;
+			if(entCols[(int)from.x, (int)from.y] == e)
+				entCols[(int)from.x, (int)from.y] = null;
 		}
 		
 		toTile.OnEntityEnter(e,toData);
@@ -52,6 +53,20 @@ public class EntityLayer : MonoBehaviour {
 		ent.map = this.map;
 		ent.entlayer = this;
 		ent.SetPos(pos);
+		entCols[(int)ent.loc.x, (int)ent.loc.y] = ent;
 		return spawn;
+	}
+	
+	public bool UseEntity(Vector2 loc, Entity e){
+		Entity ent = GetEntityAt(loc);
+		if(ent){
+			ent.gameObject.SendMessage("OnUse", e);
+			return true;
+		}
+		return false;
+	}
+	public void RemoveEntity(Entity e){
+		if(entCols[(int)e.loc.x, (int)e.loc.y] == e)
+			entCols[(int)e.loc.x, (int)e.loc.y] = null;
 	}
 }

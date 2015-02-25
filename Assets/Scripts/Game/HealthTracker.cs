@@ -19,9 +19,10 @@ public class HealthTracker : MonoBehaviour {
 	
 	public void TakeDamage(int amt, Entity dealer){
 		if(invincible){
-			InvinFlash ();
+			//InvinFlash ();
 			return;
 		}
+		if(maxHealth <= 0) return;
 		health -= amt;
 		health = Mathf.Max(health,0);
 		if(health <= 0){

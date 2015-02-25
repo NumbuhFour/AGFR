@@ -73,4 +73,8 @@ public class Entity : MonoBehaviour, INamed {
 	public void Death(){
 		Destroy (this.gameObject);
 	}
+	
+	public void OnDestroy(){
+		this.entlayer.RemoveEntity(this);
+	}
 }

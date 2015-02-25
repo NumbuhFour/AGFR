@@ -5,10 +5,13 @@ using System.Collections;
 public class ItemController : MonoBehaviour {
 
 	public InventoryUI inv;
+	private GameObject player;
+	private FaceDirection dir;
 	
 	// Use this for initialization
 	void Start () {
-	
+		player = GameObject.FindGameObjectWithTag("Player");
+		dir = player.GetComponent<FaceDirection>();
 	}
 	
 	private int lastHoriz = 0;
@@ -23,9 +26,11 @@ public class ItemController : MonoBehaviour {
 		
 		if(horiz != lastHoriz && horiz != 0 && ((int)Input.GetAxisRaw("Horizontal") + horiz) != 0){
 			inv.GetWeapon().SendMessage("OnSwing", horiz>0 ? "east":"west");
+			dir.SetDirection(horiz>0 ? "east":"west");
 		}
 		if(vert != lastVert && vert != 0 && ((int)Input.GetAxisRaw("Vertical") + vert) != 0){
 			inv.GetWeapon().SendMessage("OnSwing", vert>0 ? "north":"south");
+			dir.SetDirection(vert>0 ? "north":"south");
 		}
 		
 		lastHoriz = horiz;

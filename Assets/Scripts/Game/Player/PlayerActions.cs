@@ -21,7 +21,10 @@ public class PlayerActions : MonoBehaviour {
 		bool pressed = Input.GetAxisRaw("Use")>0;
 		
 		if(!wasPressed && pressed){
-			map.UseTile(ent.loc + Direction.ConvertToVector(fdir.direction), ent);
+			Vector2 loc = ent.loc + Direction.ConvertToVector(fdir.direction);
+			if(!ent.entlayer.UseEntity(loc,ent)){
+				map.UseTile(loc, ent);
+			}
 		}
 		
 		wasPressed = pressed;

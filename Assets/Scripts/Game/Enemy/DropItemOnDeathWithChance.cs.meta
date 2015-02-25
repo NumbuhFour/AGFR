@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: cf10c828c9d09db478c0bf76f2dcf178
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - lootsackPrefab: {fileID: 100000, guid: 37dad68256db0904fb1fed72849bd078, type: 2}
+  - item: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
