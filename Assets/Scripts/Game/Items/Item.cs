@@ -6,6 +6,7 @@ public class Item : MonoBehaviour, INamed {
 	public enum Types { GENERIC, ARMOR, EQUIPMENT }
 
 	public string name;
+	public string displayName;
 	public int maxCount;
 	private int count = 1;
 	
@@ -15,6 +16,7 @@ public class Item : MonoBehaviour, INamed {
 	public Types type = Types.GENERIC;
 	
 	public string Name() { return name; }
+	public string DisplayName() { return displayName; }
 	
 	public int Count { 
 		get { return this.count; }
@@ -37,5 +39,8 @@ public class Item : MonoBehaviour, INamed {
 	
 	void OnSwing(string direction){
 	
+	}
+	public void Consume(){
+		Count --;
 	}
 }

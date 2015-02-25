@@ -86,6 +86,9 @@ public class InvTile : MonoBehaviour {
 	
 	void OnItemCountChange(){ //Called by child item SendMessage
 		this.counter.SendMessage("SetCount", ItemStack.Count);
+		if(ItemStack.Count <= 0){
+			item = null;
+		}
 	}
 	
 }

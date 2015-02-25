@@ -108,6 +108,7 @@ public class InventoryUI : MonoBehaviour {
 		get {return currentlyDragging != null;}
 	}
 	
+	//Returns amount remaining after merge with inventory
 	public int AddItem(GameObject itemPrefab, int count=1){
 		if(!HasOpenSlot()) return -1;
 		//Making item object

@@ -8,7 +8,7 @@ public class HealOnUse : MonoBehaviour {
 
 	void OnUse(){
 		GameObject.FindGameObjectWithTag("Player").GetComponent<HealthTracker>().Heal(amount);
-		GameObject.FindGameObjectWithTag("Chat").GetComponent<ChatManager>().PushText("", "Healed " + amount + "hp!");
-		Destroy(this.gameObject);
+		GameObject.FindGameObjectWithTag("Chat").GetComponent<ChatManager>().PushText("", "Healed " + amount + " hp!");
+		this.GetComponent<Item>().Consume();
 	}
 }
