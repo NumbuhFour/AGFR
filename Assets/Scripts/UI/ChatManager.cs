@@ -15,10 +15,14 @@ public class ChatManager : MonoBehaviour {
 	private string[] messages = {"",""};
 	private string typingMsg = "";
 	private int typingIndex = 0;
+	private int typingCountOffset = 0; //Tags dont count to max length
+	private string typingEndTag = ""; //For when <color> is started but hasnt finished yet
 	
 	private PauseMode mode = PauseMode.NO_PAUSE;
 	private bool isWaiting = false;
 	private MonoBehaviour finishCall = null;
+	
+	private bool wasUsePressed = false;
 	
 	private long lastTime;
 	public bool pauseReleased = true;
@@ -51,19 +55,28 @@ public class ChatManager : MonoBehaviour {
 				AddNextLetter();
 		}
 		
-		if(isWaiting && Input.GetAxis("Use") > 0){
-			isWaiting = false;
-			this.mode = PauseMode.NO_PAUSE;
-			Game.Paused = false;
-			foreach(Text t in boxes){
-				t.gameObject.GetComponent<FlashText>().Stop ();
+		bool usePressed = Input.GetAxis("Use") != 0;
+		
+		if (!wasUsePressed && usePressed){
+			if(typingMsg != ""){
+				while(typingMsg != "") //Finish typing
+					AddNextLetter(); //Doing it this way so that no overflow is added by accident
+					
+			}else if(isWaiting){
+				isWaiting = false;
+				this.mode = PauseMode.NO_PAUSE;
+				Game.Paused = false;
+				foreach(Text t in boxes){
+					t.gameObject.GetComponent<FlashText>().Stop ();
+				}
+				if(finishCall) 
+					finishCall.SendMessage("OnFinishText");
 			}
-			if(finishCall) 
-				finishCall.SendMessage("OnFinishText");
 		}
 	}
 	
 	public void PushText(string head, string msg, PauseMode mode=PauseMode.NO_PAUSE, MonoBehaviour finishCall=null){
+		wasUsePressed = Input.GetAxis("Use") > 0;
 		this.finishCall = finishCall;
 		this.mode = mode;
 		if(this.mode != PauseMode.NO_PAUSE) Game.NoMenuPauseGame();
@@ -87,18 +100,35 @@ public class ChatManager : MonoBehaviour {
 		string add = "" + typingMsg[typingIndex];
 		typingIndex ++;
 		
-		/*if(add == "<"){
+		if(add == "<"){
+			string build = add;
+			typingCountOffset++; //First <
 			while(typingMsg[typingIndex] != '>'){
-				add += "" + typingMsg[typingIndex];
+				build += "" + typingMsg[typingIndex];
 				typingIndex++;
+				typingCountOffset++;
 			}
-			if(typingIndex < typingMsg.Length -1){ // Add one more for next visible letter
-				add += "" + typingMsg[typingIndex];
+			build += '>'; //Account for last > missed in the whileloop
+			typingIndex ++;
+			typingCountOffset ++;
+			
+			/*if(typingIndex < typingMsg.Length -1){ // Add one more for next visible letter
+				build += "" + typingMsg[typingIndex];
 				typingIndex++;
+				typingCountOffset++;
+			}*/ //I don't remember why this is here anymore. The next letter should always be >
+			
+			if(build.Substring(0,2) == "</"){ //End tag
+				typingEndTag = "";
+				add = build;
+			}else{
+				string endBuild = build.Split('=')[0];
+				typingEndTag = "</" + endBuild.Substring(1) + (endBuild.IndexOf('>') == -1 ? ">":"");// Building endtag
+				add = build;
 			}
-		}*/
+		}
 		messages[0] += add;
-		if(typingIndex >= maxLength && typingIndex != typingMsg.Length-1){
+		if((typingIndex - typingCountOffset) >= maxLength && typingIndex != typingMsg.Length-1){
 			messages[1] = messages[0];
 			messages[0] = "";
 			typingMsg = typingMsg.Substring(typingIndex);
@@ -123,6 +153,7 @@ public class ChatManager : MonoBehaviour {
 	private void UpdateTextBoxes(){
 		for(int i = 0; i < boxes.Length && i < messages.Length; i++){
 			boxes[i].text = messages[i];
+			if(i == 0) boxes[i].text += typingEndTag;
 		}
 	}
 }

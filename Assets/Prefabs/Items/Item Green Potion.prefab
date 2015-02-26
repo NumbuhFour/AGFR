@@ -42,8 +42,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: green potion
-  displayName: Green Potion
-  maxCount: 20
+  displayName: <color="green">Green Potion</color>
+  maxCount: 8
   singular: 1
   type: 0
 --- !u!114 &11400002
