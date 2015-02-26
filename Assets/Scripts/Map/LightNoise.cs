@@ -30,6 +30,13 @@ public class LightNoise : MonoBehaviour {
 	public bool lightsOut = false;
 	private float timer = 0;
 
+	private Texture2D tex;
+
+	void Start(){
+		int tileSize = map.sheet.tileResolution+2;
+		tex = new Texture2D(tileSize*(int)Map.MAPDIM.x-2, tileSize*(int)Map.MAPDIM.y-2);
+	}
+
 	void Update(){
 		timer += GameTime.deltaTime*1000f;
 		if(((minAlpha != min || maxAlpha != max) && !lightsOut ) || (lightsOut && timer > lightsOutFrames)){
@@ -39,7 +46,6 @@ public class LightNoise : MonoBehaviour {
 	}
 	public void Regenerate(){
 		int tileSize = map.sheet.tileResolution+2;
-		Texture2D tex = new Texture2D(tileSize*(int)Map.MAPDIM.x-2, tileSize*(int)Map.MAPDIM.y-2);
 		clear (tex);
 		min = lightsOut ? darkMinAlpha:minAlpha;
 		max = lightsOut ? darkMaxAlpha:maxAlpha;
@@ -73,12 +79,11 @@ public class LightNoise : MonoBehaviour {
 		this.renderer.sharedMaterials[0].mainTexture = tex;
 	}
 	
-	private void clear(Texture2D tex){
+	private void clear(Texture2D texture){
 		int tileSize = map.sheet.tileResolution+2;
 		for (int x = 0; x < Map.MAPDIM.x*tileSize; x++){
 			for (int y = 0; y < Map.MAPDIM.y*tileSize; y++){
-				tex.SetPixel(x,y,Color.clear);
-				
+				texture.SetPixel(x,y,Color.clear);
 			}
 		}
 	}

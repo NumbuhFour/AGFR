@@ -7,9 +7,11 @@ public class MapRender : MonoBehaviour {
 	public Color backgroundColor = new Color(32f/255f,32f/255f,32f/255f,1f);
 	public Map map;
 	
+	private Texture2D tex;
 	// Use this for initialization
 	void Start () {
-	
+		int tileSize = map.sheet.tileResolution+2;
+		tex = new Texture2D(tileSize*(int)Map.MAPDIM.x-2, tileSize*(int)Map.MAPDIM.y-2);
 	}
 	
 	// Update is called once per frame
@@ -22,7 +24,6 @@ public class MapRender : MonoBehaviour {
 	
 	public void RepaintMap(){
 		int tileSize = map.sheet.tileResolution+2;
-		Texture2D tex = new Texture2D(tileSize*(int)Map.MAPDIM.x-2, tileSize*(int)Map.MAPDIM.y-2);
 		
 		for(int x = 0; x< Map.MAPDIM.x*tileSize; x++){ //Clear
 			for(int y = 0; y< Map.MAPDIM.y*tileSize; y++){
