@@ -6,7 +6,7 @@ Major TOD:
 	-Secret overlay
 	
 Minor TODO:
-	-Sword swing sprite changes direction based on spin
+	XSword swing sprite changes direction based on spin
 	X Attack sprites dont attack issuer
 	-Player Double Stepping when spamming WASDWASDWASD
 	-Swing sprite damage change based on item
@@ -14,3 +14,4 @@ Minor TODO:
 	XFix merging items on pickup
 	XFix on potion use
 	-Separate slots for weapon and (subweapon? Accessory?)
+	-Sword swing accounts for corners
