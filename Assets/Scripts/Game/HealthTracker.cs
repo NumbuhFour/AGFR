@@ -26,7 +26,7 @@ public class HealthTracker : MonoBehaviour {
 		health -= amt;
 		health = Mathf.Max(health,0);
 		if(health <= 0){
-			this.SendMessage("Death");
+			this.SendMessage("Death", SendMessageOptions.DontRequireReceiver);
 			return;
 		}
 		FlashDamage();

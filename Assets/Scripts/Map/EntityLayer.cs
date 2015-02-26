@@ -60,7 +60,7 @@ public class EntityLayer : MonoBehaviour {
 	public bool UseEntity(Vector2 loc, Entity e){
 		Entity ent = GetEntityAt(loc);
 		if(ent){
-			ent.gameObject.SendMessage("OnUse", e);
+			ent.gameObject.SendMessage("OnUse", e, SendMessageOptions.DontRequireReceiver);
 			return true;
 		}
 		return false;

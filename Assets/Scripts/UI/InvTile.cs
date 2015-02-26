@@ -48,9 +48,6 @@ public class InvTile : MonoBehaviour {
 	}
 	
 	void Update(){
-		if(Input.GetMouseButtonUp(1)){
-			item.SendMessage("OnUse");
-		}
 		
 		if(item == null || !this.item.activeSelf){
 			Slot.Tile = null;

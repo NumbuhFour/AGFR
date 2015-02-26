@@ -23,7 +23,7 @@ public class TouchDamage : MonoBehaviour {
 		bool lastCompany = hasCompany;
 		hasCompany = CheckNeighbors();
 		if(hasCompany){
-			this.gameObject.SendMessage("HoldStill");
+			this.gameObject.SendMessage("HoldStill", SendMessageOptions.DontRequireReceiver);
 			if(lastCompany){
 				timer += (int)(GameTime.deltaTime * 1000);
 				
@@ -45,7 +45,7 @@ public class TouchDamage : MonoBehaviour {
 				initalHit = false;
 			}
 		}else if(lastCompany){
-			this.gameObject.SendMessage("ResumeMoving");
+			this.gameObject.SendMessage("ResumeMoving", SendMessageOptions.DontRequireReceiver);
 		}
 	}
 	

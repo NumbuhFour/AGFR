@@ -12,4 +12,5 @@ Minor TODO:
 	-Swing sprite damage change based on item
 	XLootbags intangible
 	XFix merging items on pickup
-	-Fix on potion use
+	XFix on potion use
+	-Separate slots for weapon and (subweapon? Accessory?)

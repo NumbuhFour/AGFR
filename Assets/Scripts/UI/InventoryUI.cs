@@ -47,6 +47,16 @@ public class InventoryUI : MonoBehaviour {
 				}
 			}
 		}
+		if(Input.GetMouseButtonUp(1)){
+			RaycastHit hit;
+			if(Physics.Raycast(ray,out hit,1000,UILayer)){
+				GameObject hitGo = hit.collider.gameObject;
+				if(hitGo && hitGo.tag == "InvSlot"){
+					GameObject item = hitGo.GetComponent<InvSlot>().item;
+					if(item) item.SendMessage("OnUse");
+				}
+			}
+		}
 	}
 	
 	public void SetCurrentlyDragging(InvTile tile){

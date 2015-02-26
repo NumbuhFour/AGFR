@@ -3,6 +3,7 @@ using System.Collections;
 
 [AddComponentMenu("Scripts/Game/Entity")]
 public class Entity : MonoBehaviour, INamed {
+	private Vector3 GRAPHIC_OFFSET = new Vector3(8f,8f,0); //Why 9? Don't fucking know! Ask unitys fucking unit measurements
 	
 	public Map map;
 	public EntityLayer entlayer;
@@ -16,7 +17,7 @@ public class Entity : MonoBehaviour, INamed {
 	
 	// Use this for initialization
 	public virtual void Start () {
-		this.loc = new Vector2(this.transform.localPosition.x/18,this.transform.localPosition.y/18);
+		this.loc = new Vector2((this.transform.localPosition.x - GRAPHIC_OFFSET.x)/18,(this.transform.localPosition.y - GRAPHIC_OFFSET.y)/18);
 	}
 	
 	// Update is called once per frame
@@ -29,7 +30,7 @@ public class Entity : MonoBehaviour, INamed {
 			entlayer.NotifyMove(this, loc+dir, loc);
 			lastLoc = loc;
 			loc += dir;
-			this.transform.localPosition = loc*18;
+			this.transform.localPosition = new Vector3(loc.x * 18 + GRAPHIC_OFFSET.x, loc.y*18 + GRAPHIC_OFFSET.y, 0);
 		}
 	}
 	
@@ -56,7 +57,7 @@ public class Entity : MonoBehaviour, INamed {
 		
 		entlayer.NotifyMove(this, pos, new Vector2(-1,-1));
 		loc = pos;
-		this.transform.localPosition = loc*18;
+		this.transform.localPosition = new Vector3(loc.x * 18 + GRAPHIC_OFFSET.x, loc.y*18 + GRAPHIC_OFFSET.y, 0);
 	}
 	
 	public bool CanMove(Vector2 dir){
