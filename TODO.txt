@@ -14,4 +14,4 @@ Minor TODO:
 	XFix merging items on pickup
 	XFix on potion use
 	-Separate slots for weapon and (subweapon? Accessory?)
-	-Sword swing accounts for corners
+	XSword swing accounts for corners
