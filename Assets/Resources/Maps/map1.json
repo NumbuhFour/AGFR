@@ -19,7 +19,7 @@
 			["wall","floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","floor","wall"],
 			["wall","floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","floor","wall"],
 			["wall","floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","floor","wall"],
-			["wall","floor","dark floor","dark floor","dark floor","dark floor",{"style":"sign", "speaker":"[rawr]", "message":"Beware of slime!"},"dark floor","dark floor","floor","wall"],
+			["wall","floor","dark floor","dark floor","dark floor","dark floor",{"style":"sign", "speaker":"[rawr]", "message":" Beware of slime!"},"dark floor","dark floor","floor","wall"],
 			["wall","floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","floor","wall"],
 			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","floor"],
 			["wall","wall","wall","wall","wall","wall","wall","wall","wall","wall","wall"]],
