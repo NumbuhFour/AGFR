@@ -26,6 +26,7 @@ public class MapLoader : MonoBehaviour {
 		data = JSON.Parse(mapFile.text);
 		ParseData ();
 		map.MarkDirty();
+		if(Game.LevelSpawn.x != -1) spawn = Game.LevelSpawn;
 		entities.SpawnEntity(entityList["player"],spawn);
 	}
 	
@@ -101,6 +102,7 @@ public class MapLoader : MonoBehaviour {
 		default: return new Tile(file,sheet);
 		case "button": return new Button(file,sheet);
 		case "sign": return new Sign(file,sheet);
+		case "door": return new Door(file,sheet);
 		}
 	}
 }

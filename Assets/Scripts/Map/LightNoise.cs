@@ -93,4 +93,8 @@ public class LightNoise : MonoBehaviour {
 		set { lightsOut = value; }
 	}
 	
+	public void OnLevelReset(){
+		this.lightsOut = false;
+	}
+	
 }

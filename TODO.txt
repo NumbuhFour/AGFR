@@ -2,19 +2,19 @@ Major TOD:
 	-Sound
 	-Lighting
 	-Shades
-	-Proper color text
-	-Secret overlay
-	-Doors
-	-Multi-levels
 	
 Minor TODO:
 	-Ghosty
-	-Triggers
+	-Triggers (Start, End, Area)
 	-Persistance
 	-Player Double Stepping when spamming WASDWASDWASD
 	-Separate slots for weapon and (subweapon? Accessory?)
 	
 Done:
+	-Proper color text
+	-Secret overlay (Done?)
+	-Doors
+	-Multi-levels
 	Sword swing sprite changes direction based on spin
 	Attack sprites dont attack issuer
 	Swing sprite damage change based on item

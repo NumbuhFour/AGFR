@@ -5,6 +5,7 @@ using System.Collections;
 public class EntityLayer : MonoBehaviour {
 	public Map map;
 	private Entity[,] entCols;
+	private bool initialized = false;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +18,7 @@ public class EntityLayer : MonoBehaviour {
 	
 	public void Init(Vector2 dimensions){
 		entCols = new Entity[(int)dimensions.x,(int)dimensions.y];
+		initialized = true;
 	}
 	
 	public void NotifyMove(Entity e, Vector2 to, Vector2 from){
@@ -70,11 +72,15 @@ public class EntityLayer : MonoBehaviour {
 			entCols[(int)e.loc.x, (int)e.loc.y] = null;
 	}
 	
+	public void OnLevelReset() { this.Clear(); }
+	
 	public void Clear(){
-		for(int x = 0; x < Map.MAPDIM.x; x++)
-			for(int y = 0; y < Map.MAPDIM.y; y++){
-				Entity e = entCols[x,y];
-				if(e) Destroy (e.gameObject);
-			}
+		if(initialized)
+			for(int x = 0; x < Map.MAPDIM.x; x++)
+				for(int y = 0; y < Map.MAPDIM.y; y++){
+					Entity e = entCols[x,y];
+					if(e) Destroy (e.gameObject);
+				}
+		initialized = false;
 	}
 }
