@@ -14,5 +14,9 @@ public class SaveData {
 			data[key] = value;
 		}
 	}
+	
+	public bool HasKey(string key){
+		return data.ContainsKey(key);
+	}
 	//TODO implement save and load
 }

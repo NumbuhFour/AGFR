@@ -14,11 +14,13 @@ public class PlayerHealthBar : MonoBehaviour {
 	void Start() {
 		this.health = GetComponent<HealthTracker>();
 		this.healthBar = GameObject.FindGameObjectWithTag("HealthBar");
+		if(Game.Save.HasKey("health")) health.Health = (int)Game.Save["health"];
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		float scale = (float)health.Health / (float)health.maxHealth;
+		Game.Save["health"] = health.Health;
 		healthBar.transform.localScale = new Vector3(1,scale, 1);
 		
 		if(scale <= flashPercent){

@@ -11,7 +11,16 @@ public class HealthTracker : MonoBehaviour {
 	private bool invincible = false;
 	private Flash damFlash;
 	
-	public int Health { get { return health; } }
+	public int Health { 
+		get { return health; } 
+		set { 
+			health = value; 
+			
+			if(health <= 0){
+				this.SendMessage("Death", SendMessageOptions.DontRequireReceiver);
+			}
+		}
+	}
 	
 	void Start(){
 		health = maxHealth;
