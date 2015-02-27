@@ -26,6 +26,7 @@ public class InventoryUI : MonoBehaviour {
 	void Start () {
 		SetItem (equipment[0], items["iron dagger"]);
 		AddItem (items["green potion"]);
+		AddItem (items["bow"]);
 	}
 	
 	// Update is called once per frame

@@ -14,3 +14,4 @@ MonoBehaviour:
   name: Sprites
   prefabs:
   - {fileID: 100000, guid: bf847bb7fd069364bb740c121f60eddb, type: 2}
+  - {fileID: 100000, guid: cfd3ea8913242f74999f40c870099b02, type: 2}

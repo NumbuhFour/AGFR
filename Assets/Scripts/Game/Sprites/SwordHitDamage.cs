@@ -36,6 +36,7 @@ public class SwordHitDamage : HitDamage {
 				HealthTracker health = targetCorner.GetComponent<HealthTracker>();
 				if(!health) return;
 				health.TakeDamage(damage,sprite);
+				this.SendMessage("OnDamageDealt",targetCorner,SendMessageOptions.DontRequireReceiver);
 				if(knockback > 0){
 					if(fd)
 						targetCorner.Knock(fd.direction, 1);

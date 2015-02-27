@@ -12,7 +12,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400002}
   m_Layer: 0
-  m_Name: Item Dagger
+  m_Name: Item Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca673bdea3c2544a9e2d893251be144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: iron dagger
+  name: bow
   displayName: 
   maxCount: 0
   singular: 1
@@ -58,8 +58,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites: {fileID: 11400000, guid: fd402f8c8228fa74d952070c5832db79, type: 2}
-  spriteName: sword swing
-  damage: 10
+  spriteName: arrow
+  damage: 2
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 51924757
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 858903bd8ee8ccc4ab4839459a639b7f, type: 3}
+  m_Sprite: {fileID: 21300018, guid: 858903bd8ee8ccc4ab4839459a639b7f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

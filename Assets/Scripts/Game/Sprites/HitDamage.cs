@@ -29,6 +29,7 @@ public class HitDamage : MonoBehaviour {
 			HealthTracker health = target.GetComponent<HealthTracker>();
 			if(!health) return;
 			health.TakeDamage(damage,sprite);
+			this.SendMessage("OnDamageDealt",target,SendMessageOptions.DontRequireReceiver);
 			if(knockback > 0){
 				if(fd)
 					target.Knock(fd.direction, 1);
@@ -41,4 +42,8 @@ public class HitDamage : MonoBehaviour {
 	}
 	
 	public Entity Owner{ get { return owner; } }
+	
+	public void SetDamage(int damage){
+		this.damage = damage;
+	}
 }

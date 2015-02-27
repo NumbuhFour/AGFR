@@ -6,6 +6,7 @@ public class SpawnSpriteOnSwing : MonoBehaviour {
 
 	public PremadeContainer sprites;
 	public string spriteName;
+	public int damage = 1;
 
 	private EntityLayer spriteLayer;
 	private Entity player;
@@ -23,6 +24,7 @@ public class SpawnSpriteOnSwing : MonoBehaviour {
 		e.SendMessage("SetLastDirection", lastDirection, SendMessageOptions.DontRequireReceiver); 
 		e.SendMessage("SetDirection", direction);
 		e.SendMessage("SetOwner", player, SendMessageOptions.DontRequireReceiver);
+		e.SendMessage("SetDamage", damage, SendMessageOptions.DontRequireReceiver);
 		lastDirection = direction;
 	}
 }
