@@ -3,11 +3,14 @@ using System.Collections;
 
 [AddComponentMenu("Scripts/Game")]
 public class Game : MonoBehaviour {
+	public string startingTestLevelName;
 	
 	public GameObject pauseOverlay;
 	
 	private static Game instance;
 	public static Game Instance { get { return instance; } }
+
+	private SaveData saveData;
 
 	private bool paused;
 	private bool chatPause;
@@ -39,14 +42,29 @@ public class Game : MonoBehaviour {
 			if(change && !Instance.chatPause) GameTime.AddPauseOffset(Instance.pauseDuration);
 		}
 	}
+	
+	public static SaveData Save{ get { return Instance.saveData; } }
 		
 
 	// Use this for initialization
 	void Start () {
-		instance = this;
+		if(Game.instance){
+			this.saveData = this.saveData;
+		}else{
+			this.saveData = new SaveData();
+		}
+		Game.instance = this;
+		
+		LoadLevel (startingTestLevelName);
 	}
 	
 	void Update(){
 		if(Paused) pauseDuration += Time.deltaTime;
+	}
+	
+	public static void LoadLevel(string file){
+		TextAsset level = (TextAsset) Resources.LoadAssetAtPath<TextAsset>("Assets/Resources/Maps/" + file + ".json");
+		if(level == null) Debug.Log ("FILE NOT FOUND NOOOO");
+		Instance.GetComponent<MapLoader>().Load(level);
 	}
 }

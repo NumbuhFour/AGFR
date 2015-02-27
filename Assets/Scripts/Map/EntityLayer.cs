@@ -69,4 +69,12 @@ public class EntityLayer : MonoBehaviour {
 		if(entCols[(int)e.loc.x, (int)e.loc.y] == e)
 			entCols[(int)e.loc.x, (int)e.loc.y] = null;
 	}
+	
+	public void Clear(){
+		for(int x = 0; x < Map.MAPDIM.x; x++)
+			for(int y = 0; y < Map.MAPDIM.y; y++){
+				Entity e = entCols[x,y];
+				if(e) Destroy (e.gameObject);
+			}
+	}
 }

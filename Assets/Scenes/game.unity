@@ -832,6 +832,7 @@ GameObject:
   - 114: {fileID: 348302187}
   - 114: {fileID: 348302188}
   - 114: {fileID: 348302189}
+  - 114: {fileID: 348302190}
   m_Layer: 0
   m_Name: Bodiless
   m_TagString: Bodiless
@@ -903,7 +904,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37925d26cacd66146b5b9a360e7e5870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingTestLevelName: map1
   pauseOverlay: {fileID: 473229806}
+--- !u!114 &348302190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 348302184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d738968417690a2448b50e355e110592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  map: {fileID: 1577550303}
+  entities: {fileID: 855804443}
+  sprites: {fileID: 1891309897}
+  entityList: {fileID: 11400000, guid: ff225f1161eb3514d896ab1cf86740ea, type: 2}
 --- !u!1 &371293434
 GameObject:
   m_ObjectHideFlags: 0
@@ -3317,7 +3334,6 @@ GameObject:
   - 4: {fileID: 1577550302}
   - 212: {fileID: 1577550301}
   - 114: {fileID: 1577550303}
-  - 114: {fileID: 1577550304}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -3375,22 +3391,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sheet: {fileID: 348302187}
---- !u!114 &1577550304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1577550300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d738968417690a2448b50e355e110592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  map: {fileID: 1577550303}
-  entities: {fileID: 855804443}
-  sprites: {fileID: 1891309897}
-  entityList: {fileID: 11400000, guid: ff225f1161eb3514d896ab1cf86740ea, type: 2}
-  blargh: {fileID: 4900000, guid: 09e7f5d155cb35e42b525e4d7ce462b6, type: 3}
 --- !u!1 &1603887123
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,21 +10,23 @@ public class MapLoader : MonoBehaviour {
 	
 	public PremadeContainer entityList;
 	
-	public TextAsset blargh;
 	private JSONNode data;
 	private Vector2 dimensions;
 	private Vector2 spawn;
 	// Use this for initialization
 	void Start () {
-		data = JSON.Parse(blargh.text);
-		ParseData();
-		map.MarkDirty();
-		entities.SpawnEntity(entityList["player"],spawn);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+	}
+	
+	public void Load(TextAsset mapFile){
+		data = JSON.Parse(mapFile.text);
+		ParseData ();
+		map.MarkDirty();
+		entities.SpawnEntity(entityList["player"],spawn);
 	}
 	
 	private void ParseData(){

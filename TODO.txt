@@ -4,14 +4,21 @@ Major TOD:
 	-Shades
 	-Proper color text
 	-Secret overlay
+	-Doors
+	-Multi-levels
 	
 Minor TODO:
-	XSword swing sprite changes direction based on spin
-	X Attack sprites dont attack issuer
+	-Ghosty
+	-Triggers
+	-Persistance
 	-Player Double Stepping when spamming WASDWASDWASD
-	-Swing sprite damage change based on item
-	XLootbags intangible
-	XFix merging items on pickup
-	XFix on potion use
 	-Separate slots for weapon and (subweapon? Accessory?)
-	XSword swing accounts for corners
+	
+Done:
+	Sword swing sprite changes direction based on spin
+	Attack sprites dont attack issuer
+	Swing sprite damage change based on item
+	Lootbags intangible
+	Fix merging items on pickup
+	Fix on potion use
+	Sword swing accounts for corners

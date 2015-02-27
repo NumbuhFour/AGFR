@@ -12,7 +12,7 @@ public class Map : MonoBehaviour {
 	public static Tile emptyTile;
 	public static Tile errTile;
 	
-	private Dictionary<string, Tile> tiles = new Dictionary<string,Tile>();
+	private Dictionary<string, Tile> tiles;
 	public string[,] map;
 	private Vector2 dimensions;
 	private Vector2 spawn;
@@ -27,9 +27,15 @@ public class Map : MonoBehaviour {
 	public Vector2 Spawn { get { return spawn; } }
 	public bool IsDirty { get { return isDirty; } }
 	
+	void Start(){
+	}
+	
 	public void Init(Vector2 dimensions, Vector2 spawn){
-		emptyTile = new Tile("empty",0, Color.clear, Color.white, 1, sheet);
-		errTile = new Tile("error",0,Color.red, Color.white, 999, sheet);
+		if(emptyTile == null){
+			emptyTile = new Tile("empty",0, Color.clear, Color.white, 1, sheet);
+			errTile = new Tile("error",0,Color.red, Color.white, 999, sheet);
+		}
+		tiles = new Dictionary<string,Tile>();
 		map = new string[(int)MAPDIM.x,(int)MAPDIM.y];
 		tileData = new TileData[(int)MAPDIM.x,(int)MAPDIM.y];
 		foreach (EntityLayer elayer in this.GetComponentsInChildren<EntityLayer>()){
