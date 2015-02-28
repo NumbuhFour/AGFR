@@ -8,12 +8,6 @@ public class ItemController : MonoBehaviour {
 	private GameObject player;
 	private FaceDirection dir;
 	
-	// Use this for initialization
-	void Start () {
-		player = GameObject.FindGameObjectWithTag("Player");
-		dir = player.GetComponent<FaceDirection>();
-	}
-	
 	private int lastHoriz = 0;
 	private int lastVert = 0;
 	// Update is called once per frame
@@ -35,5 +29,10 @@ public class ItemController : MonoBehaviour {
 		
 		lastHoriz = horiz;
 		lastVert = vert;
+	}
+	
+	public void OnLevelLoaded(){
+		player = Game.Player;
+		dir = player.GetComponent<FaceDirection>();
 	}
 }

@@ -13,21 +13,15 @@ public class MapLoader : MonoBehaviour {
 	private JSONNode data;
 	private Vector2 dimensions;
 	private Vector2 spawn;
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 	
 	public void Load(TextAsset mapFile){
+		entities.Clear();
+		sprites.Clear();
 		data = JSON.Parse(mapFile.text);
 		ParseData ();
 		map.MarkDirty();
 		if(Game.LevelSpawn.x != -1) spawn = Game.LevelSpawn;
-		entities.SpawnEntity(entityList["player"],spawn);
+		Game.Player = entities.SpawnEntity(entityList["player"],spawn);
 	}
 	
 	private void ParseData(){

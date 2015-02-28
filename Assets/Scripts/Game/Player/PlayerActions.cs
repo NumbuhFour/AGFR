@@ -10,12 +10,6 @@ public class PlayerActions : MonoBehaviour {
 	private FaceDirection fdir;
 	private bool wasPressed = false;
 	
-	void Start(){
-		ent = gameObject.GetComponent<Entity>();
-		map = ent.map;
-		fdir = gameObject.GetComponent<FaceDirection>();
-	}
-	
 	// Update is called once per frame
 	void Update () {
 		bool pressed = Input.GetAxisRaw("Use")>0;
@@ -28,5 +22,11 @@ public class PlayerActions : MonoBehaviour {
 		}
 		
 		wasPressed = pressed;
+	}
+	
+	public void OnLevelLoaded(){
+		ent = gameObject.GetComponent<Entity>();
+		map = ent.map;
+		fdir = gameObject.GetComponent<FaceDirection>();
 	}
 }

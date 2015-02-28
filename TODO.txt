@@ -9,8 +9,12 @@ Minor TODO:
 	-Persistance
 	-Player Double Stepping when spamming WASDWASDWASD
 	-Separate slots for weapon and (subweapon? Accessory?)
+	-Scrolling maps
+	-Overview map?
+	-[Press E to continue] chat occasionally doesnt register?
 	
 Done:
+	-Cant attack after level load. Destroy order is fucked
 	-Proper color text
 	-Secret overlay (Done?)
 	-Doors

@@ -27,9 +27,6 @@ public class Map : MonoBehaviour {
 	public Vector2 Spawn { get { return spawn; } }
 	public bool IsDirty { get { return isDirty; } }
 	
-	void Start(){
-	}
-	
 	public void Init(Vector2 dimensions, Vector2 spawn){
 		if(emptyTile == null){
 			emptyTile = new Tile("empty",0, Color.clear, Color.white, 1, sheet);

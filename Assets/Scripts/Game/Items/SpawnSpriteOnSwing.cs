@@ -14,7 +14,7 @@ public class SpawnSpriteOnSwing : MonoBehaviour {
 	private string lastDirection = "";
 	void Start(){
 		spriteLayer = GameObject.FindGameObjectWithTag("SpriteLayer").GetComponent<EntityLayer>();
-		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+		player = Game.Player.GetComponent<Entity>();
 	}
 
 	void OnSwing(string direction){
@@ -26,5 +26,9 @@ public class SpawnSpriteOnSwing : MonoBehaviour {
 		e.SendMessage("SetOwner", player, SendMessageOptions.DontRequireReceiver);
 		e.SendMessage("SetDamage", damage, SendMessageOptions.DontRequireReceiver);
 		lastDirection = direction;
+	}
+	
+	void OnLevelLoaded(){
+		player = Game.Player.GetComponent<Entity>();
 	}
 }

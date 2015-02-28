@@ -34,7 +34,8 @@ public class LightNoise : MonoBehaviour {
 
 	void Start(){
 		int tileSize = map.sheet.tileResolution+2;
-		tex = new Texture2D(tileSize*(int)Map.MAPDIM.x-2, tileSize*(int)Map.MAPDIM.y-2);
+		if(!tex) 
+			tex = new Texture2D(tileSize*(int)Map.MAPDIM.x-2, tileSize*(int)Map.MAPDIM.y-2);
 	}
 
 	void Update(){
@@ -46,6 +47,8 @@ public class LightNoise : MonoBehaviour {
 	}
 	public void Regenerate(){
 		int tileSize = map.sheet.tileResolution+2;
+		if(!tex) 
+			tex = new Texture2D(tileSize*(int)Map.MAPDIM.x-2, tileSize*(int)Map.MAPDIM.y-2);
 		clear (tex);
 		min = lightsOut ? darkMinAlpha:minAlpha;
 		max = lightsOut ? darkMaxAlpha:maxAlpha;
@@ -95,6 +98,9 @@ public class LightNoise : MonoBehaviour {
 	
 	public void OnLevelReset(){
 		this.lightsOut = false;
+	}
+	public void OnLevelLoaded(){
+		Regenerate();
 	}
 	
 }

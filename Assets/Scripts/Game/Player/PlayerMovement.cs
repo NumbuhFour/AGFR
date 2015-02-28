@@ -19,8 +19,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	private bool vertMostRecent = false;
 
-	// Use this for initialization
-	void Start () {
+	public void OnLevelLoaded(){
 		ent = GetComponent<Entity>();
 		dir = GetComponent<FaceDirection>();
 		lastTime = (int)(GameTime.time*1000);

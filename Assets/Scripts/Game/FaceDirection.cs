@@ -10,14 +10,10 @@ public class FaceDirection : MonoBehaviour {
 	public Sprite[] directions;
 	
 	public string direction;
-	// Use this for initialization
-	void Start () {
-	}
 	
 	public void SetDirection(string direction){
 		this.direction = direction;
 		int dir = Direction.ConvertToIndex(direction);
 		((SpriteRenderer)renderer).sprite = directions[dir];
 	}
-	
 }

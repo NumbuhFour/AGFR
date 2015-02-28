@@ -6,15 +6,6 @@ public class EntityLayer : MonoBehaviour {
 	public Map map;
 	private Entity[,] entCols;
 	private bool initialized = false;
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
 	
 	public void Init(Vector2 dimensions){
 		entCols = new Entity[(int)dimensions.x,(int)dimensions.y];
@@ -72,7 +63,7 @@ public class EntityLayer : MonoBehaviour {
 			entCols[(int)e.loc.x, (int)e.loc.y] = null;
 	}
 	
-	public void OnLevelReset() { this.Clear(); }
+	//public void OnLevelReset() { this.Clear(); }
 	
 	public void Clear(){
 		if(initialized)

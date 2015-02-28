@@ -11,7 +11,7 @@ public class MapRender : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		int tileSize = map.sheet.tileResolution+2;
-		tex = new Texture2D(tileSize*(int)Map.MAPDIM.x-2, tileSize*(int)Map.MAPDIM.y-2);
+		tex = new Texture2D(tileSize*(int)Map.MAPDIM.x, tileSize*(int)Map.MAPDIM.y);
 	}
 	
 	// Update is called once per frame
@@ -35,13 +35,13 @@ public class MapRender : MonoBehaviour {
 				Tile t = map.GetTileAt(x,y);
 				if(t != Map.errTile && t != Map.emptyTile){
 					Color[] pixels = map.GetPixelsAt(x,y);
-					tex.SetPixels(x*tileSize,y*tileSize,map.sheet.tileResolution, map.sheet.tileResolution, pixels);
+					tex.SetPixels(x*tileSize+1,y*tileSize+1,map.sheet.tileResolution, map.sheet.tileResolution, pixels);
 					TileData td = map.GetTileDataAt(x,y);
 					object get = td["highlight"];
 					if(get == null) continue;
 					Color highlight = (Color)get;
 					if(highlight != Color.clear){
-						int max = map.sheet.tileResolution+1;
+						int max = map.sheet.tileResolution+2;
 						for(int hx = -1; hx <= max; hx++){
 							for(int hy = -1; hy <= max; hy++){
 								if(hx == -1 || hy == -1 || hx == max || hy == max) //Only edges

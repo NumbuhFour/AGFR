@@ -12,6 +12,7 @@ public class Game : MonoBehaviour {
 
 	private SaveData saveData;
 
+	private GameObject player;
 	private bool paused;
 	private bool chatPause;
 	private float pauseDuration  = 0;
@@ -71,6 +72,7 @@ public class Game : MonoBehaviour {
 		if(level == null) Debug.Log ("MAP FILE NOT FOUND NOOOO");
 		BroadcastToAll ("OnLevelReset");
 		Instance.GetComponent<MapLoader>().Load(level);
+		BroadcastToAll ("OnLevelLoaded");
 	}
 	public static Vector2 LevelSpawn{
 		get { return Instance.spawn; } 
@@ -83,4 +85,9 @@ public class Game : MonoBehaviour {
 			go.SendMessage(func, options, SendMessageOptions.DontRequireReceiver);
 		}
 	}
+	
+	public static GameObject Player {
+		get { return Instance.player; } 
+		set { Instance.player = value; }
+	}	 
 }
