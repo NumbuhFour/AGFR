@@ -3,7 +3,9 @@ using System.Collections;
 
 [AddComponentMenu("Scripts/Game")]
 public class Game : MonoBehaviour {
+	public enum GameMode { GAME, LEVEL_EDITOR }
 	public string startingTestLevelName;
+	public GameMode mode = GameMode.GAME;
 	
 	public GameObject pauseOverlay;
 	
@@ -52,14 +54,19 @@ public class Game : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if(Game.instance){
-			this.saveData = this.saveData;
-		}else{
-			this.saveData = new SaveData();
+		if(mode == GameMode.GAME){
+			if(Game.instance){
+				this.saveData = this.saveData;
+			}else{
+				this.saveData = new SaveData();
+			}
 		}
+		Debug.Log("GAME INITIALIZED");
 		Game.instance = this;
 		
-		LoadLevel (startingTestLevelName);
+		if(mode == GameMode.GAME){
+			LoadLevel (startingTestLevelName);
+		}
 	}
 	
 	void Update(){
@@ -90,4 +97,7 @@ public class Game : MonoBehaviour {
 		get { return Instance.player; } 
 		set { Instance.player = value; }
 	}	 
+	
+	public static GameObject GameObject { get { return Instance.gameObject; } }
+	public static GameMode Mode { get { return Instance.mode; } }
 }

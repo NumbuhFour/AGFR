@@ -906,6 +906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingTestLevelName: map1
+  mode: 0
   pauseOverlay: {fileID: 473229806}
 --- !u!114 &348302190
 MonoBehaviour:
@@ -1609,7 +1610,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 115d2710966efd74a8b966e2ecfd686f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -34
+      value: -133
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 115d2710966efd74a8b966e2ecfd686f, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2094,7 +2095,7 @@ Transform:
   m_PrefabInternal: {fileID: 661919148}
   m_GameObject: {fileID: 1039579527}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -34}
+  m_LocalPosition: {x: 0, y: 0, z: -133}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 153065929}

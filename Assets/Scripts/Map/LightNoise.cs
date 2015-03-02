@@ -34,8 +34,11 @@ public class LightNoise : MonoBehaviour {
 
 	void Start(){
 		int tileSize = map.sheet.tileResolution+2;
-		if(!tex) 
+		if(!tex) {
 			tex = new Texture2D(tileSize*(int)Map.MAPDIM.x-2, tileSize*(int)Map.MAPDIM.y-2);
+			this.renderer.material.mainTexture = tex;
+			tex.filterMode = FilterMode.Point;
+		}
 	}
 
 	void Update(){
@@ -47,14 +50,16 @@ public class LightNoise : MonoBehaviour {
 	}
 	public void Regenerate(){
 		int tileSize = map.sheet.tileResolution+2;
-		if(!tex) 
+		if(!tex) {
 			tex = new Texture2D(tileSize*(int)Map.MAPDIM.x-2, tileSize*(int)Map.MAPDIM.y-2);
+			this.renderer.material.mainTexture = tex;
+		}
 		clear (tex);
 		min = lightsOut ? darkMinAlpha:minAlpha;
 		max = lightsOut ? darkMaxAlpha:maxAlpha;
 		int pushSeed = Random.seed;
-		for (int x = 0; x < Map.MAPDIM.x; x++){
-			for (int y = 0; y < Map.MAPDIM.y; y++){
+		for (int x = 0; x < map.Dimensions.x; x++){
+			for (int y = 0; y < map.Dimensions.x; y++){
 				if(map.GetTileAt(x,y) != Map.emptyTile){
 					Random.seed = x * (int)Map.MAPDIM.x + y;
 					Color draw = color;
@@ -66,10 +71,12 @@ public class LightNoise : MonoBehaviour {
 					}else{
 						draw.a = Random.Range(min,max);
 					}
-				
+					
+					int xo = x + (int)map.Offset.x;
+					int yo = y + (int)map.Offset.y;
 					for(int tx=0; tx<tileSize; tx++){
 						for(int ty=0; ty<tileSize; ty++){
-							tex.SetPixel(x*tileSize+tx,y*tileSize+ty,draw);
+							tex.SetPixel(xo*tileSize+tx,yo*tileSize+ty,draw);
 						}
 					}
 				}
@@ -77,9 +84,7 @@ public class LightNoise : MonoBehaviour {
 			}
 		}
 		Random.seed = pushSeed;
-		tex.filterMode = FilterMode.Point;
 		tex.Apply ();
-		this.renderer.sharedMaterials[0].mainTexture = tex;
 	}
 	
 	private void clear(Texture2D texture){

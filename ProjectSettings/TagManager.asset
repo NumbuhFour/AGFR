@@ -61,13 +61,13 @@ TagManager:
     userID: 8
     uniqueID: 2439685193
     locked: 0
-  - name: Noise
-    userID: 10
-    uniqueID: 1688175597
-    locked: 0
   - name: Sprites
     userID: 11
     uniqueID: 1428618897
+    locked: 0
+  - name: Noise
+    userID: 10
+    uniqueID: 1688175597
     locked: 0
   - name: Float Entities
     userID: 9
@@ -81,13 +81,13 @@ TagManager:
     userID: 2
     uniqueID: 107247271
     locked: 0
-  - name: Inventory
-    userID: 3
-    uniqueID: 51924757
-    locked: 0
   - name: Inventory Text
     userID: 12
     uniqueID: 1793739391
+    locked: 0
+  - name: Inventory
+    userID: 3
+    uniqueID: 51924757
     locked: 0
   - name: Chat
     userID: 4

@@ -2,6 +2,9 @@ Major TOD:
 	-Sound
 	-Lighting
 	-Shades
+	-Level Editor live tile style changes preview
+	-Editor save! and load!
+	-Editor fill and erase
 	
 Minor TODO:
 	-Ghosty
@@ -10,10 +13,24 @@ Minor TODO:
 	-Player Double Stepping when spamming WASDWASDWASD
 	-Separate slots for weapon and (subweapon? Accessory?)
 	-Scrolling maps
+		-Account for Entities!
+		-Make lightnoise not scan whole map, only visible
 	-Overview map?
 	-[Press E to continue] chat occasionally doesnt register?
+	-Level Editor
+	-Level conditions: If all entities dead, unlock door
+	-implement use for swap color?
+	-Editor scrollbuttons increase amount when more tiles present
+	-Button dont be activated by sprites?
+	-Swords dont hit bottom left and right corners
+	
+	-Editor adding variables
+	-Editor spawning properties?
+	-Editor custom metadata entry
+	-Editor fix stupid InputText bull
 	
 Done:
+	-Lightnoise go over sprites
 	-Cant attack after level load. Destroy order is fucked
 	-Proper color text
 	-Secret overlay (Done?)

@@ -32,7 +32,7 @@ public class SpriteSheet : MonoBehaviour {
 		tex.filterMode = FilterMode.Point;
 		tex.Apply ();
 		Debug.Log("RAWR " + tiles[0][0] + " " + tiles[0][5] + " " + tiles[0][2]);
-		this.renderer.sharedMaterials[0].mainTexture = tex;*/
+		this.renderer.material.mainTexture = tex;*/
 	}
 	
 	
@@ -80,7 +80,7 @@ public class SpriteSheet : MonoBehaviour {
 		texture.Apply();
 		
 		MeshRenderer mesh_renderer = GetComponent<MeshRenderer>();
-		mesh_renderer.sharedMaterials[0].mainTexture = texture;
+		mesh_renderer.material.mainTexture = texture;
 		
 		Debug.Log ("Done Texture!");
 	}*/

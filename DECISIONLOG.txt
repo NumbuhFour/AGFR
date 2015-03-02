@@ -4,3 +4,11 @@ Editor GUI components will be on one atlas.
 
 GameTime versus built in Time
 	-Alterations based on Time.deltaTime or Time.time can't account for pause
+
+Most level editor UI things dont inherit from game UI
+	-Game ui has attributes unneeded for the LE (mostly the item class equivalents)
+	-LE needs more attributes
+	-It would get pretty messy
+
+Tile's "constructor" is publicly accessible Init
+	-So tile can be remade without losing references (level editor)

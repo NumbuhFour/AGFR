@@ -110,6 +110,23 @@ TextureImporter:
     21300210: edit add highlight
     21300212: edit add dark
     21300214: edit scrollbar highlight
+    21300216: erase_cursor
+    21300218: cursor
+    21300220: file tab
+    21300222: file tab highlight
+    21300224: file tab dark
+    21300226: file tab sel
+    21300228: popup top
+    21300230: popup close
+    21300232: popup close highlight
+    21300234: popup close dark
+    21300236: popup submit
+    21300238: submit
+    21300240: submit highlight
+    21300242: submit dark
+    21300244: cancel
+    21300246: cancel highlight
+    21300248: cancel dark
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -474,8 +491,8 @@ TextureImporter:
     - name: edit save tab
       rect:
         serializedVersion: 2
-        x: 1136
-        y: 348
+        x: 1047
+        y: 577
         width: 26
         height: 22
       alignment: 0
@@ -484,8 +501,8 @@ TextureImporter:
     - name: edit save tab highlight
       rect:
         serializedVersion: 2
-        x: 1136
-        y: 326
+        x: 1047
+        y: 555
         width: 26
         height: 22
       alignment: 0
@@ -494,8 +511,8 @@ TextureImporter:
     - name: edit save tab dark
       rect:
         serializedVersion: 2
-        x: 1136
-        y: 304
+        x: 1047
+        y: 533
         width: 26
         height: 22
       alignment: 0
@@ -504,8 +521,8 @@ TextureImporter:
     - name: edit open tab
       rect:
         serializedVersion: 2
-        x: 1164
-        y: 348
+        x: 1075
+        y: 577
         width: 26
         height: 22
       alignment: 0
@@ -514,8 +531,8 @@ TextureImporter:
     - name: edit open tab highlight
       rect:
         serializedVersion: 2
-        x: 1164
-        y: 326
+        x: 1075
+        y: 555
         width: 26
         height: 22
       alignment: 0
@@ -524,8 +541,8 @@ TextureImporter:
     - name: edit open tab dark
       rect:
         serializedVersion: 2
-        x: 1164
-        y: 304
+        x: 1075
+        y: 533
         width: 26
         height: 22
       alignment: 0
@@ -534,8 +551,8 @@ TextureImporter:
     - name: edit close tab
       rect:
         serializedVersion: 2
-        x: 1192
-        y: 348
+        x: 1103
+        y: 577
         width: 26
         height: 22
       alignment: 0
@@ -544,8 +561,8 @@ TextureImporter:
     - name: edit close tab highlight
       rect:
         serializedVersion: 2
-        x: 1192
-        y: 326
+        x: 1103
+        y: 555
         width: 26
         height: 22
       alignment: 0
@@ -554,8 +571,8 @@ TextureImporter:
     - name: edit close tab dark
       rect:
         serializedVersion: 2
-        x: 1192
-        y: 304
+        x: 1103
+        y: 533
         width: 26
         height: 22
       alignment: 0
@@ -1101,16 +1118,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: edit scroll contents
-      rect:
-        serializedVersion: 2
-        x: 1064
-        y: 320
-        width: 72
-        height: 280
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
     - name: edit style popup top
       rect:
         serializedVersion: 2
@@ -1231,5 +1238,175 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 3, y: 2, z: 3, w: 2}
+    - name: erase_cursor
+      rect:
+        serializedVersion: 2
+        x: 1027
+        y: 482
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cursor
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 480
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: file tab
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 401
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: file tab highlight
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 382
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: file tab dark
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 363
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: file tab sel
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 401
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: popup top
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 121
+        width: 272
+        height: 26
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: popup close
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 102
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: popup close highlight
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 102
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: popup close dark
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 102
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: popup submit
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 305
+        width: 272
+        height: 26
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: submit
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 370
+        width: 97
+        height: 18
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: submit highlight
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 351
+        width: 97
+        height: 18
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: submit dark
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 332
+        width: 97
+        height: 18
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cancel
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 370
+        width: 97
+        height: 18
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cancel highlight
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 351
+        width: 97
+        height: 18
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cancel dark
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 332
+        width: 97
+        height: 18
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

@@ -1,0 +1,10 @@
+{
+	"tiles": [
+		{ "name": "wall", 		"sprite": 32, 		"main_color": { "r": 0.376, "g": 0.420, "b": 0.361, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 1 },
+		{ "name": "dark floor", "sprite": 2, 		"main_color": { "r": 50, "g": 50, "b": 50, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 0 },
+		{ "name": "floor", 		"sprite": 2, 		"main_color": { "r": 70, "g": 70, "b": 70, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 0 },
+		{ "name": "button", 	"type":"button", 	"sprite": 129, 		"main_color": { "r": 0.192, "g": 0.184, "b": 0.176, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 0 },
+		{ "name": "sign", 		"type":"sign",		"sprite": 224, 		"main_color": { "r": 158, "g": 106, "b": 8, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 1 },
+		{ "name": "door", 		"type":"door",		"sprite": 192, 		"main_color": { "r": 158, "g": 106, "b": 8, "a": 1.0 }, "swap_color": { "r": 1.0, "g": 1.0, "b": 1.0, "a": 1.0 }, "solidity": 0 }
+	]
+}

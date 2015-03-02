@@ -25,21 +25,19 @@ public class Tile {
 	public Color[] UnmodifiedPixels { get { return pixelData; } }
 	
 	public Tile(JSONNode data, SpriteSheet sheet){
-		this.sheet = sheet;
-		name = data["name"].Value;
 		JSONNode mcNode = data["main_color"];
-		mainColor = MapLoader.ReadColor(mcNode);
+		Color mc = MapLoader.ReadColor(mcNode);
 		JSONNode sNode = data["swap_color"];
-		swapColor = MapLoader.ReadColor(sNode);
-		solidity = data["solidity"].AsInt;
-		spriteIndex = data["sprite"].AsInt;
+		Color sc = MapLoader.ReadColor(sNode);
 		
-		pixelData = sheet.GetPixelData(spriteIndex);
-		modifiedPixelData = sheet.GetPixelData(spriteIndex);
-		PerformColorSwap(modifiedPixelData, swapColor, mainColor);
+		Init (data["name"].Value, data["sprite"].AsInt, mc,sc, data["solidity"].AsInt, sheet);
 	}
 	
 	public Tile(string name, int spriteIndex, Color mainColor, Color swapColor, int solidity, SpriteSheet sheet){
+		Init (name,spriteIndex,mainColor,swapColor,solidity,sheet);
+	}
+	
+	public void Init(string name, int spriteIndex, Color mainColor, Color swapColor, int solidity, SpriteSheet sheet){
 		this.name = name;
 		this.spriteIndex = spriteIndex;
 		this.mainColor = mainColor;
@@ -47,10 +45,10 @@ public class Tile {
 		this.solidity = solidity;
 		this.sheet = sheet;
 		
-		this.pixelData = new Color[sheet.tileResolution*sheet.tileResolution];
-		this.modifiedPixelData = new Color[sheet.tileResolution*sheet.tileResolution];
+		this.pixelData = sheet.GetPixelData(spriteIndex);
+		this.modifiedPixelData = sheet.GetPixelData(spriteIndex);
 		
-		PerformColorSwap(modifiedPixelData,mainColor, swapColor);
+		PerformColorSwap(modifiedPixelData, swapColor, mainColor);
 	}
 	
 	private void PerformColorSwap(Color[] data, Color key, Color result){

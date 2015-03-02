@@ -27,7 +27,7 @@ public class MapLoader : MonoBehaviour {
 	private void ParseData(){
 		dimensions = new Vector2(data["info"]["width"].AsInt, data["info"]["height"].AsInt);
 		spawn = new Vector2(data["info"]["spawn"][0].AsInt, data["info"]["spawn"][1].AsInt);
-		map.Init(dimensions, spawn);
+		map.Init(dimensions);
 		PopulateTiles(data["tiles"]);
 		PopulateMap(data["map"]);
 		if(data["entities"] != null)
@@ -35,18 +35,16 @@ public class MapLoader : MonoBehaviour {
 	}
 	
 	private void PopulateMap(JSONNode mapData){
-		Vector2 offset = new Vector2((int)((Map.MAPDIM.x-this.dimensions.x)/2), //Offset to center
-		                             (int)((Map.MAPDIM.y-this.dimensions.y)/2));
 		for(int x = 0; x < dimensions.x; x++){
 			for(int y = 0; y < dimensions.y; y++){
 				JSONNode tile = mapData[(int)dimensions.y-y-1][x];
 				if(tile.GetType() == typeof(SimpleJSON.JSONClass)){
-					map.SetTileAt(x + (int)offset.x,y + (int)offset.y, tile["style"].Value);
+					map.SetTileAt(x,y, tile["style"].Value);
 					Tile t = map.GetTile(tile["style"].Value);
-					t.ReadData(tile, map.GetTileDataAt(x + (int)offset.x,y + (int)offset.y));
+					t.ReadData(tile, map.GetTileDataAt(x,y));
 				}
 				else {
-					map.SetTileAt(x + (int)offset.x,y + (int)offset.y, tile);
+					map.SetTileAt(x,y, tile);
 				}
 			}
 		}
