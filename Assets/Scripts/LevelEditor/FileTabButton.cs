@@ -16,11 +16,11 @@ public class FileTabButton : MonoBehaviour {
 	}
 	
 	public void SetNumber(int num){
-		text.text = "" + num;
+		text.text = "" + (num);
 		file = num;
 	}
 	
 	public void OnClick(){
-		
+		invMan.SwitchToMap(file);
 	}
 }

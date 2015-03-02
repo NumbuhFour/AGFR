@@ -79,16 +79,28 @@ public class EditorUI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if(currentMap != -1 && Input.GetMouseButton (0) && this.toolSlot.Item != null){
-			Vector3 mouse = Input.mousePosition;
-			if(this.mapRect.Contains(mouse)) {
-				Vector2 pos = (Vector2)mouse - mapRect.min;
-				pos = pos/(sheet.tileResolution+2);
-				pos = maps[currentMap].ConvertSceneToWorld(pos);
-				Debug.Log("POS " + pos);
-				maps[currentMap].SetTileAt((int)pos.x, (int)pos.y, toolSlot.Item.Name);
+		if(currentMap != -1){
+			if(Input.GetMouseButton (0) && this.toolSlot.Item != null){ //Left click place
+				Vector3 mouse = Input.mousePosition;
+				if(this.mapRect.Contains(mouse)) {
+					Vector2 pos = GetMousePos (mouse);
+					maps[currentMap].SetTileAt((int)pos.x, (int)pos.y, toolSlot.Item.Name);
+				}
+			}else if(Input.GetMouseButton(1)){	//right click erase
+				Vector3 mouse = Input.mousePosition;
+				if(this.mapRect.Contains(mouse)) {
+					Vector2 pos = GetMousePos (mouse);
+					maps[currentMap].SetTileAt((int)pos.x, (int)pos.y, null);
+				}
 			}
 		}
+	}
+	
+	private Vector2 GetMousePos(Vector2 mouse){
+		Vector2 pos = (Vector2)mouse - mapRect.min;
+		pos = pos/(sheet.tileResolution+2);
+		pos = maps[currentMap].ConvertSceneToWorld(pos);
+		return pos;
 	}
 	
 	public void SetTool(EditorItem tool){
@@ -185,7 +197,6 @@ public class EditorUI : MonoBehaviour {
 		popup.InitEmpty( (Dictionary<string,string> data, bool cancelled) => {
 			if(cancelled) return;
 			
-			AddFileTab();
 			int width = int.Parse(data["width"]);
 			int height = int.Parse(data["height"]);
 			int mapInd = maps.Count;
@@ -195,6 +206,7 @@ public class EditorUI : MonoBehaviour {
 			Debug.Log("NEW FILE " + width + "x" + height);
 			
 			SwitchToMap(mapInd);
+			AddFileTab(mapInd);
 		});
 		
 		popup.AddVar("width", "25");
@@ -203,7 +215,8 @@ public class EditorUI : MonoBehaviour {
 		popup.End();
 	}
 	
-	private void SwitchToMap(int i) {
+	public void SwitchToMap(int i) {
+		Debug.Log("SWITCHING TO MAP " + i);
 		if(currentMap != -1 && maps[currentMap]){
 			maps[currentMap].enabled = false;
 		}
@@ -212,9 +225,10 @@ public class EditorUI : MonoBehaviour {
 		this.mapRen.map.enabled = true;
 		this.mapRen.map.MarkDirty();
 		UpdateMapPresets();
+		UnsetFileTabs();
 	}
 	
-	private void AddFileTab(){
+	private void AddFileTab(int ind){
 		int i = 0;
 		Vector3 newPos = Vector3.zero;
 		for(i = 0; i < this.fileTabs.transform.childCount; i++){
@@ -227,6 +241,12 @@ public class EditorUI : MonoBehaviour {
 		GameObject add = (GameObject)GameObject.Instantiate (fileTabPrefab);
 		add.transform.SetParent(fileTabs.transform);
 		add.transform.position = newPos;
-		add.GetComponent<FileTabButton>().Init(this,maps.Count);
+		add.GetComponent<FileTabButton>().Init(this,ind);
+	}
+	private void UnsetFileTabs(){ //For the glowy effect
+		for(int i = 0; i < this.fileTabs.transform.childCount; i++){
+			Transform t = this.fileTabs.transform.GetChild (i);
+			t.gameObject.GetComponent<UnityEngine.UI.Button>().interactable = true;
+		}
 	}
 }
