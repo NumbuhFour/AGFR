@@ -10,7 +10,6 @@ Minor TODO:
 	-Ghosty
 	-Triggers (Start, End, Area)
 	-Persistance
-	-Player Double Stepping when spamming WASDWASDWASD
 	-Separate slots for weapon and (subweapon? Accessory?)
 	-Scrolling maps
 		-Account for Entities!
@@ -22,7 +21,6 @@ Minor TODO:
 	-implement use for swap color?
 	-Editor scrollbuttons increase amount when more tiles present
 	-Button dont be activated by sprites?
-	-Swords dont hit bottom left and right corners
 	
 	-Editor adding variables
 	-Editor spawning properties?
@@ -41,10 +39,14 @@ Minor TODO:
 	
 	-Pause on lost focus
 	
+	-"Enable snarky comments"
+	
 Minor TODO Graphical:
 	-Door sprite needs work
 	
 Done:
+	-Swords dont hit bottom left and right corners
+	-Player Double Stepping when spamming WASDWASDWASD
 	-Lightnoise go over sprites
 	-Cant attack after level load. Destroy order is fucked
 	-Proper color text

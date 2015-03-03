@@ -19,7 +19,7 @@ public class Direction
 	}	
 	
 	public static Vector2 ConvertToVector(int dir){
-		switch(dir){
+		switch(dir%4){
 		case 0: return new Vector2(1,0);
 		case 2: return new Vector2(-1,0);
 		case 1: return new Vector2(0,1);

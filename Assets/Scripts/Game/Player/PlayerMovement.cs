@@ -14,15 +14,16 @@ public class PlayerMovement : MonoBehaviour {
 	
 	private Entity ent;
 	private FaceDirection dir;
-	private int lastHoriz = 0;
-	private int lastVert = 0;
+	private static int lastHoriz = 0; //Static to keep across levels
+	private static int lastVert = 0;
 	
 	private bool vertMostRecent = false;
 
 	public void OnLevelLoaded(){
 		ent = GetComponent<Entity>();
 		dir = GetComponent<FaceDirection>();
-		lastTime = (int)(GameTime.time*1000);
+		lastTime = (int)(GameTime.time*1000) + tapDelay; //Adding tapdelay to both as its a little more responsive
+		//lastTimeHold = (int)(GameTime.time*1000) + tapDelay;
 	}
 	
 	// Update is called once per frame
@@ -32,13 +33,13 @@ public class PlayerMovement : MonoBehaviour {
 		int horiz = (int)Input.GetAxisRaw("Horizontal");
 		int vert = (int)Input.GetAxisRaw("Vertical");
 		long delta = time-lastTime;
-		long deltaHold= time-lastTimeHold;
-		bool change = (lastHoriz != horiz || lastVert != vert);
+		//long deltaHold= time-lastTimeHold;
+		bool change = ((horiz!=0 && lastHoriz != horiz) || (lastVert != vert && vert!=0));
 		if(horiz != 0 || vert != 0){
 			if(horiz != 0 && horiz != lastHoriz) vertMostRecent = false;
 			if(vert != 0 && vert != lastVert) vertMostRecent = true;
 			
-			if(deltaHold > moveDelay || (change && delta > tapDelay)) {
+			if((!change && delta > moveDelay) || (change && delta > tapDelay)) {
 				Vector2 delt = new Vector2();
 				
 				if(vertMostRecent){ //Changes preference order based on last key pressed
@@ -57,7 +58,7 @@ public class PlayerMovement : MonoBehaviour {
 				ent.Move (delt);
 				SetDirection(delt);
 				lastTime = time;
-				lastTimeHold = time;
+				//lastTimeHold = time;
 			}
 			//if(change || (horiz==0 && vert==0)) lastTimeHold = time; //For when tapping makes it think its held
 		}
