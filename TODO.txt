@@ -36,6 +36,9 @@ Minor TODO:
 	-Rework tile properties so they can be changed based on location/tiledata
 	
 	-Rotated sprite presets in Editor
+	-Popup curtain to prevent clicks
+	
+	-Pause on lost focus
 	
 Minor TODO Graphical:
 	-Door sprite needs work

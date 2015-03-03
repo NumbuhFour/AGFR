@@ -8,6 +8,8 @@ public class TileData {
 	private Dictionary<string, object> data = new Dictionary<string, object>();
 	private Vector2 pos;
 	
+	public Dictionary<string, object> Data { get { return data; } }
+	
 	public TileData(float x, float y){
 		this.x = (int)x;
 		this.y = (int)y;

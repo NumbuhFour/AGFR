@@ -65,13 +65,21 @@ public class EditorUI : MonoBehaviour {
 			Vector3 mouse = Input.mousePosition;
 			if(this.mapRect.Contains(mouse)) {
 				Texture2D icon = normalCursor;
+				bool inspect = false;
 				if(Input.GetMouseButton(1)) icon = eraserCursor;
-				else if(Input.GetKey(KeyCode.LeftShift)) icon = inspectCursor;
+				else if(Input.GetKey(KeyCode.LeftShift)) {
+					icon = inspectCursor;
+					inspect = true;
+				}
 				Cursor.SetCursor(icon, new Vector2(16f,16f), CursorMode.Auto);
 				
 				if(Input.GetMouseButton (0) && GetTool() != null){ //Left click place
 					Vector2 pos = GetMousePos (mouse);
-					maps[currentMap].SetTileAt((int)pos.x, (int)pos.y, GetTool().Name);
+					if(!inspect) {
+						maps[currentMap].SetTileAt((int)pos.x, (int)pos.y, GetTool().Name);
+					}else {
+						this.InspectTile(maps[currentMap], (int)pos.x, (int)pos.y);
+					}
 				}else if(Input.GetMouseButton(1)){	//right click erase
 					Vector2 pos = GetMousePos (mouse);
 					maps[currentMap].SetTileAt((int)pos.x, (int)pos.y, null);
@@ -103,6 +111,31 @@ public class EditorUI : MonoBehaviour {
 			}
 		}
 	}
+	
+	private void InspectTile(Map map, int x, int y){
+		EditorPopup popup = MakePopup();
+		
+		TileData td = map.GetTileDataAt(x,y);
+		
+		popup.InitInspector(FindUserEditorItem(map.GetTileAt(x,y)), (Dictionary<string, string> data, bool cancelled) => {
+			popupActive = false;
+			if(!cancelled){
+				foreach(string key in data.Keys){
+					td[key] = data[key];
+				}
+			}
+		}, null);
+		popupActive = true;
+		
+		foreach (string key in td.Data.Keys){
+			popup.AddEmptyAttrib(key, (string)td.Data[key]);
+		}
+		
+		popup.AddAddButton();
+		popup.AddSubmit();
+		popup.End();
+	}
+	
 	private void RecursiveFill(Map map, int x, int y, string from, string to){
 		if(x < 0 || y < 0 || x >= map.Dimensions.x || y >= map.Dimensions.y) return;
 		map.SetTileAt(x,y,to);
@@ -116,6 +149,13 @@ public class EditorUI : MonoBehaviour {
 		}
 	}
 	
+	private EditorItem FindUserEditorItem(Tile t){
+		foreach(EditorItem i in userTiles){
+			if(i.Tile == t) return i;
+		}
+		return null;
+	}
+	
 	private Vector2 GetMousePos(Vector2 mouse){
 		Vector2 pos = (Vector2)mouse - mapRect.min;
 		pos = pos/(sheet.tileResolution+2);
@@ -123,7 +163,8 @@ public class EditorUI : MonoBehaviour {
 		return pos;
 	}
 	
-	public void SetTool(EditorItem tool){
+	public void SetTool(EditorItem tool){	
+		if(popupActive) return;
 		if(this.tilePresets.Contains(tool)){
 			tool = new EditorItem(tool);
 			this.AddUserItem(tool);
@@ -141,11 +182,12 @@ public class EditorUI : MonoBehaviour {
 	public void AddUserItem(EditorItem item){
 		int n = 0;
 		for(int i = 0; i < userTiles.Count; i++){
-			if(userTiles[i].Name == item.Name) n++;
+			if(userTiles[i].Name == item.Name || userTiles[i].Name == item.Name+"_"+n) n++;
 		}
 		if(n != 0){
 			item.Name += "_" + n;
 		}
+		Debug.Log("NEW USER TILE " + item.Name);
 		this.userTiles.Add(item);
 		this.AddPreset(item, userScroll);
 	}
@@ -191,6 +233,7 @@ public class EditorUI : MonoBehaviour {
 	
 	
 	public void SetTab(string tab){
+		if(popupActive) return;
 		switch(tab){
 		case "user":
 			this.userScroll.gameObject.SetActive(true);
@@ -348,12 +391,14 @@ public class EditorUI : MonoBehaviour {
 		Map map = maps[currentMap];
 		EditorPopup popup = MakePopup();
 		popup.InitEmpty( (Dictionary<string,string> data, bool cancelled) => {
+			popupActive = false;
 			if(!cancelled){
 				map.mapName = data["filename"];
 				SaveMap.SaveMapToFile(map, this.userTiles, map.mapName);
 				chat.PushText("","Map saved!");
 			}
 		});
+		popupActive = true;
 		
 		popup.AddVar("filename", map.mapName);
 		popup.AddSubmit();

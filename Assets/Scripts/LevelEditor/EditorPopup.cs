@@ -58,7 +58,7 @@ public class EditorPopup : MonoBehaviour {
 		this.closer = closer;
 		this.changer = changer;
 		pieces = new List<GameObject>();
-		GameObject top = AddPiece(attribTopPrefab);
+		GameObject top = AddPiece(styleTopPrefab);
 		top.transform.GetChild(0).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => { Close (true); } );
 		top.transform.GetChild(1).GetComponent<EditorInvSlot>().Init(null, item);
 	}
@@ -75,6 +75,16 @@ public class EditorPopup : MonoBehaviour {
 	public void End(){
 		AddPiece(bottomPrefab);
 		this.ready = true;
+	}
+	
+	public void AddAddButton() {
+		GameObject add = AddPiece(addAttribPrefab);
+	
+		//GameObject btn = add.transform.GetChild(0).gameObject;
+		
+		add.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => { 
+			InsertEmptyAttrib("title","value");
+		} );
 	}
 	
 	public void AddSubmit(){
@@ -124,7 +134,8 @@ public class EditorPopup : MonoBehaviour {
 	private GameObject AddPiece(GameObject prefab){
 		GameObject add = (GameObject)Instantiate (prefab);
 		float y = 0;
-		for(int i = 0; i < this.transform.childCount; i++){
+		int i;
+		for(i = 0; i < this.transform.childCount; i++){
 			y -= ((RectTransform)this.transform.GetChild(i)).sizeDelta.y-1;
 			
 		}
@@ -134,6 +145,63 @@ public class EditorPopup : MonoBehaviour {
 		
 		//Recentering popup
 		float height = Mathf.Abs(y) + ((RectTransform)add.transform).sizeDelta.y;
+		Vector3 pos = this.transform.localPosition;
+		this.transform.localPosition = new Vector3(pos.x, originY + height/2, pos.z);
+		return add;
+	}
+	
+	private void InsertEmptyAttrib(string title, string defaultValue){
+		if(attributes == null) attributes = new List<Attribute>();
+		
+		Attribute attrib = new Attribute();
+		attrib.title = title;
+		attrib.value = defaultValue;
+		int attribInd = attributes.Count;
+		attributes.Add(attrib);
+		
+		SetAttributeTitle(attribInd,title);
+		SetAttributeValue(attribInd,defaultValue);
+		
+		GameObject add = InsertPiece(attribVarPrefab, this.transform.childCount-3);
+		GameObject titleText = add.transform.GetChild(0).gameObject;
+		GameObject inputText = add.transform.GetChild(1).gameObject;
+		titleText.GetComponent<InputField>().text = title;
+		inputText.GetComponent<InputField>().text = defaultValue;
+		
+		titleText.GetComponent<InputField>().onValueChange.AddListener( (string value) => { SetAttributeTitle(attribInd,value); } );
+		inputText.GetComponent<InputField>().onValueChange.AddListener( (string value) => { SetAttributeValue(attribInd,value); } );
+	}
+	
+	private GameObject InsertPiece(GameObject prefab, int index){
+		// "Keep it simple until you run out of simple" I ran out of simple. Good luck future me.
+		GameObject add = (GameObject)Instantiate (prefab);
+		float y = 0;
+		List<Transform> removed = new List<Transform>();
+		for(int i = 0; i <= this.transform.childCount; i++){
+			if(i == index+1){
+				i--; //Keep loop going
+				Transform rem = this.transform.GetChild(i);
+				removed.Add(rem);
+				rem.SetParent(this.transform.parent); //Temporarily move out of popup
+			}
+			else if(i != index) //Skip current index cuz not sure?
+				y -= ((RectTransform)this.transform.GetChild(i)).sizeDelta.y-1;
+			
+		}
+		
+		add.transform.SetParent(this.transform);
+		add.transform.localPosition = new Vector3(0,y,10);
+		pieces.Add (add);
+		y -= ((RectTransform)add.transform).sizeDelta.y-1;
+		
+		foreach (Transform t in removed){
+			t.SetParent(this.transform);
+			t.localPosition = new Vector3(0,y,10);
+			y -= ((RectTransform)t).sizeDelta.y-1;
+		}
+		
+		//Recentering popup
+		float height = Mathf.Abs(y);
 		Vector3 pos = this.transform.localPosition;
 		this.transform.localPosition = new Vector3(pos.x, originY + height/2, pos.z);
 		return add;
