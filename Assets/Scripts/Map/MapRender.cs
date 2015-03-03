@@ -16,6 +16,7 @@ public class MapRender : MonoBehaviour {
 		tex = new Texture2D(tileSize*(int)Map.MAPDIM.x, tileSize*(int)Map.MAPDIM.y);
 		this.renderer.material.mainTexture = tex;
 		tex.filterMode = FilterMode.Point;
+		tex.wrapMode = TextureWrapMode.Clamp;
 	}
 	
 	// Update is called once per frame
@@ -34,6 +35,35 @@ public class MapRender : MonoBehaviour {
 				tex.SetPixel(x,y,this.backgroundColor);
 			}
 		}
+		
+		if(Game.Mode == Game.GameMode.LEVEL_EDITOR){  //Alignment line thingies
+			int step = 7;
+			int halfStep = step/2;
+			Vector2 offset = this.map.CamLoc;
+			offset.x += 2;
+			offset.y += 2;
+			offset.x %= step;
+			offset.y %= step;
+			float maxX = Map.MAPDIM.x*tileSize;
+			float maxY = Map.MAPDIM.y*tileSize;
+			for(int x = 0; x <= Map.MAPDIM.x+step; x+=step){
+				int xo = (x-(int)offset.x)*tileSize + 8;
+				if(xo > 0 && xo < maxX) //Should never be 0. It should be in the center of a tile
+				for(int y = 0; y < maxY; y++){
+					tex.SetPixel(xo, y, Color.red);
+					tex.SetPixel(xo+1, y, Color.red);
+				}
+			}
+			for(int y = 0; y <= Map.MAPDIM.y+step; y+=step){
+				int yo = (y-(int)offset.y)*tileSize + 8;
+				if(yo > 0 && yo < maxY) //Should never be 0. It should be in the center of a tile
+				for(int x = 0; x < maxX; x++){
+					tex.SetPixel(x, yo, Color.red);
+					tex.SetPixel(x, yo+1, Color.red);
+				}
+			}
+		}
+		
  		for(int x = 0; x< Map.MAPDIM.x; x++){
 			for(int y = 0; y< Map.MAPDIM.y; y++){
 				Tile t = map.GetVisibleTileAt(x,y);
@@ -56,9 +86,9 @@ public class MapRender : MonoBehaviour {
 				}
 				
 				if(t == Map.emptyTile && Game.Mode == Game.GameMode.LEVEL_EDITOR && map.IsScenePosWithinMap(new Vector2(x,y))){ //Making empty squares for drawing
-					int max = map.sheet.tileResolution+2;
-					for(int hx = -1; hx <= max; hx++){
-						for(int hy = -1; hy <= max; hy++){
+					int max = map.sheet.tileResolution;
+					for(int hx = 0; hx <= max; hx++){
+						for(int hy = 0; hy <= max; hy++){
 							tex.SetPixel(x*tileSize+hx,y*tileSize+hy,Color.clear);
 						}
 					}

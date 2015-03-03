@@ -1238,26 +1238,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 3, y: 2, z: 3, w: 2}
-    - name: erase_cursor
-      rect:
-        serializedVersion: 2
-        x: 1027
-        y: 482
-        width: 17
-        height: 17
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cursor
-      rect:
-        serializedVersion: 2
-        x: 1007
-        y: 480
-        width: 17
-        height: 17
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
     - name: file tab
       rect:
         serializedVersion: 2

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using SimpleJSON;
 
 public class TileData {
 	
@@ -40,5 +41,18 @@ public class TileData {
 	public int y{
 		get { return (int)pos.y; }
 		set { pos.y = (int)value; }
+	}
+	
+	public bool IsEmpty (){
+		return data.Keys.Count > 2; //not x and y
+	}
+	
+	public void Save(JSONNode json, string style){
+		JSONNode n = new JSONClass();
+		n.Add("style", new JSONData(style));
+		foreach(string key in this.data.Keys){
+			n.Add(key, new JSONData((string)data[key]));
+		}
+		json.Add(n);
 	}
 }

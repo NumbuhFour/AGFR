@@ -1,0 +1,72 @@
+Initialize engine version: 4.6.0f2 (b073107612b7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon R9 200 Series (ID=0x67b0)
+    Vendor:   ATI
+    VRAM:     4073 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: X:\Projects\Unity\AGFR\dist\editortest1_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading X:\Projects\Unity\AGFR\dist\editortest1_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: X:\Projects\Unity\AGFR\dist\editortest1_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading X:\Projects\Unity\AGFR\dist\editortest1_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: X:\Projects\Unity\AGFR\dist\editortest1_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading X:\Projects\Unity\AGFR\dist\editortest1_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: X:\Projects\Unity\AGFR\dist\editortest1_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading X:\Projects\Unity\AGFR\dist\editortest1_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.055 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+desktop: 1920x1080 60Hz; virtual: 3360x1323 at -1440,-243
+Platform assembly: X:\Projects\Unity\AGFR\dist\editortest1_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: X:\Projects\Unity\AGFR\dist\editortest1_Data\Managed\System.dll (this message is harmless)
+GAME INITIALIZED
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Game:Start() (at X:\Projects\Unity\AGFR\Assets\Scripts\Game\Game.cs:64)
+ 
+(Filename: X Line: 0)
+
+NEW FILE 25x25
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+EditorUI:<AddFile>m__6(Dictionary`2, Boolean) (at X:\Projects\Unity\AGFR\Assets\Scripts\LevelEditor\EditorUI.cs:186)
+EditorPopup:Close(Boolean) (at X:\Projects\Unity\AGFR\Assets\Scripts\LevelEditor\EditorPopup.cs:128)
+EditorPopup:<AddSubmit>m__1() (at X:\Projects\Unity\AGFR\Assets\Scripts\LevelEditor\EditorPopup.cs:62)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:110)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:578)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:718)
+UnityEngine.Events.UnityEvent:Invoke() (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent_0.cs:53)
+UnityEngine.UI.Button:Press() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\UI\Core\Button.cs:36)
+UnityEngine.UI.Button:OnPointerClick(PointerEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\UI\Core\Button.cs:45)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IPointerClickHandler, BaseEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\ExecuteEvents.cs:52)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:406)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:290)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:162)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\EventSystem.cs:261)
+ 
+(Filename: X Line: 0)
+
+SWITCHING TO MAP 0
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+EditorUI:SwitchToMap(Int32) (at X:\Projects\Unity\AGFR\Assets\Scripts\LevelEditor\EditorUI.cs:199)
+EditorUI:<AddFile>m__6(Dictionary`2, Boolean) (at X:\Projects\Unity\AGFR\Assets\Scripts\LevelEditor\EditorUI.cs:188)
+EditorPopup:Close(Boolean) (at X:\Projects\Unity\AGFR\Assets\Scripts\LevelEditor\EditorPopup.cs:128)
+EditorPopup:<AddSubmit>m__1() (at X:\Projects\Unity\AGFR\Assets\Scripts\LevelEditor\EditorPopup.cs:62)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:110)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:578)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent.cs:718)
+UnityEngine.Events.UnityEvent:Invoke() (at C:\BuildAgent\work\d63dfc6385190b60\Runtime\Export\UnityEvent_0.cs:53)
+UnityEngine.UI.Button:Press() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\UI\Core\Button.cs:36)
+UnityEngine.UI.Button:OnPointerClick(PointerEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\UI\Core\Button.cs:45)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IPointerClickHandler, BaseEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\ExecuteEvents.cs:52)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData) (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:406)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:290)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\InputModules\StandaloneInputModule.cs:162)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\BuildAgent\work\d63dfc6385190b60\Extensions\guisystem\guisystem\EventSystem\EventSystem.cs:261)
+ 
+(Filename: X Line: 0)
+

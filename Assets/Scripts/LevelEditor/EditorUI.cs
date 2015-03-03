@@ -13,6 +13,7 @@ public class EditorUI : MonoBehaviour {
 	
 	public MapRender mapRen;
 	public UnityEngine.EventSystems.EventSystem events;
+	public ChatManager chat;
 
 	private List<EditorItem> tilePresets = new List<EditorItem>();
 	private List<EditorItem> userTiles = new List<EditorItem>();
@@ -26,6 +27,10 @@ public class EditorUI : MonoBehaviour {
 	
 	public GameObject fileTabs;
 	public GameObject fileTabPrefab;
+	
+	public Texture2D normalCursor;
+	public Texture2D eraserCursor;
+	public Texture2D inspectCursor;
 	//public Canvas itemCountCanvas;
 	//public GameObject itemCountPrefab;
 	
@@ -41,6 +46,8 @@ public class EditorUI : MonoBehaviour {
 	
 	private Dictionary<int, Map> maps = new Dictionary<int, Map>();
 	private int currentMap = -1;
+	
+	private bool popupActive = false;
 	//public Collider mapCol;
 	
 	private SpriteSheet sheet;
@@ -49,49 +56,62 @@ public class EditorUI : MonoBehaviour {
 	void Start () {
 		sheet = Game.GameObject.GetComponent<SpriteSheet>();
 		SetTab("tile");
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr2","tile",33,Color.green,Color.white,1));
-		/*AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));
-		AddTilePreset(new EditorItem("rawr","tile",32,Color.red,Color.white,1));*/
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-		if(currentMap != -1){
-			if(Input.GetMouseButton (0) && this.toolSlot.Item != null){ //Left click place
-				Vector3 mouse = Input.mousePosition;
-				if(this.mapRect.Contains(mouse)) {
+		if(currentMap != -1 && !popupActive){
+			Vector3 mouse = Input.mousePosition;
+			if(this.mapRect.Contains(mouse)) {
+				Texture2D icon = normalCursor;
+				if(Input.GetMouseButton(1)) icon = eraserCursor;
+				else if(Input.GetKey(KeyCode.LeftShift)) icon = inspectCursor;
+				Cursor.SetCursor(icon, new Vector2(16f,16f), CursorMode.Auto);
+				
+				if(Input.GetMouseButton (0) && GetTool() != null){ //Left click place
 					Vector2 pos = GetMousePos (mouse);
-					maps[currentMap].SetTileAt((int)pos.x, (int)pos.y, toolSlot.Item.Name);
-				}
-			}else if(Input.GetMouseButton(1)){	//right click erase
-				Vector3 mouse = Input.mousePosition;
-				if(this.mapRect.Contains(mouse)) {
+					maps[currentMap].SetTileAt((int)pos.x, (int)pos.y, GetTool().Name);
+				}else if(Input.GetMouseButton(1)){	//right click erase
 					Vector2 pos = GetMousePos (mouse);
 					maps[currentMap].SetTileAt((int)pos.x, (int)pos.y, null);
+				}else if(Input.GetMouseButton (2) && GetTool() != null){
+					Vector2 pos = GetMousePos (mouse);
+					int x = (int)pos.x;
+					int y = (int)pos.y;
+					Map map = maps[currentMap];
+					string from = map.GetTileAt(x,y).name;
+					string to = GetTool ().Name;
+					if(from != to)
+						RecursiveFill(map, x,y, from, to);
 				}
+			}else {
+				Cursor.SetCursor(null, new Vector2(), CursorMode.Auto);
+			}
+		}else {
+			Cursor.SetCursor(null, new Vector2(), CursorMode.Auto);
+		}
+		
+		//Scrolling 
+		
+		if(currentMap != -1 && !popupActive){
+			int horiz = (int)Input.GetAxisRaw("Horizontal");
+			int vert = (int)Input.GetAxisRaw("Vertical");
+			if(horiz != 0 || vert != 0){
+				Vector2 add = new Vector2(horiz,vert);
+				maps[currentMap].CamLoc = maps[currentMap].CamLoc + add;
+			}
+		}
+	}
+	private void RecursiveFill(Map map, int x, int y, string from, string to){
+		if(x < 0 || y < 0 || x >= map.Dimensions.x || y >= map.Dimensions.y) return;
+		map.SetTileAt(x,y,to);
+		for(int ix = -1; ix <= 1; ix++){
+			for(int iy = -1; iy <= 1; iy++){
+				if(ix == 0 || iy == 0) //no corners
+					if(map.GetTileAt(x+ix, y+iy).name == from) {
+						RecursiveFill(map,x+ix,y+iy,from,to);
+					}
 			}
 		}
 	}
@@ -104,7 +124,14 @@ public class EditorUI : MonoBehaviour {
 	}
 	
 	public void SetTool(EditorItem tool){
+		if(this.tilePresets.Contains(tool)){
+			tool = new EditorItem(tool);
+			this.AddUserItem(tool);
+		}
 		this.toolSlot.Item = tool;
+	}
+	public EditorItem GetTool(){
+		return this.toolSlot.Item;
 	}
 	
 	public void ClearUserItems(){
@@ -113,6 +140,13 @@ public class EditorUI : MonoBehaviour {
 	
 	public void AddUserItem(EditorItem item){
 		this.AddPreset(item, userScroll);
+		int n = 0;
+		for(int i = 0; i < userTiles.Count; i++){
+			if(userTiles[i].Name == item.Name) n++;
+		}
+		if(n != 0){
+			item.Name += "_" + n;
+		}
 		this.userTiles.Add(item);
 	}
 	
@@ -146,9 +180,9 @@ public class EditorUI : MonoBehaviour {
 	private void UpdateMapPresets(){
 		if(currentMap == -1) return;
 		Map cur = maps[currentMap];
-		foreach(EditorItem e in this.tilePresets){
+		/*foreach(EditorItem e in this.tilePresets){
 			cur.SetTile(e.Name, e.Tile);
-		}
+		}*/
 		
 		foreach(EditorItem e in this.userTiles){
 			cur.SetTile(e.Name, e.Tile);
@@ -163,6 +197,9 @@ public class EditorUI : MonoBehaviour {
 			this.userScroll.parent.gameObject.GetComponent<Image>().enabled = true;
 			this.tileScroll.parent.gameObject.GetComponent<Image>().enabled = false;
 			this.entScroll.parent.gameObject.GetComponent<Image>().enabled = false;
+			this.userScroll.parent.gameObject.GetComponent<ScrollRect>().enabled = true;
+			this.tileScroll.parent.gameObject.GetComponent<ScrollRect>().enabled = false;
+			this.entScroll.parent.gameObject.GetComponent<ScrollRect>().enabled = false;
 			
 			this.tileScroll.gameObject.SetActive(false);
 			this.entScroll.gameObject.SetActive(false);
@@ -172,6 +209,9 @@ public class EditorUI : MonoBehaviour {
 			this.tileScroll.parent.gameObject.GetComponent<Image>().enabled = true;
 			this.userScroll.parent.gameObject.GetComponent<Image>().enabled = false;
 			this.entScroll.parent.gameObject.GetComponent<Image>().enabled = false;
+			this.tileScroll.parent.gameObject.GetComponent<ScrollRect>().enabled = true;
+			this.userScroll.parent.gameObject.GetComponent<ScrollRect>().enabled = false;
+			this.entScroll.parent.gameObject.GetComponent<ScrollRect>().enabled = false;
 			
 			this.userScroll.gameObject.SetActive(false);
 			this.entScroll.gameObject.SetActive(false);
@@ -181,6 +221,9 @@ public class EditorUI : MonoBehaviour {
 			this.entScroll.parent.gameObject.GetComponent<Image>().enabled = true;
 			this.tileScroll.parent.gameObject.GetComponent<Image>().enabled = false;
 			this.userScroll.parent.gameObject.GetComponent<Image>().enabled = false;
+			this.entScroll.parent.gameObject.GetComponent<ScrollRect>().enabled = true;
+			this.tileScroll.parent.gameObject.GetComponent<ScrollRect>().enabled = false;
+			this.userScroll.parent.gameObject.GetComponent<ScrollRect>().enabled = false;
 			
 			this.tileScroll.gameObject.SetActive(false);
 			this.userScroll.gameObject.SetActive(false);
@@ -189,12 +232,10 @@ public class EditorUI : MonoBehaviour {
 	}
 	
 	public void AddFile(){
-		GameObject popupGO = (GameObject)Instantiate(popupPrefab);
-		popupGO.transform.SetParent(this.transform);
-		EditorPopup popup = popupGO.GetComponent<EditorPopup>();
-		popup.transform.localPosition = Vector3.zero;
+		EditorPopup popup = MakePopup();
 		
 		popup.InitEmpty( (Dictionary<string,string> data, bool cancelled) => {
+			popupActive = false;
 			if(cancelled) return;
 			
 			int width = int.Parse(data["width"]);
@@ -208,6 +249,7 @@ public class EditorUI : MonoBehaviour {
 			SwitchToMap(mapInd);
 			AddFileTab(mapInd);
 		});
+		popupActive = true;
 		
 		popup.AddVar("width", "25");
 		popup.AddVar("height", "25");
@@ -248,5 +290,73 @@ public class EditorUI : MonoBehaviour {
 			Transform t = this.fileTabs.transform.GetChild (i);
 			t.gameObject.GetComponent<UnityEngine.UI.Button>().interactable = true;
 		}
+	}
+	
+	public void EditToolProperties(){
+		EditorPopup popup = MakePopup();
+		EditorItem tool = GetTool ();
+		EditorItem backup = new EditorItem(tool);
+		EditorPopup.OnChange changer = (Dictionary<string,string> data) => {
+			try{
+				tool.SpriteID = int.Parse (data["sprite"]);
+				tool.Type = data["type"];
+				tool.Solidity = int.Parse(data["solidity"]);
+				Color c = tool.MainColor;
+				c.r = float.Parse(data["color [r]"])/255f;
+				c.g = float.Parse(data["color [g]"])/255f;
+				c.b = float.Parse(data["color [b]"])/255f;
+				tool.MainColor = c;
+			}catch(System.Exception ex){} //Bad number
+			maps[currentMap].MarkDirty();
+		};
+		EditorPopup.OnClose closer = (Dictionary<string,string> data, bool cancelled) => {
+			popupActive = false;
+			if(cancelled){
+				tool.Type = backup.Type;
+				tool.SpriteID = backup.SpriteID;
+				tool.Solidity = backup.Solidity;
+				tool.MainColor = backup.MainColor;
+			}else{
+				changer(data);
+			}
+		};
+		popup.InitStyle(tool, closer, changer);
+		popupActive = true;
+		popup.AddVar("type","" + tool.Type);
+		popup.AddVar("sprite","" + tool.SpriteID);
+		popup.AddVar("solidity","" + tool.Solidity);
+		popup.AddVar("color [r]", "" + (int)(tool.MainColor.r * 255));
+		popup.AddVar("color [g]", "" + (int)(tool.MainColor.g * 255));
+		popup.AddVar("color [b]", "" + (int)(tool.MainColor.b * 255));
+		popup.AddSubmit();
+		popup.End();
+	}
+	
+	private EditorPopup MakePopup(){
+		GameObject popupGO = (GameObject)Instantiate(popupPrefab);
+		popupGO.transform.SetParent(this.transform);
+		EditorPopup popup = popupGO.GetComponent<EditorPopup>();
+		popup.transform.localPosition = Vector3.zero;
+		return popup;
+	}
+	
+	public void Save(){
+		if(currentMap == -1) {
+			chat.PushText("", "No file open, can't save!");
+		}
+		
+		Map map = maps[currentMap];
+		EditorPopup popup = MakePopup();
+		popup.InitEmpty( (Dictionary<string,string> data, bool cancelled) => {
+			if(!cancelled){
+				map.mapName = data["filename"];
+				SaveMap.SaveMapToFile(map, this.userTiles, map.mapName);
+				chat.PushText("","Map saved!");
+			}
+		});
+		
+		popup.AddVar("filename", map.mapName);
+		popup.AddSubmit();
+		popup.End();
 	}
 }

@@ -2,14 +2,17 @@
 using System.Collections;
 using SimpleJSON;
 
+[AddComponentMenu("Scripts/LevelEditor/Preset Loader")]
 public class PresetLoader : MonoBehaviour {
 
 	public TextAsset presetFile;
+	public EditorUI invMan;
 
 	public EditorItem[] presets;
 
 	// Use this for initialization
 	void Start () {
+		LoadPresets();
 	}
 	
 	public void LoadPresets(){
@@ -29,6 +32,7 @@ public class PresetLoader : MonoBehaviour {
 			Color swapColor = MapLoader.ReadColor(t["swap_color"]);
 			
 			presets[i] = new EditorItem(name, type, spriteIndex, mainColor, swapColor, solidity);
+			invMan.AddTilePreset(presets[i]);
 		}
 	}
 }

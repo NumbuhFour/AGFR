@@ -28,6 +28,9 @@ Minor TODO:
 	-Editor spawning properties?
 	-Editor custom metadata entry
 	-Editor fix stupid InputText bull
+	-LightNoise test highlight problem with clamp mode
+	-Editor set properties like spawn loc
+	-Editor properties tab to next
 	
 Done:
 	-Lightnoise go over sprites

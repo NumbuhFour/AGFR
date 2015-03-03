@@ -586,6 +586,14 @@ Prefab:
       propertyPath: m_Name
       value: Entity Scroll Area
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: d7d3f0af920c89342bcfcfd36167668e, type: 2}
+      propertyPath: m_HorizontalScrollbar
+      value: 
+      objectReference: {fileID: 1499294210}
+    - target: {fileID: 22400000, guid: d7d3f0af920c89342bcfcfd36167668e, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -119.799988
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d7d3f0af920c89342bcfcfd36167668e, type: 2}
   m_RootGameObject: {fileID: 2008057933}
@@ -738,7 +746,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -119.999939, y: -.347512841}
+  m_AnchoredPosition: {x: -119.799988, y: -.347512841}
   m_SizeDelta: {x: 239.800003, y: 287.299988}
   m_Pivot: {x: 0, y: .5}
 --- !u!1 &319220832
@@ -848,7 +856,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -119.999939, y: -.347512841}
+  m_AnchoredPosition: {x: -119.799988, y: -.347512841}
   m_SizeDelta: {x: 239.800003, y: 287.299988}
   m_Pivot: {x: 0, y: .5}
 --- !u!1 &348302184
@@ -2136,6 +2144,14 @@ Prefab:
       propertyPath: m_Name
       value: User Scroll Area
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: d7d3f0af920c89342bcfcfd36167668e, type: 2}
+      propertyPath: m_HorizontalScrollbar
+      value: 
+      objectReference: {fileID: 1499294210}
+    - target: {fileID: 22400000, guid: d7d3f0af920c89342bcfcfd36167668e, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -119.799988
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d7d3f0af920c89342bcfcfd36167668e, type: 2}
   m_RootGameObject: {fileID: 1912374097}
@@ -2362,6 +2378,7 @@ GameObject:
   - 114: {fileID: 1062564190}
   - 114: {fileID: 1062564189}
   - 114: {fileID: 1062564193}
+  - 114: {fileID: 1062564194}
   m_Layer: 0
   m_Name: Edit Buttons
   m_TagString: Untagged
@@ -2468,6 +2485,7 @@ MonoBehaviour:
     height: 448
   mapRen: {fileID: 153065925}
   events: {fileID: 1523697957}
+  chat: {fileID: 145895365}
   entities: {fileID: 11400000, guid: ff225f1161eb3514d896ab1cf86740ea, type: 2}
   slotPrefab: {fileID: 100000, guid: aa399f5d06c559043b8587b6894795fa, type: 2}
   popupPrefab: {fileID: 100000, guid: 455ec48cfbceac04e843b2555c12f793, type: 2}
@@ -2477,9 +2495,25 @@ MonoBehaviour:
   toolSlot: {fileID: 1535305882}
   fileTabs: {fileID: 1004491524}
   fileTabPrefab: {fileID: 100002, guid: 06730c013deb75a449c1c0ec1a9b25bb, type: 2}
+  normalCursor: {fileID: 2800000, guid: d583960b9cf55b545a0ce5dcf53a309a, type: 3}
+  eraserCursor: {fileID: 2800000, guid: 3760150afc53de94c994fe27d5634b89, type: 3}
+  inspectCursor: {fileID: 2800000, guid: 88e54895359d49049af8bcb7f68566fd, type: 3}
   userScroll: {fileID: 1734122125}
   tileScroll: {fileID: 308679963}
   entScroll: {fileID: 341673163}
+--- !u!114 &1062564194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1062564188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b1fe8218d2514d4e927bcfd0c100dbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  presetFile: {fileID: 4900000, guid: 542372ad2e498704782acb6b69a7a379, type: 3}
+  invMan: {fileID: 1062564193}
 --- !u!1 &1093869216
 GameObject:
   m_ObjectHideFlags: 0
@@ -3662,7 +3696,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 625790421}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: .999165654
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3732,12 +3766,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1523697954}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 1997211142, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AllowActivationOnStandalone: 0
+  m_AllowActivationOnStandalone: 1
 --- !u!114 &1523697956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4085,6 +4119,14 @@ Prefab:
       propertyPath: m_Name
       value: Tile Scroll Area
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: d7d3f0af920c89342bcfcfd36167668e, type: 2}
+      propertyPath: m_HorizontalScrollbar
+      value: 
+      objectReference: {fileID: 1499294210}
+    - target: {fileID: 22400000, guid: d7d3f0af920c89342bcfcfd36167668e, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -119.799988
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d7d3f0af920c89342bcfcfd36167668e, type: 2}
   m_RootGameObject: {fileID: 1915709843}
@@ -4207,6 +4249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sheet: {fileID: 348302187}
+  mapName: 
 --- !u!1 &1603887123
 GameObject:
   m_ObjectHideFlags: 0
@@ -4562,7 +4605,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1706103876}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1062564193}
+        m_MethodName: EditToolProperties
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1706103876
@@ -4622,7 +4677,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -119.999939, y: -.347512841}
+  m_AnchoredPosition: {x: -119.799988, y: -.347512841}
   m_SizeDelta: {x: 239.800003, y: 287.299988}
   m_Pivot: {x: 0, y: .5}
 --- !u!1 &1817800356
@@ -5086,7 +5141,7 @@ MonoBehaviour:
   m_Inertia: 1
   m_DecelerationRate: .135000005
   m_ScrollSensitivity: 1
-  m_HorizontalScrollbar: {fileID: 0}
+  m_HorizontalScrollbar: {fileID: 1499294210}
   m_VerticalScrollbar: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5193,7 +5248,7 @@ MonoBehaviour:
   m_Inertia: 1
   m_DecelerationRate: .135000005
   m_ScrollSensitivity: 1
-  m_HorizontalScrollbar: {fileID: 0}
+  m_HorizontalScrollbar: {fileID: 1499294210}
   m_VerticalScrollbar: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5300,7 +5355,7 @@ MonoBehaviour:
   m_Inertia: 1
   m_DecelerationRate: .135000005
   m_ScrollSensitivity: 1
-  m_HorizontalScrollbar: {fileID: 0}
+  m_HorizontalScrollbar: {fileID: 1499294210}
   m_VerticalScrollbar: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5621,7 +5676,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2117929635}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1062564193}
+        m_MethodName: Save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2117929635

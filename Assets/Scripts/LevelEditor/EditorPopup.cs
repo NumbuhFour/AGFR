@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 [AddComponentMenu("Scripts/LevelEditor/Popup")]
 public class EditorPopup : MonoBehaviour {
-
+	
 	public delegate void OnClose(Dictionary<string,string> data, bool cancelled);
+	public delegate void OnChange(Dictionary<string,string> data);
 
 	public struct Attribute {
 		public string title;
@@ -31,7 +32,9 @@ public class EditorPopup : MonoBehaviour {
 	public List<Attribute> attributes; //For attribute entries with changing name
 
 	private OnClose closer;
+	private OnChange changer;
 
+	private bool ready = false;
 	private float originY;
 	// Use this for initialization
 	void Start () {
@@ -43,14 +46,35 @@ public class EditorPopup : MonoBehaviour {
 		
 	}
 	
-	public void InitEmpty(OnClose closer){
+	public void InitEmpty(OnClose closer, OnChange changer=null){
 		this.closer = closer;
+		this.changer = changer;
 		pieces = new List<GameObject>();
 		GameObject top = AddPiece(topPrefab);
 		top.transform.GetChild(0).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => { Close (true); } );
 	}
+	
+	public void InitStyle(EditorItem item, OnClose closer=null, OnChange changer=null){
+		this.closer = closer;
+		this.changer = changer;
+		pieces = new List<GameObject>();
+		GameObject top = AddPiece(attribTopPrefab);
+		top.transform.GetChild(0).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => { Close (true); } );
+		top.transform.GetChild(1).GetComponent<EditorInvSlot>().Init(null, item);
+	}
+	
+	public void InitInspector(EditorItem item, OnClose closer=null, OnChange changer=null){
+		this.closer = closer;
+		this.changer = changer;
+		pieces = new List<GameObject>();
+		GameObject top = AddPiece(attribTopPrefab);
+		top.transform.GetChild(0).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => { Close (true); } );
+		top.transform.GetChild(1).GetComponent<EditorInvSlot>().Init(null, item);
+	}
+	
 	public void End(){
 		AddPiece(bottomPrefab);
+		this.ready = true;
 	}
 	
 	public void AddSubmit(){
@@ -69,10 +93,10 @@ public class EditorPopup : MonoBehaviour {
 		GameObject add = AddPiece(styleVarPrefab);
 		GameObject titleText = add.transform.GetChild(0).gameObject;
 		GameObject inputText = add.transform.GetChild(1).gameObject;
+		SetValue(title, defaultValue);
 		titleText.GetComponent<Text>().text = title;
 		inputText.GetComponent<InputField>().text = defaultValue;
 		inputText.GetComponent<InputField>().onValueChange.AddListener( (string value) => { SetValue(title,value); } );
-		SetValue(title, defaultValue);
 	}
 	
 	public void AddEmptyAttrib(string title, string defaultValue){
@@ -84,6 +108,8 @@ public class EditorPopup : MonoBehaviour {
 		int attribInd = attributes.Count;
 		attributes.Add(attrib);
 		
+		SetAttributeTitle(attribInd,title);
+		SetAttributeValue(attribInd,defaultValue);
 		
 		GameObject add = AddPiece(attribVarPrefab);
 		GameObject titleText = add.transform.GetChild(0).gameObject;
@@ -99,7 +125,7 @@ public class EditorPopup : MonoBehaviour {
 		GameObject add = (GameObject)Instantiate (prefab);
 		float y = 0;
 		for(int i = 0; i < this.transform.childCount; i++){
-			y -= ((RectTransform)this.transform.GetChild(i)).sizeDelta.y;
+			y -= ((RectTransform)this.transform.GetChild(i)).sizeDelta.y-1;
 			
 		}
 		add.transform.SetParent(this.transform);
@@ -114,33 +140,57 @@ public class EditorPopup : MonoBehaviour {
 	}
 	
 	public void Close(bool cancel){
-		Dictionary<string,string> data = new Dictionary<string, string>();
-		if(values != null)
-			foreach(string key in values.Keys){
-				data[key] = values[key];
-			}
-		
-		if(attributes != null)
-			foreach(Attribute a in attributes){
-				data[a.title] = a.value;
-			}
-		
-		closer(data, cancel);
+		if(closer != null){
+			Dictionary<string,string> data = new Dictionary<string, string>();
+			if(values != null)
+				foreach(string key in values.Keys){
+					data[key] = values[key];
+				}
+			
+			if(attributes != null)
+				foreach(Attribute a in attributes){
+					data[a.title] = a.value;
+				}
+			
+			closer(data, cancel);
+		}
 		Destroy(this.gameObject);
 	}
 	
 	public void SetValue(string title, string value){
 		values[title] = value.ToLower();
+		
+		CallChange ();
 	}
 	
 	public void SetAttributeTitle(int attrib, string title){
 		Attribute get = attributes[attrib];
 		get.title = title.ToLower();
 		attributes[attrib] = get;
+		
+		CallChange ();
 	}
 	public void SetAttributeValue(int attrib, string value){
 		Attribute get = attributes[attrib];
 		get.value = value.ToLower();
 		attributes[attrib] = get;
+		
+		CallChange ();
+	}
+	
+	private void CallChange(){
+		if(changer == null || !ready) return;
+		Dictionary<string,string> data = new Dictionary<string, string>();
+		if(values != null)
+		foreach(string key in values.Keys){
+			data[key] = values[key];
+		}
+		
+		if(attributes != null)
+		foreach(Attribute a in attributes){
+			data[a.title] = a.value;
+		}
+		
+		changer(data);
 	}
 }

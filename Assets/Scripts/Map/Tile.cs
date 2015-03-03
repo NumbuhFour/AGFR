@@ -12,6 +12,7 @@ public class Tile {
 	private Color mainColor;
 	private Color swapColor;
 	private int solidity;
+	private bool hasLight;
 	
 	private Color[] pixelData;
 	private Color[] modifiedPixelData;
@@ -21,6 +22,7 @@ public class Tile {
 	public Color MainColor { get { return mainColor; } }
 	public Color SwapColor { get { return swapColor; } }
 	public int Solidity { get { return solidity; } }
+	public bool HasLight { get { return hasLight; } }
 	public Color[] Pixels { get { return modifiedPixelData; } }
 	public Color[] UnmodifiedPixels { get { return pixelData; } }
 	
@@ -33,11 +35,11 @@ public class Tile {
 		Init (data["name"].Value, data["sprite"].AsInt, mc,sc, data["solidity"].AsInt, sheet);
 	}
 	
-	public Tile(string name, int spriteIndex, Color mainColor, Color swapColor, int solidity, SpriteSheet sheet){
-		Init (name,spriteIndex,mainColor,swapColor,solidity,sheet);
+	public Tile(string name, int spriteIndex, Color mainColor, Color swapColor, int solidity, bool hasLight, SpriteSheet sheet){
+		Init (name,spriteIndex,mainColor,swapColor,solidity, hasLight,sheet);
 	}
 	
-	public void Init(string name, int spriteIndex, Color mainColor, Color swapColor, int solidity, SpriteSheet sheet){
+	public void Init(string name, int spriteIndex, Color mainColor, Color swapColor, int solidity, bool hasLight, SpriteSheet sheet){
 		this.name = name;
 		this.spriteIndex = spriteIndex;
 		this.mainColor = mainColor;
@@ -71,4 +73,5 @@ public class Tile {
 	
 	public virtual void ReadData(JSONNode node, TileData data){
 	}
+	
 }

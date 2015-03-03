@@ -9,6 +9,8 @@ public class Map : MonoBehaviour {
 
 	public static Vector2 MAPDIM = new Vector2(25,25);
 	
+	public string mapName = ""; //really only used for editor filename
+	
 	public static Tile emptyTile;
 	public static Tile errTile;
 	
@@ -25,8 +27,32 @@ public class Map : MonoBehaviour {
 	public Vector2 Dimensions { get { return dimensions; } }
 	public bool IsDirty { get { return isDirty; } }
 	
+	public Dictionary<string,Tile> Tiles{ get { return tiles; } }
+	public string[,] MapArray{ get { return map; } }
+	
 	private Vector2 offset;
 	public Vector2 Offset { get { return offset; } }
+	
+	private Vector2 camLoc;
+	public Vector2 CamLoc{ 
+		get { return camLoc; } 
+		set { 
+			int border = 0;
+			if(Game.Mode == Game.GameMode.LEVEL_EDITOR) border = 1;
+			if(this.dimensions.x >= MAPDIM.x) {//Only scroll if scrollable
+				camLoc.x = value.x;
+				camLoc.x = Mathf.Max(camLoc.x, (MAPDIM.x - dimensions.x)/2 - border);
+				camLoc.x = Mathf.Min(camLoc.x, -(MAPDIM.x - dimensions.x)/2 + border);
+				MarkDirty();
+			}
+			if(this.dimensions.y >= MAPDIM.y){
+				camLoc.y = value.y;
+				camLoc.y = Mathf.Max(camLoc.y, (MAPDIM.y - dimensions.y)/2 - border);
+				camLoc.y = Mathf.Min(camLoc.y, -(MAPDIM.y - dimensions.y)/2 + border);
+				MarkDirty();
+			}
+		}
+	}
 	
 	public void Init(Vector2 dimensions){
 		sheet = Game.GameObject.GetComponent<SpriteSheet>();
@@ -40,7 +66,7 @@ public class Map : MonoBehaviour {
 		                     (int)((MAPDIM.y-this.dimensions.y)/2));
 		tiles = new Dictionary<string,Tile>();
 		map = new string[(int)dimensions.x,(int)dimensions.y];
-		tileData = new TileData[(int)MAPDIM.x,(int)MAPDIM.y];
+		tileData = new TileData[(int)dimensions.x,(int)dimensions.y];
 		foreach (EntityLayer elayer in this.GetComponentsInChildren<EntityLayer>()){
 			elayer.Init(dimensions);
 		}
@@ -115,10 +141,10 @@ public class Map : MonoBehaviour {
 	}
 	
 	public Vector2 ConvertSceneToWorld(Vector2 pos){
-		return pos - offset;
+		return pos - offset + camLoc;
 	}
 	
 	public Vector2 ConvertWorldToScene(Vector2 pos){
-		return pos + offset;
+		return pos + offset - camLoc;
 	}
 }

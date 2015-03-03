@@ -38,6 +38,7 @@ public class LightNoise : MonoBehaviour {
 			tex = new Texture2D(tileSize*(int)Map.MAPDIM.x-2, tileSize*(int)Map.MAPDIM.y-2);
 			this.renderer.material.mainTexture = tex;
 			tex.filterMode = FilterMode.Point;
+			tex.wrapMode = TextureWrapMode.Clamp;
 		}
 	}
 

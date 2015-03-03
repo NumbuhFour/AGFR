@@ -46,6 +46,11 @@ public class EditorInvSlot : MonoBehaviour {
 		invMan.SetTool(this.Item);
 	}
 	
+	public void Update(){
+		if(item != null) Render(); 
+	}
+		
+	
 	void Render(){
 		if(tileTex == null){
 			sheet = Game.GameObject.GetComponent<SpriteSheet>();
