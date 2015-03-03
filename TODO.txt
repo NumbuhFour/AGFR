@@ -31,6 +31,14 @@ Minor TODO:
 	-LightNoise test highlight problem with clamp mode
 	-Editor set properties like spawn loc
 	-Editor properties tab to next
+	-Editor line tool
+	
+	-Rework tile properties so they can be changed based on location/tiledata
+	
+	-Rotated sprite presets in Editor
+	
+Minor TODO Graphical:
+	-Door sprite needs work
 	
 Done:
 	-Lightnoise go over sprites

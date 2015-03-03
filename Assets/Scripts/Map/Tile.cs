@@ -32,7 +32,7 @@ public class Tile {
 		JSONNode sNode = data["swap_color"];
 		Color sc = MapLoader.ReadColor(sNode);
 		
-		Init (data["name"].Value, data["sprite"].AsInt, mc,sc, data["solidity"].AsInt, sheet);
+		Init (data["name"].Value, data["sprite"].AsInt, mc,sc, data["solidity"].AsInt, data["is_lit"].AsBool,  sheet);
 	}
 	
 	public Tile(string name, int spriteIndex, Color mainColor, Color swapColor, int solidity, bool hasLight, SpriteSheet sheet){
@@ -45,6 +45,7 @@ public class Tile {
 		this.mainColor = mainColor;
 		this.swapColor = swapColor;
 		this.solidity = solidity;
+		this.hasLight = hasLight;
 		this.sheet = sheet;
 		
 		this.pixelData = sheet.GetPixelData(spriteIndex);

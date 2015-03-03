@@ -15,6 +15,7 @@
          "type":"tile",
          "sprite":"32",
          "solidity":"1",
+         "is_lit":"1",
          "main_color":{
             "r":"0.376",
             "g":"0.42",
@@ -30,10 +31,11 @@
          }
       },
       {
-         "name":"dark floor",
+         "name":"dark_floor",
          "type":"tile",
          "sprite":"2",
          "solidity":"0",
+         "is_lit":"true",
          "main_color":{
             "r":"0.1960784",
             "g":"0.1960784",
@@ -52,6 +54,7 @@
          "type":"tile",
          "sprite":"2",
          "solidity":"0",
+         "is_lit":"true",
          "main_color":{
             "r":"0.2745098",
             "g":"0.2745098",
@@ -61,7 +64,8 @@
          "swap_color":{
             "r":"1",
             "g":"1",
-            "b":"1"
+            "b":"1",
+			"a":"1"
          }
       },
       {
@@ -69,6 +73,7 @@
          "type":"tile",
          "sprite":"0",
          "solidity":"2",
+         "is_lit":"false",
          "main_color":{
             "r":"0.1254902",
             "g":"0.1254902",
@@ -320,31 +325,31 @@
             "style":"floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
             "style":"floor"
@@ -360,77 +365,6 @@
          },
          {
             "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         }
-      ],
-      [
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"wall"
          },
          {
             "style":"blank"
@@ -441,7 +375,10 @@
       ],
       [
          {
-            "style":"wall"
+            "style":"blank"
+         },
+         {
+            "style":"blank"
          },
          {
             "style":"wall"
@@ -456,40 +393,34 @@
             "style":"floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
             "style":"floor"
@@ -507,7 +438,10 @@
             "style":"wall"
          },
          {
-            "style":"wall"
+            "style":"blank"
+         },
+         {
+            "style":"blank"
          }
       ],
       [
@@ -515,25 +449,7 @@
             "style":"wall"
          },
          {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
+            "style":"wall"
          },
          {
             "style":"floor"
@@ -545,7 +461,40 @@
             "style":"floor"
          },
          {
-            "style":"floor"
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
          },
          {
             "style":"floor"
@@ -557,25 +506,10 @@
             "style":"floor"
          },
          {
-            "style":"dark floor"
+            "style":"wall"
          },
          {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
+            "style":"wall"
          },
          {
             "style":"wall"
@@ -592,16 +526,19 @@
             "style":"floor"
          },
          {
-            "style":"dark floor"
+            "style":"floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
          },
          {
             "style":"floor"
@@ -625,19 +562,16 @@
             "style":"floor"
          },
          {
-            "style":"floor"
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
          },
          {
             "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
          },
          {
             "style":"floor"
@@ -663,268 +597,16 @@
             "style":"floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"wall"
-         }
-      ],
-      [
-         {
-            "style":"wall"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"wall"
-         }
-      ],
-      [
-         {
-            "style":"wall"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"wall"
-         }
-      ],
-      [
-         {
-            "style":"wall"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
             "style":"floor"
@@ -933,245 +615,9 @@
             "style":"floor"
          },
          {
-            "style":"wall"
-         }
-      ],
-      [
-         {
-            "style":"wall"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"blank"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"wall"
-         }
-      ],
-      [
-         {
-            "style":"wall"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"wall"
-         },
-         {
-            "style":"floor"
-         },
-         {
             "style":"floor"
          },
          {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"wall"
-         }
-      ],
-      [
-         {
-            "style":"wall"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"wall"
-         }
-      ],
-      [
-         {
-            "style":"wall"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"floor"
-         },
-         {
             "style":"floor"
          },
          {
@@ -1179,15 +625,6 @@
          },
          {
             "style":"floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
-         },
-         {
-            "style":"dark floor"
          },
          {
             "style":"floor"
@@ -1202,10 +639,10 @@
             "style":"floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
             "style":"floor"
@@ -1231,49 +668,617 @@
             "style":"floor"
          },
          {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
             "style":"floor"
          },
          {
             "style":"floor"
          },
          {
-            "style":"dark floor"
+            "style":"wall"
          },
          {
-            "style":"dark floor"
+            "style":"wall"
          },
          {
-            "style":"dark floor"
+            "style":"wall"
          },
          {
-            "style":"dark floor"
+            "style":"wall"
          },
          {
-            "style":"dark floor"
+            "style":"wall"
          },
          {
-            "style":"dark floor"
+            "style":"floor"
          },
          {
-            "style":"dark floor"
+            "style":"floor"
          },
          {
-            "style":"dark floor"
+            "style":"floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"floor"
          },
          {
-            "style":"dark floor"
+            "style":"floor"
+         },
+         {
+            "style":"wall"
+         }
+      ],
+      [
+         {
+            "style":"wall"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"wall"
+         }
+      ],
+      [
+         {
+            "style":"wall"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"wall"
+         }
+      ],
+      [
+         {
+            "style":"wall"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"wall"
+         }
+      ],
+      [
+         {
+            "style":"wall"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"blank"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"wall"
+         }
+      ],
+      [
+         {
+            "style":"wall"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"wall"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"wall"
+         }
+      ],
+      [
+         {
+            "style":"wall"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"wall"
+         }
+      ],
+      [
+         {
+            "style":"wall"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"wall"
+         }
+      ],
+      [
+         {
+            "style":"wall"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
+         },
+         {
+            "style":"dark_floor"
          },
          {
             "style":"floor"
@@ -1311,37 +1316,37 @@
             "style":"floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
             "style":"floor"
@@ -1382,37 +1387,37 @@
             "style":"floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
             "style":"floor"
@@ -1453,37 +1458,37 @@
             "style":"floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
-            "style":"dark floor"
+            "style":"dark_floor"
          },
          {
             "style":"floor"

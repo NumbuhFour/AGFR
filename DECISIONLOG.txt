@@ -12,3 +12,6 @@ Most level editor UI things dont inherit from game UI
 
 Tile's "constructor" is publicly accessible Init
 	-So tile can be remade without losing references (level editor)
+
+JSON colors support both [0,1] and [0,255]
+	-Because I'm a lazy forgetful dumb

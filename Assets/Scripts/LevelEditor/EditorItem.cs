@@ -14,6 +14,7 @@ public class EditorItem {
 	private Color mainColor;
 	private Color swapColor;
 	private int solidity;
+	private bool isLit = true;
 	
 	private Tile tile;
 	
@@ -66,7 +67,7 @@ public class EditorItem {
 	public Tile Tile {
 		get {
 			if(itemType == Types.TILE && tile == null){
-				tile = new Tile(name, spriteID, mainColor, swapColor, solidity,Game.GameObject.GetComponent<SpriteSheet>());
+				tile = new Tile(name, spriteID, mainColor, swapColor, solidity, isLit, Game.GameObject.GetComponent<SpriteSheet>());
 			}
 			return tile;
 		}
@@ -74,7 +75,7 @@ public class EditorItem {
 	
 	private void RefreshTile(){
 		if(tile != null){
-			tile.Init(name, spriteID, mainColor, swapColor, solidity,Game.GameObject.GetComponent<SpriteSheet>());
+			tile.Init(name, spriteID, mainColor, swapColor, solidity, isLit, Game.GameObject.GetComponent<SpriteSheet>());
 		}
 	}
 	
@@ -85,6 +86,7 @@ public class EditorItem {
 		
 		clazz.Add("sprite", new JSONData(this.spriteID));
 		clazz.Add ("solidity", new JSONData(this.solidity));
+		clazz.Add ("is_lit", new JSONData(this.isLit));
 		
 		JSONNode mc = new JSONClass();
 		mc.Add("r", new JSONData(this.mainColor.r));

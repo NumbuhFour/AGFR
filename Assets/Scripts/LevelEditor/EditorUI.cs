@@ -139,7 +139,6 @@ public class EditorUI : MonoBehaviour {
 	}
 	
 	public void AddUserItem(EditorItem item){
-		this.AddPreset(item, userScroll);
 		int n = 0;
 		for(int i = 0; i < userTiles.Count; i++){
 			if(userTiles[i].Name == item.Name) n++;
@@ -148,6 +147,7 @@ public class EditorUI : MonoBehaviour {
 			item.Name += "_" + n;
 		}
 		this.userTiles.Add(item);
+		this.AddPreset(item, userScroll);
 	}
 	
 	public void AddTilePreset(EditorItem item){

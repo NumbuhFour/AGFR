@@ -57,8 +57,8 @@ public class Map : MonoBehaviour {
 	public void Init(Vector2 dimensions){
 		sheet = Game.GameObject.GetComponent<SpriteSheet>();
 		if(emptyTile == null){
-			emptyTile = new Tile("empty",0, Color.clear, Color.white, 1, sheet);
-			errTile = new Tile("error",0,Color.red, Color.white, 999, sheet);
+			emptyTile = new Tile("empty",0, Color.clear, Color.white, 1, false,  sheet);
+			errTile = new Tile("error",0,Color.red, Color.white, 999, false, sheet);
 		}
 		
 		this.dimensions = dimensions;

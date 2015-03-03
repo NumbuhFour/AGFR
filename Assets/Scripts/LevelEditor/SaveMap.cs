@@ -34,8 +34,9 @@ public class SaveMap {
 		for(int y = 0; y < map.Dimensions.y; y++){
 			JSONNode col = new JSONArray();
 			for(int x = 0; x < map.Dimensions.x; x++){
-				string tilename = mapdata[x,y];
-				TileData td = map.GetTileDataAt(x,y);
+				int flipy = (int)map.Dimensions.y - (y+1);
+				string tilename = mapdata[x,flipy];
+				TileData td = map.GetTileDataAt(x,flipy);
 				if(!td.IsEmpty()){
 					td.Save(col, tilename);
 				}else{
@@ -46,6 +47,6 @@ public class SaveMap {
 			
 		}
 		
-		File.WriteAllText(Environment.CurrentDirectory + "/Assets/Resources/" + @"\" +filename+".json", n.ToString());
+		File.WriteAllText(Environment.CurrentDirectory + "/Assets/Resources/Maps/Test" + @"\" +filename+".json", n.ToString());
 	}
 }

@@ -61,7 +61,8 @@ public class LightNoise : MonoBehaviour {
 		int pushSeed = Random.seed;
 		for (int x = 0; x < map.Dimensions.x; x++){
 			for (int y = 0; y < map.Dimensions.x; y++){
-				if(map.GetTileAt(x,y) != Map.emptyTile){
+				Tile t = map.GetTileAt(x,y);
+				if(t.HasLight){
 					Random.seed = x * (int)Map.MAPDIM.x + y;
 					Color draw = color;
 					if(lightsOut){
