@@ -8,6 +8,7 @@ Major TOD:
 		-Make lightnoise not scan whole map, only visible
 	-Separate slots for weapon and (subweapon? Accessory?)
 		-Perhaps replace with other bars for other properties (energy, temp, etc)
+	-Player Death
 	
 Minor TODO:
 	-Editor UserTiles per map
@@ -17,6 +18,7 @@ Minor TODO:
 	-Editor line tool
 	-LightNoise test highlight problem with clamp mode
 	-Persistance
+	-Fix merging itemstacks when inventory full
 	
 	-Rework tile properties so they can be changed based on location/tiledata
 	-Level conditions: eg If all entities dead, unlock door

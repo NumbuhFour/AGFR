@@ -65,7 +65,7 @@ public class InvTile : MonoBehaviour {
 		lockedZ = gameObject.transform.position.z;
 		screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position); // I removed this line to prevent centring 
 		offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
-		Screen.showCursor = false;
+		Cursor.visible = false;
 	}
 	
 	void OnMouseDrag(){
@@ -76,7 +76,7 @@ public class InvTile : MonoBehaviour {
 		counter.transform.position = new Vector3(curPosition.x, curPosition.y, counter.transform.position.z);
 	}
 	void OnMouseUp(){
-		Screen.showCursor = true;
+		Cursor.visible = true;
 		invMan.DragStopped();
 		Item.GetComponent<SpriteRenderer>().sortingOrder = 1; //Bring to front;
 	}

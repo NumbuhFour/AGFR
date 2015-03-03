@@ -26,7 +26,7 @@ Shader "Sprites/Swap"
 		Blend One OneMinusSrcAlpha
 
 		CGPROGRAM
-		#pragma surface surf Lambert vertex:vert
+		#pragma surface surf Lambert vertex:vert keepalpha
 		#pragma multi_compile DUMMY PIXELSNAP_ON
 
 		sampler2D _MainTex;
@@ -63,5 +63,5 @@ Shader "Sprites/Swap"
 		ENDCG
 	}
 
-Fallback "Transparent/VertexLit"
+Fallback "Legacy Shaders/Transparent/VertexLit"
 }

@@ -36,7 +36,7 @@ public class LightNoise : MonoBehaviour {
 		int tileSize = map.sheet.tileResolution+2;
 		if(!tex) {
 			tex = new Texture2D(tileSize*(int)Map.MAPDIM.x-2, tileSize*(int)Map.MAPDIM.y-2);
-			this.renderer.material.mainTexture = tex;
+			this.GetComponent<Renderer>().material.mainTexture = tex;
 			tex.filterMode = FilterMode.Point;
 			tex.wrapMode = TextureWrapMode.Clamp;
 		}
@@ -53,7 +53,7 @@ public class LightNoise : MonoBehaviour {
 		int tileSize = map.sheet.tileResolution+2;
 		if(!tex) {
 			tex = new Texture2D(tileSize*(int)Map.MAPDIM.x-2, tileSize*(int)Map.MAPDIM.y-2);
-			this.renderer.material.mainTexture = tex;
+			this.GetComponent<Renderer>().material.mainTexture = tex;
 		}
 		clear (tex);
 		min = lightsOut ? darkMinAlpha:minAlpha;

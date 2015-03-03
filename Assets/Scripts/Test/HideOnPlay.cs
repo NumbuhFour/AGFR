@@ -6,7 +6,7 @@ public class HideOnPlay : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.renderer.enabled = false;
+		this.GetComponent<Renderer>().enabled = false;
 	}
 	
 	// Update is called once per frame

@@ -14,7 +14,7 @@ public class MapRender : MonoBehaviour {
 		tileRes = Game.GameObject.GetComponent<SpriteSheet>().tileResolution;
 		int tileSize = tileRes+2;
 		tex = new Texture2D(tileSize*(int)Map.MAPDIM.x, tileSize*(int)Map.MAPDIM.y);
-		this.renderer.material.mainTexture = tex;
+		this.GetComponent<Renderer>().material.mainTexture = tex;
 		tex.filterMode = FilterMode.Point;
 		tex.wrapMode = TextureWrapMode.Clamp;
 	}

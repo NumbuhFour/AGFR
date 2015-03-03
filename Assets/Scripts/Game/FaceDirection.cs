@@ -14,6 +14,6 @@ public class FaceDirection : MonoBehaviour {
 	public void SetDirection(string direction){
 		this.direction = direction;
 		int dir = Direction.ConvertToIndex(direction);
-		((SpriteRenderer)renderer).sprite = directions[dir];
+		((SpriteRenderer)GetComponent<Renderer>()).sprite = directions[dir];
 	}
 }

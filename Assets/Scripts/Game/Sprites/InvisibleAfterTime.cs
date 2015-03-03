@@ -17,7 +17,7 @@ public class InvisibleAfterTime : MonoBehaviour {
 	void Update () {
 		timer += (int)(GameTime.deltaTime*1000);
 		if(timer >= duration){
-			this.gameObject.renderer.enabled = false;
+			this.gameObject.GetComponent<Renderer>().enabled = false;
 			Destroy (this);
 		}
 	}
