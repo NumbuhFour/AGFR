@@ -2,49 +2,50 @@ Major TOD:
 	-Sound
 	-Lighting
 	-Shades
-	-Level Editor live tile style changes preview
-	-Editor save! and load!
-	-Editor fill and erase
-	
-Minor TODO:
-	-Ghosty
-	-Triggers (Start, End, Area)
-	-Persistance
-	-Separate slots for weapon and (subweapon? Accessory?)
+	-Editor load!
 	-Scrolling maps
 		-Account for Entities!
 		-Make lightnoise not scan whole map, only visible
-	-Overview map?
-	-[Press E to continue] chat occasionally doesnt register?
-	-Level Editor
-	-Level conditions: If all entities dead, unlock door
-	-implement use for swap color?
-	-Editor scrollbuttons increase amount when more tiles present
-	-Button dont be activated by sprites?
+	-Separate slots for weapon and (subweapon? Accessory?)
+		-Perhaps replace with other bars for other properties (energy, temp, etc)
 	
-	-Editor adding variables
-	-Editor spawning properties?
-	-Editor custom metadata entry
-	-Editor fix stupid InputText bull
-	-LightNoise test highlight problem with clamp mode
+Minor TODO:
+	-Editor UserTiles per map
+	-Button dont be activated by sprites?
 	-Editor set properties like spawn loc
-	-Editor properties tab to next
+	-Editor popup label
 	-Editor line tool
-	-Editor map loading
+	-LightNoise test highlight problem with clamp mode
+	-Persistance
 	
 	-Rework tile properties so they can be changed based on location/tiledata
-	
+	-Level conditions: eg If all entities dead, unlock door
+	-Ghosty
+	-Triggers (Start, End, Area)
+	-implement use for swap color?
+	-Editor scrollbuttons increase amount when more tiles present
+	-Overview map?
+	-Editor spawning properties?
+	-Editor properties: tab to next
 	-Rotated sprite presets in Editor
-	-Popup curtain to prevent clicks
-	
 	-Pause on lost focus
-	
 	-"Enable snarky comments"
 	
-Minor TODO Graphical:
-	-Door sprite needs work
+	##Bugs##
+	-[Press E to continue] chat occasionally doesnt register on start?
+	
+	##Graphical##
+	-Door sprite needs work. Fix bottom border?
 	
 Done:
+	-Editor fix stupid InputText bull
+	-Editor adding variables
+	-Editor custom metadata entry
+	-Level Editor live tile style changes preview
+	-Editor save!
+	-Editor fill and erase
+	-Popup curtain to prevent clicks
+	-Level Editor
 	-Swords dont hit bottom left and right corners
 	-Player Double Stepping when spamming WASDWASDWASD
 	-Lightnoise go over sprites
