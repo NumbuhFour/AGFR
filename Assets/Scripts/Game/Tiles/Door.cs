@@ -10,15 +10,15 @@ public class Door : Tile {
 	
 	public override void OnEntityEnter(Entity e, TileData data){
 		if(e.gameObject.tag == "Player"){
-			Game.LevelSpawn = (Vector2)data["spawn"];
+			Game.LevelSpawn = new Vector2((int)data["spawnx"],(int)data["spawny"]);
 			Game.LoadLevel((string)data["level"]);
 		}
 	}
 	
 	public override void ReadData(JSONNode node, TileData data){
 		data["level"] = node["level"].Value;
-		JSONNode spawn = node["spawn"];
 		
-		data["spawn"] = new Vector2(spawn["x"].AsInt, spawn["y"].AsInt);
+		data["spawnx"] = node["spawnx"].AsInt;
+		data["spawny"] = node["spawny"].AsInt;
 	}
 }

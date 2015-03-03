@@ -187,7 +187,6 @@ public class EditorUI : MonoBehaviour {
 		if(n != 0){
 			item.Name += "_" + n;
 		}
-		Debug.Log("NEW USER TILE " + item.Name);
 		this.userTiles.Add(item);
 		this.AddPreset(item, userScroll);
 	}

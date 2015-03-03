@@ -1,0 +1,12 @@
+All:
+	style (string): attached style key
+
+Door:
+	level (string): level file to load
+	spawnx (int): spawn loc in next map x
+	spawny (int): spawn loc in next map y
+
+Sign:
+	speaker (string): speaker of the message
+	message (string): the message on the sign
+	

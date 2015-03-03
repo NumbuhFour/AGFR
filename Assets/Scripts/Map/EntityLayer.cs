@@ -71,8 +71,8 @@ public class EntityLayer : MonoBehaviour {
 	
 	public void Clear(){
 		if(initialized)
-			for(int x = 0; x < Map.MAPDIM.x; x++)
-				for(int y = 0; y < Map.MAPDIM.y; y++){
+			for(int x = 0; x < this.dimensions.x; x++)
+				for(int y = 0; y < this.dimensions.y; y++){
 					Entity e = entCols[x,y];
 					if(e) Destroy (e.gameObject);
 				}

@@ -32,6 +32,7 @@ Minor TODO:
 	-Editor set properties like spawn loc
 	-Editor properties tab to next
 	-Editor line tool
+	-Editor map loading
 	
 	-Rework tile properties so they can be changed based on location/tiledata
 	

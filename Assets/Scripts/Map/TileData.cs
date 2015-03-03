@@ -46,7 +46,7 @@ public class TileData {
 	}
 	
 	public bool IsEmpty (){
-		return data.Keys.Count > 2; //not x and y
+		return data.Keys.Count == 0;
 	}
 	
 	public void Save(JSONNode json, string style){

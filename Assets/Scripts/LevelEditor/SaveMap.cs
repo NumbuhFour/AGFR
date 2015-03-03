@@ -37,6 +37,9 @@ public class SaveMap {
 				int flipy = (int)map.Dimensions.y - (y+1);
 				string tilename = mapdata[x,flipy];
 				TileData td = map.GetTileDataAt(x,flipy);
+				if(tilename == "door"){
+					Debug.Log("FUCK DOORS " + td.Data.Count); 
+				}
 				if(!td.IsEmpty()){
 					td.Save(col, tilename);
 				}else{
