@@ -60,7 +60,7 @@ public class LightNoise : MonoBehaviour {
 		max = lightsOut ? darkMaxAlpha:maxAlpha;
 		int pushSeed = Random.seed;
 		for (int x = 0; x < map.Dimensions.x; x++){
-			for (int y = 0; y < map.Dimensions.x; y++){
+			for (int y = 0; y < map.Dimensions.y; y++){
 				Tile t = map.GetTileAt(x,y);
 				if(t.HasLight){
 					Random.seed = x * (int)Map.MAPDIM.x + y;
@@ -74,11 +74,11 @@ public class LightNoise : MonoBehaviour {
 						draw.a = Random.Range(min,max);
 					}
 					
-					int xo = x + (int)map.Offset.x;
-					int yo = y + (int)map.Offset.y;
+					int xo = (x + (int)map.Offset.x)*tileSize;
+					int yo = (y + (int)map.Offset.y)*tileSize;
 					for(int tx=0; tx<tileSize; tx++){
 						for(int ty=0; ty<tileSize; ty++){
-							tex.SetPixel(xo*tileSize+tx,yo*tileSize+ty,draw);
+							tex.SetPixel(xo+tx,yo+ty,draw);
 						}
 					}
 				}
