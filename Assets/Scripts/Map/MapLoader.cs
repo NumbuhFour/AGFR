@@ -28,6 +28,20 @@ public class MapLoader : MonoBehaviour {
 		}
 	}
 	
+	public void Load(MapData mapData, TextAsset mapFile){
+		data = JSON.Parse(mapFile.text);
+		ParseData ();
+		mapData.map.MarkDirty();
+		mapData.spawnX = (int)this.spawn.x;
+		mapData.spawnY = (int)this.spawn.y;
+		
+		if(Game.Mode == Game.GameMode.GAME){
+			if(Game.LevelSpawn.x != -1) spawn = Game.LevelSpawn;
+			Game.Player = entities.SpawnEntity(entityList["player"],spawn);
+			map.CenterCameraOn(spawn);
+		}
+	}
+	
 	private void ParseData(){
 		dimensions = new Vector2(data["info"]["width"].AsInt, data["info"]["height"].AsInt);
 		spawn = new Vector2(data["info"]["spawn"][0].AsInt, data["info"]["spawn"][1].AsInt);

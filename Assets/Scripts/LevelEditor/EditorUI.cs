@@ -45,7 +45,7 @@ public class EditorUI : MonoBehaviour {
 	public RectTransform tileScroll;
 	public RectTransform entScroll;
 	
-	private Dictionary<int, Map> maps = new Dictionary<int, Map>();
+	private Dictionary<int, MapData> maps = new Dictionary<int, MapData>();
 	private int currentMap = -1;
 	private GameObject currentFileTab;
 	
@@ -78,18 +78,18 @@ public class EditorUI : MonoBehaviour {
 				if(Input.GetMouseButton (0) && GetTool() != null){ //Left click place
 					Vector2 pos = GetMousePos (mouse);
 					if(!inspect) {
-						maps[currentMap].SetTileAt((int)pos.x, (int)pos.y, GetTool().Name);
+						maps[currentMap].map.SetTileAt((int)pos.x, (int)pos.y, GetTool().Name);
 					}else {
-						this.InspectTile(maps[currentMap], (int)pos.x, (int)pos.y);
+						this.InspectTile(maps[currentMap].map, (int)pos.x, (int)pos.y);
 					}
 				}else if(Input.GetMouseButton(1)){	//right click erase
 					Vector2 pos = GetMousePos (mouse);
-					maps[currentMap].SetTileAt((int)pos.x, (int)pos.y, null);
+					maps[currentMap].map.SetTileAt((int)pos.x, (int)pos.y, null);
 				}else if(Input.GetMouseButton (2) && GetTool() != null){
 					Vector2 pos = GetMousePos (mouse);
 					int x = (int)pos.x;
 					int y = (int)pos.y;
-					Map map = maps[currentMap];
+					Map map = maps[currentMap].map;
 					string from = map.GetTileAt(x,y).name;
 					string to = GetTool ().Name;
 					if(from != to)
@@ -109,7 +109,7 @@ public class EditorUI : MonoBehaviour {
 			int vert = (int)Input.GetAxisRaw("Vertical");
 			if(horiz != 0 || vert != 0){
 				Vector2 add = new Vector2(horiz,vert);
-				maps[currentMap].CamLoc = maps[currentMap].CamLoc + add;
+				maps[currentMap].map.CamLoc = maps[currentMap].map.CamLoc + add;
 			}
 		}
 	}
@@ -161,7 +161,7 @@ public class EditorUI : MonoBehaviour {
 	private Vector2 GetMousePos(Vector2 mouse){
 		Vector2 pos = (Vector2)mouse - mapRect.min;
 		pos = pos/(sheet.tileResolution+2);
-		pos = maps[currentMap].ConvertSceneToWorld(pos);
+		pos = maps[currentMap].map.ConvertSceneToWorld(pos);
 		return pos;
 	}
 	
@@ -222,7 +222,7 @@ public class EditorUI : MonoBehaviour {
 	
 	private void UpdateMapPresets(){
 		if(currentMap == -1) return;
-		Map cur = maps[currentMap];
+		Map cur = maps[currentMap].map;
 		/*foreach(EditorItem e in this.tilePresets){
 			cur.SetTile(e.Name, e.Tile);
 		}*/
@@ -285,8 +285,9 @@ public class EditorUI : MonoBehaviour {
 			int width = int.Parse(data["width"]);
 			int height = int.Parse(data["height"]);
 			int mapInd = maps.Count;
-			maps[mapInd] = this.gameObject.AddComponent<Map>();
-			maps[mapInd].Init(new Vector2(width,height));
+			maps[mapInd] = new MapData();
+			maps[mapInd].map = this.gameObject.AddComponent<Map>();
+			maps[mapInd].map.Init(new Vector2(width,height));
 			
 			Debug.Log("NEW FILE " + width + "x" + height);
 			
@@ -310,12 +311,12 @@ public class EditorUI : MonoBehaviour {
 			
 			Debug.Log("STUPID BUTT " + butt.IsInteractable());
 		}
-		if(currentMap != -1 && maps[currentMap]){
-			maps[currentMap].enabled = false;
+		if(currentMap != -1 && maps[currentMap] != null){
+			maps[currentMap].map.enabled = false;
 		}
 		this.currentMap = i;
 		if(i != -1) {
-			this.mapRen.map = maps[currentMap];
+			this.mapRen.map = maps[currentMap].map;
 			this.mapRen.map.enabled = true;
 			this.mapRen.map.MarkDirty();
 			UpdateMapPresets();
@@ -378,7 +379,7 @@ public class EditorUI : MonoBehaviour {
 				c.b = float.Parse(data["color [b]"])/255f;
 				tool.MainColor = c;
 			}catch(System.Exception ex){} //Bad number
-			maps[currentMap].MarkDirty();
+			maps[currentMap].map.MarkDirty();
 		};
 		EditorPopup.OnClose closer = (Dictionary<string,string> data, bool cancelled) => {
 			popupActive = false;
@@ -416,14 +417,14 @@ public class EditorUI : MonoBehaviour {
 			chat.PushText("", "No file open, can't save!");
 		}
 		
-		Map map = maps[currentMap];
+		Map map = maps[currentMap].map;
 		EditorPopup popup = MakePopup();
 		popup.InitEmpty( (Dictionary<string,string> data, bool cancelled) => {
 			//On close
 			popupActive = false;
 			if(!cancelled){
 				map.mapName = data["filename"];
-				SaveMap.SaveMapToFile(map, this.userTiles, map.mapName);
+				SaveMap.SaveMapToFile(maps[currentMap], this.userTiles, map.mapName);
 				chat.PushText("","Map saved!");
 			}
 		});
@@ -443,17 +444,23 @@ public class EditorUI : MonoBehaviour {
 			if(!cancelled){
 				string filename = data["file name"];
 				
-				int mapInd = maps.Count;
-				Map map = maps[mapInd] = this.gameObject.AddComponent<Map>();
-				
-				GameObject tab = AddFileTab(mapInd);
-				SwitchToMap(mapInd,tab);
-				
 				TextAsset file = (TextAsset) Resources.LoadAssetAtPath<TextAsset>("Assets/Resources/Maps/" + filename + ".json");
-				loader.map = map;
-				loader.Load(file);
-				
-				Debug.Log("Loaded map: " + filename + " Dimensions: " + map.Dimensions);
+				if(file != null){
+					
+					int mapInd = maps.Count;
+					maps[mapInd] = new MapData();
+					Map map = maps[mapInd].map = this.gameObject.AddComponent<Map>();
+					
+					GameObject tab = AddFileTab(mapInd);
+					SwitchToMap(mapInd,tab);
+					
+					loader.map = map;
+					loader.Load(file);
+					
+					Debug.Log("Loaded map: " + filename + " Dimensions: " + map.Dimensions);
+				}else{
+					this.chat.PushText("","File not found!");
+				}
 			}
 		});
 		this.popupActive = true;
@@ -480,7 +487,7 @@ public class EditorUI : MonoBehaviour {
 				
 				this.currentFileTab.SetActive(false); 
 				Destroy (this.currentFileTab);
-				Destroy (maps[this.currentMap]);
+				Destroy (maps[this.currentMap].map);
 				maps[this.currentMap] = null;
 				
 				UpdateFileTabs();
@@ -491,6 +498,29 @@ public class EditorUI : MonoBehaviour {
 		});
 		
 		popup.AddLabel("Are you sure you want to close this?");
+		popup.AddSubmit();
+		popup.End();
+	}
+	
+	public void PromptMapProperties(){if(currentMap == -1) {
+			chat.PushText("", "No file open!");
+			return;
+		}
+		EditorPopup popup = MakePopup();
+		
+		MapData map = maps[currentMap];
+		popup.InitEmpty((Dictionary<string,string> data, bool cancelled) => {
+			//On Close
+			popupActive = false;
+			if(!cancelled){
+				map.spawnX = int.Parse(data["spawn x"]);
+				map.spawnY = int.Parse(data["spawn y"]);
+				this.chat.PushText("","Success!");
+			}
+		});
+		
+		popup.AddVar("spawn x", map.spawnX + "");
+		popup.AddVar("spawn y", map.spawnY + "");
 		popup.AddSubmit();
 		popup.End();
 	}

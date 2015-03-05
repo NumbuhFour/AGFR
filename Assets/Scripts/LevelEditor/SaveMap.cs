@@ -7,9 +7,9 @@ using System.Collections.Generic;
 
 public class SaveMap {
 
-	public static void SaveMapToFile(Map map, List<EditorItem> tiles, string filename){
+	public static void SaveMapToFile(MapData mapData, List<EditorItem> tiles, string filename){
 		JSONNode n = new JSONClass();
-		
+		Map map = mapData.map;
 		
 		JSONNode jinfo,jtiles,jmap,jents;
 		n["info"] = jinfo = new JSONClass();
@@ -20,10 +20,10 @@ public class SaveMap {
 		jinfo.Add("width", new JSONData((int)map.Dimensions.x));
 		jinfo.Add("height", new JSONData((int)map.Dimensions.y));
 		JSONNode jspawn = jinfo["spawn"] = new JSONArray();
-		jspawn.Add (new JSONData(0));
-		jspawn.Add (new JSONData(0));
-		jinfo.Add ("lightsOut", new JSONData(0));
-		jinfo.Add ("haunter", new JSONData(0));
+		jspawn.Add (new JSONData(mapData.spawnX));
+		jspawn.Add (new JSONData(mapData.spawnY));
+		jinfo.Add ("lightsOut", new JSONData(mapData.lightsOut));
+		jinfo.Add ("haunter", new JSONData(mapData.haunter));
 		
 		
 		foreach(EditorItem t in tiles){
