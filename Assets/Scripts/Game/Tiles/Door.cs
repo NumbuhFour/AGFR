@@ -9,7 +9,7 @@ public class Door : Tile {
 	}
 	
 	public override void OnEntityEnter(Entity e, TileData data){
-		if(e.gameObject.tag == "Player"){
+		if(e.gameObject.tag == "Player" && data["level"] != null){
 			Game.LevelSpawn = new Vector2((int)data["spawnx"],(int)data["spawny"]);
 			Game.LoadLevel((string)data["level"]);
 		}

@@ -9,13 +9,13 @@ public class Button : Tile {
 	}
 	
 	public override void OnEntityEnter(Entity e, TileData data){
-		((IButtonAction)data["action"]).OnEntityEnter(e);
+		if(data["action"] != null) ((IButtonAction)data["action"]).OnEntityEnter(e);
 	}
 	public override void OnEntityExit(Entity e, TileData data){
-		((IButtonAction)data["action"]).OnEntityExit(e);
+		if(data["action"] != null) ((IButtonAction)data["action"]).OnEntityExit(e);
 	}
 	public override void Update(TileData data){
-		((IButtonAction)data["action"]).Update();
+		if(data["action"] != null) ((IButtonAction)data["action"]).Update();
 	}
 	
 	public override void ReadData(JSONNode node, TileData data){
