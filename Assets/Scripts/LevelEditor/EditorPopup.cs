@@ -26,6 +26,8 @@ public class EditorPopup : MonoBehaviour {
 	
 	public GameObject addAttribPrefab;
 	
+	public GameObject labelPrefab;
+	
 	private List<GameObject> pieces;
 	
 	public Dictionary<string, string> values; //For preset attributes (x, y, width, etc)
@@ -85,6 +87,12 @@ public class EditorPopup : MonoBehaviour {
 		add.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => { 
 			InsertEmptyAttrib("title","value");
 		} );
+	}
+	
+	public void AddLabel(string message){
+		GameObject add = AddPiece (labelPrefab);
+		
+		add.transform.GetChild(0).GetComponent<Text>().text = message;
 	}
 	
 	public void AddSubmit(){

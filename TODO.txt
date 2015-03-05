@@ -22,6 +22,7 @@ Minor TODO:
 	-Editor mirroring
 	-Entities not visible when scrolled off
 	-Fix Lightnoise seed changing with map scroll
+	-Level Editor Quick switch back tool 
 	
 	-Rework tile properties so they can be changed based on location/tiledata
 	-Level conditions: eg If all entities dead, unlock door

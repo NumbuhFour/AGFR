@@ -28,7 +28,7 @@ public class MapRender : MonoBehaviour {
 	}
 	
 	public void RepaintMap(){
-		int tileSize = map.sheet.tileResolution+2;
+		int tileSize = tileRes+2;
 		
 		for(int x = 0; x< Map.MAPDIM.x*tileSize; x++){ //Clear
 			for(int y = 0; y< Map.MAPDIM.y*tileSize; y++){
@@ -82,7 +82,7 @@ public class MapRender : MonoBehaviour {
 					if(get == null) continue;
 					Color highlight = (Color)get;
 					if(highlight != Color.clear){
-						int max = map.sheet.tileResolution+2;
+						int max = tileRes+2;
 						for(int hx = -1; hx <= max; hx++){
 							for(int hy = -1; hy <= max; hy++){
 								if(hx == -1 || hy == -1 || hx == max || hy == max) //Only edges
@@ -93,13 +93,25 @@ public class MapRender : MonoBehaviour {
 				}
 				
 				if(t == Map.emptyTile && Game.Mode == Game.GameMode.LEVEL_EDITOR && map.IsScenePosWithinMap(new Vector2(x,y))){ //Making empty squares for drawing
-					int max = map.sheet.tileResolution;
+					int max = tileRes;
 					for(int hx = 0; hx <= max; hx++){
 						for(int hy = 0; hy <= max; hy++){
 							tex.SetPixel(x*tileSize+hx,y*tileSize+hy,Color.clear);
 						}
 					}
 				}
+			}
+		}
+		
+		tex.Apply ();
+	}
+	
+	public void Clear(){
+		int tileSize = tileRes+2;
+		
+		for(int x = 0; x< Map.MAPDIM.x*tileSize; x++){ //Clear
+			for(int y = 0; y< Map.MAPDIM.y*tileSize; y++){
+				tex.SetPixel(x,y,this.backgroundColor);
 			}
 		}
 		

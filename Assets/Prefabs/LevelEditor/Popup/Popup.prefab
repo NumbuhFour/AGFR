@@ -37,6 +37,7 @@ MonoBehaviour:
   styleVarPrefab: {fileID: 100004, guid: 05ca4ce74ff0ac442995a1f7ae663c0e, type: 2}
   attribVarPrefab: {fileID: 100004, guid: b885feabd5be795489bef58714d481fe, type: 2}
   addAttribPrefab: {fileID: 100000, guid: 771f89f1ada49a747b4e5f98167e8435, type: 2}
+  labelPrefab: {fileID: 111814, guid: 0d4686fc219c3874085c02c840e29b62, type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,4 +93,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}
   m_IsPrefabParent: 1
-  m_IsExploded: 1

@@ -21,6 +21,6 @@ public class FileTabButton : MonoBehaviour {
 	}
 	
 	public void OnClick(){
-		invMan.SwitchToMap(file);
+		invMan.SwitchToMap(file, this.gameObject);
 	}
 }

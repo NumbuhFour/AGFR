@@ -16,9 +16,11 @@ public class Door : Tile {
 	}
 	
 	public override void ReadData(JSONNode node, TileData data){
-		data["level"] = node["level"].Value;
-		
-		data["spawnx"] = node["spawnx"].AsInt;
-		data["spawny"] = node["spawny"].AsInt;
+		if(node["level"] != null){
+			data["level"] = node["level"].Value;
+			
+			data["spawnx"] = node["spawnx"].AsInt;
+			data["spawny"] = node["spawny"].AsInt;
+		}
 	}
 }

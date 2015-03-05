@@ -19,11 +19,13 @@ public class Button : Tile {
 	}
 	
 	public override void ReadData(JSONNode node, TileData data){
-		string actionName = node["action"].Value;
-		switch(actionName){
-		case "toggle lights":
-			data["action"] = new ToggleLightsButton(data);
-			break;
+		if(node["action"] != null){
+			string actionName = node["action"].Value;
+			switch(actionName){
+			case "toggle lights":
+				data["action"] = new ToggleLightsButton(data);
+				break;
+			}
 		}
 	}
 }

@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: d76b11c4749299442891a433aabefac9
+timeCreated: 1425528999
+licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: edit map
@@ -127,6 +129,7 @@ TextureImporter:
     21300244: cancel
     21300246: cancel highlight
     21300248: cancel dark
+    21300250: popup label
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -145,6 +148,9 @@ TextureImporter:
   isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -3
   maxTextureSize: 2048
@@ -155,6 +161,7 @@ TextureImporter:
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
+  rGBM: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
@@ -1388,5 +1395,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
+    - name: popup label
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 389
+        width: 272
+        height: 26
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

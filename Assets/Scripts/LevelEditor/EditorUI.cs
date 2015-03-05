@@ -47,6 +47,7 @@ public class EditorUI : MonoBehaviour {
 	
 	private Dictionary<int, Map> maps = new Dictionary<int, Map>();
 	private int currentMap = -1;
+	private GameObject currentFileTab;
 	
 	private bool popupActive = false;
 	//public Collider mapCol;
@@ -289,8 +290,8 @@ public class EditorUI : MonoBehaviour {
 			
 			Debug.Log("NEW FILE " + width + "x" + height);
 			
-			SwitchToMap(mapInd);
-			AddFileTab(mapInd);
+			GameObject tab = AddFileTab(mapInd);
+			SwitchToMap(mapInd, tab);
 		});
 		popupActive = true;
 		
@@ -300,20 +301,33 @@ public class EditorUI : MonoBehaviour {
 		popup.End();
 	}
 	
-	public void SwitchToMap(int i) {
+	public void SwitchToMap(int i, GameObject tab) {
 		Debug.Log("SWITCHING TO MAP " + i);
+		this.currentFileTab = tab;
+		if(tab){
+			UnityEngine.UI.Button butt = tab.GetComponent<UnityEngine.UI.Button>();
+			butt.interactable = false;
+			
+			Debug.Log("STUPID BUTT " + butt.IsInteractable());
+		}
 		if(currentMap != -1 && maps[currentMap]){
 			maps[currentMap].enabled = false;
 		}
 		this.currentMap = i;
-		this.mapRen.map = maps[currentMap];
-		this.mapRen.map.enabled = true;
-		this.mapRen.map.MarkDirty();
-		UpdateMapPresets();
+		if(i != -1) {
+			this.mapRen.map = maps[currentMap];
+			this.mapRen.map.enabled = true;
+			this.mapRen.map.MarkDirty();
+			UpdateMapPresets();
+		}
+		else {
+			this.mapRen.map = null;
+			this.mapRen.Clear();
+		}
 		UnsetFileTabs();
 	}
 	
-	private void AddFileTab(int ind){
+	private GameObject AddFileTab(int ind){
 		int i = 0;
 		Vector3 newPos = Vector3.zero;
 		for(i = 0; i < this.fileTabs.transform.childCount; i++){
@@ -327,7 +341,21 @@ public class EditorUI : MonoBehaviour {
 		add.transform.SetParent(fileTabs.transform);
 		add.transform.position = newPos;
 		add.GetComponent<FileTabButton>().Init(this,ind);
+		
+		return add;
 	}
+	
+	private void UpdateFileTabs(){
+		float nextX = 0;
+		for(int i = this.fileTabs.transform.childCount-1; i >= 0; i--){
+			Transform t = this.fileTabs.transform.GetChild (i);
+			if(!t.gameObject.activeSelf) continue;
+			
+			t.transform.localPosition = new Vector3(nextX, 0, 0);
+			nextX += ((RectTransform)t).sizeDelta.x;
+		}
+	}
+	
 	private void UnsetFileTabs(){ //For the glowy effect
 		for(int i = 0; i < this.fileTabs.transform.childCount; i++){
 			Transform t = this.fileTabs.transform.GetChild (i);
@@ -418,8 +446,8 @@ public class EditorUI : MonoBehaviour {
 				int mapInd = maps.Count;
 				Map map = maps[mapInd] = this.gameObject.AddComponent<Map>();
 				
-				SwitchToMap(mapInd);
-				AddFileTab(mapInd);
+				GameObject tab = AddFileTab(mapInd);
+				SwitchToMap(mapInd,tab);
 				
 				TextAsset file = (TextAsset) Resources.LoadAssetAtPath<TextAsset>("Assets/Resources/Maps/" + filename + ".json");
 				loader.map = map;
@@ -431,6 +459,38 @@ public class EditorUI : MonoBehaviour {
 		this.popupActive = true;
 		
 		popup.AddVar("file name", "");
+		popup.AddSubmit();
+		popup.End();
+	}
+	
+	public void PromptCloseFile(){
+		
+		if(currentMap == -1) {
+			chat.PushText("", "No file open!");
+			return;
+		}
+		EditorPopup popup = MakePopup();
+		
+		popup.InitEmpty((Dictionary<string,string> data, bool cancelled) => {
+			//On Close
+			popupActive = false;
+			if(!cancelled){
+				//Delete map file
+				Debug.Log ("Closed!");
+				
+				this.currentFileTab.SetActive(false); 
+				Destroy (this.currentFileTab);
+				Destroy (maps[this.currentMap]);
+				maps[this.currentMap] = null;
+				
+				UpdateFileTabs();
+				this.currentMap = -1;
+				this.currentFileTab = null;
+				this.SwitchToMap(-1,null);
+			}
+		});
+		
+		popup.AddLabel("Are you sure you want to close this?");
 		popup.AddSubmit();
 		popup.End();
 	}

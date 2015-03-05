@@ -13,7 +13,9 @@ public class Sign : Tile {
 	}
 	
 	public override void ReadData(JSONNode node, TileData data){
-		data["speaker"] = node["speaker"].Value;
-		data["message"] = node["message"].Value;
+		if(data["speaker"] != null){
+			data["speaker"] = node["speaker"].Value;
+			data["message"] = node["message"].Value;
+		}
 	}
 }
