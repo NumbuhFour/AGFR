@@ -22,6 +22,7 @@ public class MapLoader : MonoBehaviour {
 		map.MarkDirty();
 		if(Game.LevelSpawn.x != -1) spawn = Game.LevelSpawn;
 		Game.Player = entities.SpawnEntity(entityList["player"],spawn);
+		//map.CenterCameraOn(spawn);
 	}
 	
 	private void ParseData(){

@@ -11,14 +11,16 @@ Major TOD:
 	-Player Death
 	
 Minor TODO:
+	-LightNoise test highlight problem with clamp mode
 	-Editor UserTiles per map
 	-Button dont be activated by sprites?
 	-Editor set properties like spawn loc
 	-Editor popup label
 	-Editor line tool
-	-LightNoise test highlight problem with clamp mode
 	-Persistance
 	-Fix merging itemstacks when inventory full
+	-Editor mirroring
+	-Entities not visible when scrolled off
 	
 	-Rework tile properties so they can be changed based on location/tiledata
 	-Level conditions: eg If all entities dead, unlock door
@@ -32,6 +34,7 @@ Minor TODO:
 	-Rotated sprite presets in Editor
 	-Pause on lost focus
 	-"Enable snarky comments"
+	-Weird offset tile rendering by a pixel? (big zoom)
 	
 	##Bugs##
 	-[Press E to continue] chat occasionally doesnt register on start?

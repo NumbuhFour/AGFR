@@ -38,10 +38,9 @@ public class MapRender : MonoBehaviour {
 		
 		if(Game.Mode == Game.GameMode.LEVEL_EDITOR){  //Alignment line thingies
 			int step = 7;
-			int halfStep = step/2;
 			Vector2 offset = this.map.CamLoc;
-			offset.x += 2;
-			offset.y += 2;
+			offset.x -= ((int)this.map.Dimensions.x/2) %step;
+			offset.y -= ((int)this.map.Dimensions.y/2) %step;
 			offset.x %= step;
 			offset.y %= step;
 			float maxX = Map.MAPDIM.x*tileSize;
@@ -50,16 +49,24 @@ public class MapRender : MonoBehaviour {
 				int xo = (x-(int)offset.x)*tileSize + 8;
 				if(xo > 0 && xo < maxX) //Should never be 0. It should be in the center of a tile
 				for(int y = 0; y < maxY; y++){
+					tex.SetPixel(xo-2, y, Color.red);
+					tex.SetPixel(xo-1, y, Color.red);
 					tex.SetPixel(xo, y, Color.red);
 					tex.SetPixel(xo+1, y, Color.red);
+					tex.SetPixel(xo+2, y, Color.red);
+					tex.SetPixel(xo+3, y, Color.red);
 				}
 			}
 			for(int y = 0; y <= Map.MAPDIM.y+step; y+=step){
 				int yo = (y-(int)offset.y)*tileSize + 8;
 				if(yo > 0 && yo < maxY) //Should never be 0. It should be in the center of a tile
 				for(int x = 0; x < maxX; x++){
+					tex.SetPixel(x, yo-2, Color.red);
+					tex.SetPixel(x, yo-1, Color.red);
 					tex.SetPixel(x, yo, Color.red);
 					tex.SetPixel(x, yo+1, Color.red);
+					tex.SetPixel(x, yo+2, Color.red);
+					tex.SetPixel(x, yo+3, Color.red);
 				}
 			}
 		}

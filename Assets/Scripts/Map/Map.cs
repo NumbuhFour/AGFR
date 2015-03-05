@@ -30,8 +30,8 @@ public class Map : MonoBehaviour {
 	public Dictionary<string,Tile> Tiles{ get { return tiles; } }
 	public string[,] MapArray{ get { return map; } }
 	
-	private Vector2 offset;
-	public Vector2 Offset { get { return offset; } }
+	//private Vector2 offset;
+	//public Vector2 Offset { get { return offset; } }
 	
 	private Vector2 camLoc;
 	public Vector2 CamLoc{ 
@@ -41,14 +41,20 @@ public class Map : MonoBehaviour {
 			if(Game.Mode == Game.GameMode.LEVEL_EDITOR) border = 1;
 			if(this.dimensions.x >= MAPDIM.x) {//Only scroll if scrollable
 				camLoc.x = value.x;
-				camLoc.x = Mathf.Max(camLoc.x, (MAPDIM.x - dimensions.x)/2 - border);
-				camLoc.x = Mathf.Min(camLoc.x, -(MAPDIM.x - dimensions.x)/2 + border);
+				camLoc.x = Mathf.Max(camLoc.x, -border);
+				camLoc.x = Mathf.Min(camLoc.x, (dimensions.x - MAPDIM.x) + border);
+				MarkDirty();
+			}else{
+				camLoc.x = value.x;
 				MarkDirty();
 			}
 			if(this.dimensions.y >= MAPDIM.y){
 				camLoc.y = value.y;
-				camLoc.y = Mathf.Max(camLoc.y, (MAPDIM.y - dimensions.y)/2 - border);
-				camLoc.y = Mathf.Min(camLoc.y, -(MAPDIM.y - dimensions.y)/2 + border);
+				camLoc.y = Mathf.Max(camLoc.y, -border);
+				camLoc.y = Mathf.Min(camLoc.y, (dimensions.y - MAPDIM.y) + border);
+				MarkDirty();
+			}else{
+				camLoc.y = value.y;
 				MarkDirty();
 			}
 		}
@@ -62,14 +68,18 @@ public class Map : MonoBehaviour {
 		}
 		
 		this.dimensions = dimensions;
-		offset = new Vector2((int)((MAPDIM.x-this.dimensions.x)/2), //Offset to center
-		                     (int)((MAPDIM.y-this.dimensions.y)/2));
+		CamLoc = new Vector2(-(int)((MAPDIM.x-this.dimensions.x)/2), //Offset to center
+		                     -(int)((MAPDIM.y-this.dimensions.y)/2));
 		tiles = new Dictionary<string,Tile>();
 		map = new string[(int)dimensions.x,(int)dimensions.y];
 		tileData = new TileData[(int)dimensions.x,(int)dimensions.y];
 		foreach (EntityLayer elayer in this.GetComponentsInChildren<EntityLayer>()){
 			elayer.Init(dimensions);
 		}
+	}
+	
+	public void CenterCameraOn(Vector2 pos){
+		CamLoc = (pos - (MAPDIM/2));
 	}
 	
 	public Tile GetTileAt(int x, int y) { 
@@ -140,11 +150,16 @@ public class Map : MonoBehaviour {
 			conv.x < dimensions.x && conv.y < dimensions.y;
 	}
 	
+	public bool IsLocVisible(Vector2 loc){
+		Vector2 halfDim = this.dimensions/2;
+		return (loc.x >= camLoc.x - halfDim.x && loc.x <= camLoc.x + halfDim.x) && (loc.y >= camLoc.y - halfDim.y && loc.y <= camLoc.y + halfDim.y);
+	}
+	
 	public Vector2 ConvertSceneToWorld(Vector2 pos){
-		return pos - offset + camLoc;
+		return pos + camLoc;
 	}
 	
 	public Vector2 ConvertWorldToScene(Vector2 pos){
-		return pos + offset - camLoc;
+		return pos - camLoc;
 	}
 }

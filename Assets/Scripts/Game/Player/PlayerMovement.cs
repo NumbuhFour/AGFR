@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour {
 	private long lastTimeHold;
 	
 	private Entity ent;
+	private Map map;
 	private FaceDirection dir;
 	private static int lastHoriz = 0; //Static to keep across levels
 	private static int lastVert = 0;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void OnLevelLoaded(){
 		ent = GetComponent<Entity>();
 		dir = GetComponent<FaceDirection>();
+		map = ent.map;
 		lastTime = (int)(GameTime.time*1000) + tapDelay; //Adding tapdelay to both as its a little more responsive
 		//lastTimeHold = (int)(GameTime.time*1000) + tapDelay;
 	}
@@ -55,7 +57,11 @@ public class PlayerMovement : MonoBehaviour {
 						delt.y = vert;
 					}
 				}
-				ent.Move (delt);
+				
+				if(ent.CanMove(delt)){
+					//map.CenterCameraOn(ent.loc+delt);
+					ent.Move (delt);
+				}
 				SetDirection(delt);
 				lastTime = time;
 				//lastTimeHold = time;

@@ -59,11 +59,12 @@ public class LightNoise : MonoBehaviour {
 		min = lightsOut ? darkMinAlpha:minAlpha;
 		max = lightsOut ? darkMaxAlpha:maxAlpha;
 		int pushSeed = Random.seed;
-		for (int x = 0; x < map.Dimensions.x; x++){
-			for (int y = 0; y < map.Dimensions.y; y++){
-				Tile t = map.GetTileAt(x,y);
+		for (int x = 0; x < Map.MAPDIM.x; x++){
+			for (int y = 0; y < Map.MAPDIM.y; y++){
+				Vector2 trans = map.ConvertSceneToWorld(new Vector2(x,y));
+				Tile t = map.GetTileAt((int)trans.x, (int)trans.y);
 				if(t.HasLight){
-					Random.seed = x * (int)Map.MAPDIM.x + y;
+					Random.seed = (int)(trans.x * map.Dimensions.x + trans.y);
 					Color draw = color;
 					if(lightsOut){
 						float theta = (GameTime.time*50)/darkChangePeriod + Random.Range(0,darkChangePeriod);
@@ -74,8 +75,8 @@ public class LightNoise : MonoBehaviour {
 						draw.a = Random.Range(min,max);
 					}
 					
-					int xo = (x + (int)map.Offset.x)*tileSize;
-					int yo = (y + (int)map.Offset.y)*tileSize;
+					int xo = x*tileSize;
+					int yo = y*tileSize;
 					for(int tx=0; tx<tileSize; tx++){
 						for(int ty=0; ty<tileSize; ty++){
 							tex.SetPixel(xo+tx,yo+ty,draw);

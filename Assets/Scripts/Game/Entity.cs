@@ -15,8 +15,11 @@ public class Entity : MonoBehaviour, INamed {
 	
 	public string Name() { return name; }
 	
+	private Renderer ren;
+	
 	// Use this for initialization
 	public virtual void Start () {
+		ren = this.GetComponent<Renderer>();
 		//this.loc = new Vector2((this.transform.localPosition.x - GRAPHIC_OFFSET.x)/18,(this.transform.localPosition.y - GRAPHIC_OFFSET.y)/18);
 	}
 	
@@ -31,6 +34,8 @@ public class Entity : MonoBehaviour, INamed {
 			lastLoc = loc;
 			loc += dir;
 			this.transform.localPosition = (Vector3)this.entlayer.ConvertEntityPosToScenePos(loc) + (Vector3)GRAPHIC_OFFSET;//new Vector3(loc.x * 18 + GRAPHIC_OFFSET.x, loc.y*18 + GRAPHIC_OFFSET.y, 0);
+			
+			//ren.enabled = this.map.IsLocVisible(this.loc);
 		}
 	}
 	

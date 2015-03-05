@@ -2,7 +2,8 @@
 	"info": {
 		"width": 11,
 		"height": 11,
-		"spawn": [1,1],
+		"spawnX": 1,
+		"spawnY": 1,
 		"lightsOut": 0,
 		"haunter": 0
 	},
@@ -23,7 +24,7 @@
 			["wall","floor","dark floor","dark floor","dark floor","dark floor",{"style":"sign", "speaker":"[rawr]", "message":" Beware of slime!"},"dark floor","dark floor","floor","wall"],
 			["wall","floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","dark floor","floor","wall"],
 			["wall","floor","floor","floor","floor","floor","floor","floor","floor","floor","floor"],
-			["wall","wall","wall","wall","wall",{"style":"door","level":"map2","spawn":{"x":20,"y":20}},"wall","wall","wall","wall","wall"]],
+			["wall","wall","wall","wall","wall",{"style":"door","level":"map2","spawnX":20,"spawnY":20},"wall","wall","wall","wall","wall"]],
 	"entities":[ 
 		{ "name":"green slime", "x":5, "y":5 },
 		{ "name":"green slime", "x":6, "y":6 },
