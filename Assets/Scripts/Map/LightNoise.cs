@@ -44,7 +44,7 @@ public class LightNoise : MonoBehaviour {
 
 	void Update(){
 		timer += GameTime.deltaTime*1000f;
-		if(((minAlpha != min || maxAlpha != max) && !lightsOut ) || (lightsOut && timer > lightsOutFrames)){
+		if(((minAlpha != min || maxAlpha != max) && !lightsOut ) || (lightsOut && timer > lightsOutFrames) || map.IsDirty){
 			Regenerate();
 			timer = 0;
 		}

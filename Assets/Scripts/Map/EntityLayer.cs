@@ -63,7 +63,7 @@ public class EntityLayer : MonoBehaviour {
 		return false;
 	}
 	public void RemoveEntity(Entity e){
-		if(entCols[(int)e.loc.x, (int)e.loc.y] == e)
+		if(map.IsLocValid(e.loc) && entCols[(int)e.loc.x, (int)e.loc.y] == e)
 			entCols[(int)e.loc.x, (int)e.loc.y] = null;
 	}
 	
@@ -81,6 +81,7 @@ public class EntityLayer : MonoBehaviour {
 	
 	public Vector2 ConvertEntityPosToScenePos(Vector2 loc){
 		Vector2 conv = map.ConvertWorldToScene(loc);
+		Debug.Log("ENT POS " + conv + " " + loc);
 		conv *= map.sheet.tileResolution+2;
 		return conv;
 	}

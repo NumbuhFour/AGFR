@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour {
 				}
 				
 				if(ent.CanMove(delt)){
-					//map.CenterCameraOn(ent.loc+delt);
+					map.CenterCameraOn(ent.loc+delt);
 					ent.Move (delt);
 				}
 				SetDirection(delt);

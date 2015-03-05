@@ -43,18 +43,14 @@ public class Map : MonoBehaviour {
 				camLoc.x = value.x;
 				camLoc.x = Mathf.Max(camLoc.x, -border);
 				camLoc.x = Mathf.Min(camLoc.x, (dimensions.x - MAPDIM.x) + border);
-				MarkDirty();
-			}else{
-				camLoc.x = value.x;
+				camLoc.x = Mathf.Floor(camLoc.x);
 				MarkDirty();
 			}
 			if(this.dimensions.y >= MAPDIM.y){
 				camLoc.y = value.y;
 				camLoc.y = Mathf.Max(camLoc.y, -border);
 				camLoc.y = Mathf.Min(camLoc.y, (dimensions.y - MAPDIM.y) + border);
-				MarkDirty();
-			}else{
-				camLoc.y = value.y;
+				camLoc.y = Mathf.Floor(camLoc.y);
 				MarkDirty();
 			}
 		}
@@ -68,7 +64,7 @@ public class Map : MonoBehaviour {
 		}
 		
 		this.dimensions = dimensions;
-		CamLoc = new Vector2(-(int)((MAPDIM.x-this.dimensions.x)/2), //Offset to center
+		camLoc = new Vector2(-(int)((MAPDIM.x-this.dimensions.x)/2), //Offset to center
 		                     -(int)((MAPDIM.y-this.dimensions.y)/2));
 		tiles = new Dictionary<string,Tile>();
 		map = new string[(int)dimensions.x,(int)dimensions.y];
@@ -83,8 +79,7 @@ public class Map : MonoBehaviour {
 	}
 	
 	public Tile GetTileAt(int x, int y) { 
-		if(x < 0 || x >= Dimensions.x) return emptyTile;
-		if(y < 0 || y >= Dimensions.y) return emptyTile;
+		if(!IsLocValid(x,y)) return errTile;
 		string t = map[x,y];
 		if(t == null) return emptyTile;
 		return tiles[t]; 
@@ -100,14 +95,13 @@ public class Map : MonoBehaviour {
 	
 	/// Sets within the scale of the map's dimensions, not max dimensions
 	public void SetTileAt(int x, int y, string tile){
-		if(x < 0 || x >= this.dimensions.x || 
-			y < 0 || y >= this.dimensions.y)
-				return;
+		if(!IsLocValid(x,y)) return;
 		map[x,y] = tile;
 		this.MarkDirty();
 	}
 	
 	public TileData GetTileDataAt(int x, int y){
+		if(!IsLocValid(x,y)) return null;
 		if(tileData[x,y] == null) tileData[x,y] = new TileData(x,y);
 		return tileData[x,y];
 	}
@@ -153,6 +147,13 @@ public class Map : MonoBehaviour {
 	public bool IsLocVisible(Vector2 loc){
 		Vector2 halfDim = this.dimensions/2;
 		return (loc.x >= camLoc.x - halfDim.x && loc.x <= camLoc.x + halfDim.x) && (loc.y >= camLoc.y - halfDim.y && loc.y <= camLoc.y + halfDim.y);
+	}
+		
+	public bool IsLocValid(Vector2 loc){
+		return IsLocValid((int)loc.x, (int)loc.y);
+	}
+	public bool IsLocValid(int x, int y){
+		return (x >= 0 && x < dimensions.x && y >= 0 && y < dimensions.y);
 	}
 	
 	public Vector2 ConvertSceneToWorld(Vector2 pos){

@@ -21,6 +21,7 @@ Minor TODO:
 	-Fix merging itemstacks when inventory full
 	-Editor mirroring
 	-Entities not visible when scrolled off
+	-Fix Lightnoise seed changing with map scroll
 	
 	-Rework tile properties so they can be changed based on location/tiledata
 	-Level conditions: eg If all entities dead, unlock door
