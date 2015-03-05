@@ -2,27 +2,20 @@ Major TOD:
 	-Sound
 	-Lighting
 	-Shades
-	-Editor load!
-	-Scrolling maps
-		-Account for Entities!
-		-Make lightnoise not scan whole map, only visible
 	-Separate slots for weapon and (subweapon? Accessory?)
 		-Perhaps replace with other bars for other properties (energy, temp, etc)
 	-Player Death
 	
 Minor TODO:
 	-LightNoise test highlight problem with clamp mode
-	-Editor UserTiles per map
-		-Level Editor import user tiles
 	-Button dont be activated by sprites?
-	-Editor set properties like spawn loc
 	-Editor line tool
 	-Persistance
 	-Fix merging itemstacks when inventory full
 	-Editor mirroring
-	-Entities not visible when scrolled off
 	-Level Editor Quick switch back tool 
 	-Arrow max distance
+	-Drop item into world
 	
 	-Rework tile properties so they can be changed based on location/tiledata
 	-Level conditions: eg If all entities dead, unlock door
@@ -49,6 +42,14 @@ Minor TODO:
 	-Door sprite needs work. Fix bottom border?
 	
 Done:
+	-Editor load!
+	-Entities not visible when scrolled off
+	-Scrolling maps
+		-Account for Entities!
+		-Make lightnoise not scan whole map, only visible
+	-Editor UserTiles per map
+		-Level Editor import user tiles
+	-Editor set properties like spawn loc
 	-Fix Lightnoise seed changing with map scroll
 	-Editor popup label
 	-Editor fix stupid InputText bull

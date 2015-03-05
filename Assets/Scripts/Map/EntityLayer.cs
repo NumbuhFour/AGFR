@@ -7,6 +7,10 @@ public class EntityLayer : MonoBehaviour {
 	private Entity[,] entCols;
 	private bool initialized = false;
 	private Vector2 dimensions;
+	private Vector3 startingLoc = new Vector3(16,16,100);
+	public void Start(){
+		//startingLoc = this.transform.localPosition;
+	}
 	
 	public void Init(Vector2 dimensions){
 		this.dimensions = dimensions;
@@ -80,8 +84,17 @@ public class EntityLayer : MonoBehaviour {
 	}
 	
 	public Vector2 ConvertEntityPosToScenePos(Vector2 loc){
-		Vector2 conv = map.ConvertWorldToScene(loc);
+		Vector2 conv = loc;//map.ConvertWorldToScene(loc);
 		conv *= map.sheet.tileResolution+2;
 		return conv;
+	}
+	
+	//Called via SendMessage from map
+	public void CameraMove(){
+		Debug.Log("CAMERA " + map.CamLoc + " " + this.transform.localPosition);
+		Vector3 change = map.CamLoc;
+		this.transform.localPosition = -(Vector3)change*(map.sheet.tileResolution+2) + this.startingLoc;
+		
+		this.BroadcastMessage("UpdateVisible", SendMessageOptions.DontRequireReceiver);
 	}
 }

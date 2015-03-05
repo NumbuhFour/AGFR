@@ -37,6 +37,7 @@ public class Map : MonoBehaviour {
 	public Vector2 CamLoc{ 
 		get { return camLoc; } 
 		set { 
+			Vector2 last = new Vector2(camLoc.x, camLoc.y);
 			int border = 0;
 			if(Game.Mode == Game.GameMode.LEVEL_EDITOR) border = 1;
 			if(this.dimensions.x >= MAPDIM.x) {//Only scroll if scrollable
@@ -44,14 +45,19 @@ public class Map : MonoBehaviour {
 				camLoc.x = Mathf.Max(camLoc.x, -border);
 				camLoc.x = Mathf.Min(camLoc.x, (dimensions.x - MAPDIM.x) + border);
 				camLoc.x = Mathf.Floor(camLoc.x);
-				MarkDirty();
+				if(camLoc.x != last.x) MarkDirty();
 			}
 			if(this.dimensions.y >= MAPDIM.y){
 				camLoc.y = value.y;
 				camLoc.y = Mathf.Max(camLoc.y, -border);
 				camLoc.y = Mathf.Min(camLoc.y, (dimensions.y - MAPDIM.y) + border);
 				camLoc.y = Mathf.Floor(camLoc.y);
-				MarkDirty();
+				if(camLoc.y != last.y) MarkDirty();
+			}
+			
+			if(camLoc != last){
+				//tell entity layers to update
+				this.gameObject.BroadcastMessage("CameraMove", SendMessageOptions.DontRequireReceiver);
 			}
 		}
 	}
@@ -75,7 +81,7 @@ public class Map : MonoBehaviour {
 	}
 	
 	public void CenterCameraOn(Vector2 pos){
-		CamLoc = (pos - (MAPDIM/2));
+		CamLoc = (pos - (MAPDIM/2) + new Vector2(1,1));
 	}
 	
 	public Tile GetTileAt(int x, int y) { 
@@ -145,8 +151,7 @@ public class Map : MonoBehaviour {
 	}
 	
 	public bool IsLocVisible(Vector2 loc){
-		Vector2 halfDim = this.dimensions/2;
-		return (loc.x >= camLoc.x - halfDim.x && loc.x <= camLoc.x + halfDim.x) && (loc.y >= camLoc.y - halfDim.y && loc.y <= camLoc.y + halfDim.y);
+		return (loc.x >= camLoc.x && loc.x < camLoc.x + MAPDIM.x) && (loc.y >= camLoc.y && loc.y < camLoc.y + MAPDIM.y);
 	}
 		
 	public bool IsLocValid(Vector2 loc){

@@ -35,8 +35,14 @@ public class Entity : MonoBehaviour, INamed {
 			loc += dir;
 			this.transform.localPosition = (Vector3)this.entlayer.ConvertEntityPosToScenePos(loc) + (Vector3)GRAPHIC_OFFSET;//new Vector3(loc.x * 18 + GRAPHIC_OFFSET.x, loc.y*18 + GRAPHIC_OFFSET.y, 0);
 			
-			//ren.enabled = this.map.IsLocVisible(this.loc);
+			UpdateVisible();
 		}
+	}
+	
+	public void UpdateVisible(){
+		if(!ren) 
+			ren = this.GetComponent<Renderer>();
+		ren.enabled = this.map.IsLocVisible(this.loc);
 	}
 	
 	public void Knock(string direction, int amt){
