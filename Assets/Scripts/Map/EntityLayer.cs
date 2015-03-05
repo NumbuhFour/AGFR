@@ -81,7 +81,6 @@ public class EntityLayer : MonoBehaviour {
 	
 	public Vector2 ConvertEntityPosToScenePos(Vector2 loc){
 		Vector2 conv = map.ConvertWorldToScene(loc);
-		Debug.Log("ENT POS " + conv + " " + loc);
 		conv *= map.sheet.tileResolution+2;
 		return conv;
 	}

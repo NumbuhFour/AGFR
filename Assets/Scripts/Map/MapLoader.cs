@@ -15,14 +15,17 @@ public class MapLoader : MonoBehaviour {
 	private Vector2 spawn;
 	
 	public void Load(TextAsset mapFile){
-		entities.Clear();
-		sprites.Clear();
+		if(entities)entities.Clear();
+		if(sprites)sprites.Clear();
 		data = JSON.Parse(mapFile.text);
 		ParseData ();
 		map.MarkDirty();
-		if(Game.LevelSpawn.x != -1) spawn = Game.LevelSpawn;
-		Game.Player = entities.SpawnEntity(entityList["player"],spawn);
-		map.CenterCameraOn(spawn);
+		
+		if(Game.Mode == Game.GameMode.GAME){
+			if(Game.LevelSpawn.x != -1) spawn = Game.LevelSpawn;
+			Game.Player = entities.SpawnEntity(entityList["player"],spawn);
+			map.CenterCameraOn(spawn);
+		}
 	}
 	
 	private void ParseData(){
@@ -31,7 +34,8 @@ public class MapLoader : MonoBehaviour {
 		map.Init(dimensions);
 		PopulateTiles(data["tiles"]);
 		PopulateMap(data["map"]);
-		if(data["entities"] != null)
+		if(data["entities"] != null 
+			&& Game.Mode == Game.GameMode.GAME)  //Temporary until editor entites
 			PopulateEntities(data["entities"]);
 	}
 	

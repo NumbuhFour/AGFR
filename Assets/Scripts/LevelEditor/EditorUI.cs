@@ -12,6 +12,7 @@ public class EditorUI : MonoBehaviour {
 	public Rect mapRect = new Rect(32,119,480-32,567-119);
 	
 	public MapRender mapRen;
+	public MapLoader loader;
 	public UnityEngine.EventSystems.EventSystem events;
 	public ChatManager chat;
 
@@ -390,6 +391,7 @@ public class EditorUI : MonoBehaviour {
 		Map map = maps[currentMap];
 		EditorPopup popup = MakePopup();
 		popup.InitEmpty( (Dictionary<string,string> data, bool cancelled) => {
+			//On close
 			popupActive = false;
 			if(!cancelled){
 				map.mapName = data["filename"];
@@ -400,6 +402,35 @@ public class EditorUI : MonoBehaviour {
 		popupActive = true;
 		
 		popup.AddVar("filename", map.mapName);
+		popup.AddSubmit();
+		popup.End();
+	}
+	
+	public void PromptOpenFile(){
+		EditorPopup popup = MakePopup();
+		
+		popup.InitEmpty((Dictionary<string,string> data, bool cancelled) => {
+			//On close
+			popupActive = false;
+			if(!cancelled){
+				string filename = data["file name"];
+				
+				int mapInd = maps.Count;
+				Map map = maps[mapInd] = this.gameObject.AddComponent<Map>();
+				
+				SwitchToMap(mapInd);
+				AddFileTab(mapInd);
+				
+				TextAsset file = (TextAsset) Resources.LoadAssetAtPath<TextAsset>("Assets/Resources/Maps/" + filename + ".json");
+				loader.map = map;
+				loader.Load(file);
+				
+				Debug.Log("Loaded map: " + filename + " Dimensions: " + map.Dimensions);
+			}
+		});
+		this.popupActive = true;
+		
+		popup.AddVar("file name", "");
 		popup.AddSubmit();
 		popup.End();
 	}
