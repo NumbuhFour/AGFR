@@ -75,6 +75,10 @@ public class ChatManager : MonoBehaviour {
 		}
 	}
 	
+	public void PushText(string msg){
+		this.PushText("", msg);
+	}
+	
 	public void PushText(string head, string msg, PauseMode mode=PauseMode.NO_PAUSE, MonoBehaviour finishCall=null){
 		wasUsePressed = Input.GetAxis("Use") > 0;
 		this.finishCall = finishCall;

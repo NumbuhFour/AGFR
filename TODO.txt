@@ -21,8 +21,8 @@ Minor TODO:
 	-Fix merging itemstacks when inventory full
 	-Editor mirroring
 	-Entities not visible when scrolled off
-	-Fix Lightnoise seed changing with map scroll
 	-Level Editor Quick switch back tool 
+	-Arrow max distance
 	
 	-Rework tile properties so they can be changed based on location/tiledata
 	-Level conditions: eg If all entities dead, unlock door
@@ -38,14 +38,18 @@ Minor TODO:
 	-"Enable snarky comments"
 	-Weird offset tile rendering by a pixel? (big zoom)
 	-LevelEditor tile sprite browser
+	-Breakup EditorUI.cs
 	
 	##Bugs##
 	-[Press E to continue] chat occasionally doesnt register on start?
+	-Fix LevelEditor file tabs selection to glow on creation
+	-Can't open saved levels until restart (Unity probably needs to refresh Resources)
 	
 	##Graphical##
 	-Door sprite needs work. Fix bottom border?
 	
 Done:
+	-Fix Lightnoise seed changing with map scroll
 	-Editor popup label
 	-Editor fix stupid InputText bull
 	-Editor adding variables

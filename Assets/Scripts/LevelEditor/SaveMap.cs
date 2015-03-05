@@ -7,9 +7,10 @@ using System.Collections.Generic;
 
 public class SaveMap {
 
-	public static void SaveMapToFile(MapData mapData, List<EditorItem> tiles, string filename){
+	public static void SaveMapToFile(MapData mapData, string filename){
 		JSONNode n = new JSONClass();
 		Map map = mapData.map;
+		List<EditorItem> tiles = mapData.userTiles;
 		
 		JSONNode jinfo,jtiles,jmap,jents;
 		n["info"] = jinfo = new JSONClass();
@@ -37,9 +38,6 @@ public class SaveMap {
 				int flipy = (int)map.Dimensions.y - (y+1);
 				string tilename = mapdata[x,flipy];
 				TileData td = map.GetTileDataAt(x,flipy);
-				if(tilename == "door"){
-					Debug.Log("FUCK DOORS " + td.Data.Count); 
-				}
 				if(!td.IsEmpty()){
 					td.Save(col, tilename);
 				}else{

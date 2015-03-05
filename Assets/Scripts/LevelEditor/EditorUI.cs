@@ -13,11 +13,12 @@ public class EditorUI : MonoBehaviour {
 	
 	public MapRender mapRen;
 	public MapLoader loader;
+	public GameObject noFileShade;
+	public Text coordLabel;
 	public UnityEngine.EventSystems.EventSystem events;
 	public ChatManager chat;
 
 	private List<EditorItem> tilePresets = new List<EditorItem>();
-	private List<EditorItem> userTiles = new List<EditorItem>();
 	public PremadeContainer entities;
 	
 	public GameObject slotPrefab;
@@ -48,6 +49,7 @@ public class EditorUI : MonoBehaviour {
 	private Dictionary<int, MapData> maps = new Dictionary<int, MapData>();
 	private int currentMap = -1;
 	private GameObject currentFileTab;
+	private string currentTab = "tile"; //ents, tiles, user
 	
 	private bool popupActive = false;
 	//public Collider mapCol;
@@ -102,6 +104,16 @@ public class EditorUI : MonoBehaviour {
 			Cursor.SetCursor(null, new Vector2(), CursorMode.Auto);
 		}
 		
+		if(currentMap != -1){
+			Vector3 mousePos = Input.mousePosition;
+			if(this.mapRect.Contains(mousePos)) {
+				Vector2 pos = GetMousePos (mousePos);
+				coordLabel.text = "[x: " + (int)pos.x + "\t\ty:" + (int)pos.y + "]";
+			}else {
+				coordLabel.text = "";
+			}
+		}
+		
 		//Scrolling 
 		
 		if(currentMap != -1 && !popupActive){
@@ -152,7 +164,8 @@ public class EditorUI : MonoBehaviour {
 	}
 	
 	private EditorItem FindUserEditorItem(Tile t){
-		foreach(EditorItem i in userTiles){
+		MapData data = maps[currentMap];
+		foreach(EditorItem i in data.userTiles){
 			if(i.Tile == t) return i;
 		}
 		return null;
@@ -166,8 +179,8 @@ public class EditorUI : MonoBehaviour {
 	}
 	
 	public void SetTool(EditorItem tool){	
-		if(popupActive) return;
-		if(this.tilePresets.Contains(tool)){
+		if(popupActive || currentMap == -1) return;
+		if(tool != null && this.currentTab == "tile"){ //Clicked on tiles tab, add new user tool
 			tool = new EditorItem(tool);
 			this.AddUserItem(tool);
 		}
@@ -183,13 +196,14 @@ public class EditorUI : MonoBehaviour {
 	
 	public void AddUserItem(EditorItem item){
 		int n = 0;
-		for(int i = 0; i < userTiles.Count; i++){
-			if(userTiles[i].Name == item.Name || userTiles[i].Name == item.Name+"_"+n) n++;
+		MapData data = maps[currentMap];
+		for(int i = 0; i < data.userTiles.Count; i++){
+			if(data.userTiles[i].Name == item.Name || data.userTiles[i].Name == item.Name+"_"+n) n++;
 		}
 		if(n != 0){
 			item.Name += "_" + n;
 		}
-		this.userTiles.Add(item);
+		data.userTiles.Add(item);
 		this.AddPreset(item, userScroll);
 	}
 	
@@ -202,8 +216,10 @@ public class EditorUI : MonoBehaviour {
 		this.AddPreset(item, entScroll);	
 	}
 	
-	private void AddPreset(EditorItem item, RectTransform container){
-		int index = container.childCount;
+	//Deleted children count is for when preset added immediately after clearing
+	//Transforms don't update childCount until next frame I think
+	private void AddPreset(EditorItem item, RectTransform container, int deletedChildrenCount=0){
+		int index = container.childCount - deletedChildrenCount;
 		int y = index%4;
 		int x = (int)(index/4);
 		GameObject inst = (GameObject)Instantiate(this.slotPrefab);
@@ -222,13 +238,14 @@ public class EditorUI : MonoBehaviour {
 	
 	private void UpdateMapPresets(){
 		if(currentMap == -1) return;
-		Map cur = maps[currentMap].map;
+		MapData cur = maps[currentMap];
+		Map map = cur.map;
 		/*foreach(EditorItem e in this.tilePresets){
 			cur.SetTile(e.Name, e.Tile);
 		}*/
 		
-		foreach(EditorItem e in this.userTiles){
-			cur.SetTile(e.Name, e.Tile);
+		foreach(EditorItem e in cur.userTiles){
+			map.SetTile(e.Name, e.Tile);
 		}
 	}
 	
@@ -273,6 +290,8 @@ public class EditorUI : MonoBehaviour {
 			this.userScroll.gameObject.SetActive(false);
 			break;
 		}
+		
+		this.currentTab = tab;
 	}
 	
 	public void AddFile(){
@@ -302,20 +321,38 @@ public class EditorUI : MonoBehaviour {
 		popup.End();
 	}
 	
-	public void SwitchToMap(int i, GameObject tab) {
-		Debug.Log("SWITCHING TO MAP " + i);
+	public void SwitchToMap(int mapInd, GameObject tab) {
+		Debug.Log("SWITCHING TO MAP " + mapInd);
+		this.noFileShade.SetActive(mapInd == -1);
+		this.SetTool(null);
+		
+		//Clear user tiles tab
+		int count = this.userScroll.childCount;
+		for(int iter = 0; iter < count; iter++){
+			Destroy(this.userScroll.GetChild(iter).gameObject);
+			Destroy(this.userScroll.GetChild(iter));
+		}
+		Debug.Log("CLEARED USER TILES " + count + " " + this.userScroll.childCount);
+		
+		if(mapInd != -1 && maps[mapInd] != null){
+			//Set user tiles tab icons to mapData.userTiles
+			List<EditorItem> tiles = maps[mapInd].userTiles;
+			foreach(EditorItem item in tiles){
+				AddPreset(item,this.userScroll, count);
+			}
+		}
+		
+		
 		this.currentFileTab = tab;
 		if(tab){
 			UnityEngine.UI.Button butt = tab.GetComponent<UnityEngine.UI.Button>();
-			butt.interactable = false;
-			
-			Debug.Log("STUPID BUTT " + butt.IsInteractable());
+			butt.interactable = false; //TODO fix file tab selection glow on creation
 		}
 		if(currentMap != -1 && maps[currentMap] != null){
 			maps[currentMap].map.enabled = false;
 		}
-		this.currentMap = i;
-		if(i != -1) {
+		this.currentMap = mapInd;
+		if(mapInd != -1) {
 			this.mapRen.map = maps[currentMap].map;
 			this.mapRen.map.enabled = true;
 			this.mapRen.map.MarkDirty();
@@ -417,14 +454,15 @@ public class EditorUI : MonoBehaviour {
 			chat.PushText("", "No file open, can't save!");
 		}
 		
-		Map map = maps[currentMap].map;
+		MapData mapdata = maps[currentMap];
+		Map map = mapdata.map;
 		EditorPopup popup = MakePopup();
 		popup.InitEmpty( (Dictionary<string,string> data, bool cancelled) => {
 			//On close
 			popupActive = false;
 			if(!cancelled){
 				map.mapName = data["filename"];
-				SaveMap.SaveMapToFile(maps[currentMap], this.userTiles, map.mapName);
+				SaveMap.SaveMapToFile(mapdata, map.mapName);
 				chat.PushText("","Map saved!");
 			}
 		});
@@ -452,10 +490,10 @@ public class EditorUI : MonoBehaviour {
 					Map map = maps[mapInd].map = this.gameObject.AddComponent<Map>();
 					
 					GameObject tab = AddFileTab(mapInd);
-					SwitchToMap(mapInd,tab);
 					
-					loader.map = map;
-					loader.Load(file);
+					loader.Load(maps[mapInd], file);
+					
+					SwitchToMap(mapInd,tab);
 					
 					Debug.Log("Loaded map: " + filename + " Dimensions: " + map.Dimensions);
 				}else{
@@ -496,6 +534,7 @@ public class EditorUI : MonoBehaviour {
 				this.SwitchToMap(-1,null);
 			}
 		});
+		popupActive = true;
 		
 		popup.AddLabel("Are you sure you want to close this?");
 		popup.AddSubmit();
@@ -518,6 +557,7 @@ public class EditorUI : MonoBehaviour {
 				this.chat.PushText("","Success!");
 			}
 		});
+		popupActive = true;
 		
 		popup.AddVar("spawn x", map.spawnX + "");
 		popup.AddVar("spawn y", map.spawnY + "");

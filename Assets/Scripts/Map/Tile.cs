@@ -8,6 +8,7 @@ public class Tile {
 	private SpriteSheet sheet;
 	
 	public string name;
+	private string type = "tile";
 	private int spriteIndex;
 	private Color mainColor;
 	private Color swapColor;
@@ -18,6 +19,7 @@ public class Tile {
 	private Color[] modifiedPixelData;
 	
 	public string Name { get { return name; } }
+	public string Type { get { return type; } }
 	public int Sprite { get { return spriteIndex; } }
 	public Color MainColor { get { return mainColor; } }
 	public Color SwapColor { get { return swapColor; } }
@@ -33,6 +35,7 @@ public class Tile {
 		Color sc = MapLoader.ReadColor(sNode);
 		
 		Init (data["name"].Value, data["sprite"].AsInt, mc,sc, data["solidity"].AsInt, data["is_lit"].AsBool,  sheet);
+		if(data["type"] != null) this.type = data["type"];
 	}
 	
 	public Tile(string name, int spriteIndex, Color mainColor, Color swapColor, int solidity, bool hasLight, SpriteSheet sheet){

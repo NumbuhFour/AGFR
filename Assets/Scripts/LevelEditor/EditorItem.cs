@@ -34,6 +34,11 @@ public class EditorItem {
 	public EditorItem(EditorItem copy): this(copy.name, copy.type, copy.spriteID, copy.mainColor, copy.swapColor, copy.solidity) {
 	}
 	
+	public EditorItem(Tile t): this(t.Name, t.Type, t.Sprite, t.MainColor, t.SwapColor,t.Solidity){
+		this.isLit = t.HasLight;
+		this.tile = t;
+	}
+	
 	public string Name {
 		get { return this.name; }
 		set { this.name = value; RefreshTile(); }

@@ -59,14 +59,27 @@ public class EditorInvSlot : MonoBehaviour {
 			tileTex.filterMode = FilterMode.Point;
 		}
 	
-		if(item.itemType == EditorItem.Types.TILE){
+		if(item != null && item.itemType == EditorItem.Types.TILE){
 			Color[] pixels = item.Tile.Pixels;
 			tileTex.SetPixels(pixels);
 			tileTex.Apply ();
 			ren.GetComponent<Image>().sprite = 
 				Sprite.Create(tileTex, new Rect(0,0,16,16), new Vector2(0.5f,0.5f), 1f);
-		}else{
-			
+		}else if(item == null){
+			ClearTex();
 		}
+	}
+	
+	
+	private static Color[] clearPx = null;
+	private void ClearTex(){
+		if(clearPx == null){
+			int dim = this.sheet.tileResolution*this.sheet.tileResolution;
+			clearPx = new Color[dim];
+			for(int i = 0; i < dim; i++)
+				clearPx[i] = Color.clear;
+		}
+		tileTex.SetPixels(clearPx);
+		tileTex.Apply();
 	}
 }

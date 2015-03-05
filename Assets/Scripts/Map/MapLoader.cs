@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using SimpleJSON;
 
@@ -14,6 +14,7 @@ public class MapLoader : MonoBehaviour {
 	private Vector2 dimensions;
 	private Vector2 spawn;
 	
+	//load for game
 	public void Load(TextAsset mapFile){
 		if(entities)entities.Clear();
 		if(sprites)sprites.Clear();
@@ -21,24 +22,22 @@ public class MapLoader : MonoBehaviour {
 		ParseData ();
 		map.MarkDirty();
 		
-		if(Game.Mode == Game.GameMode.GAME){
-			if(Game.LevelSpawn.x != -1) spawn = Game.LevelSpawn;
-			Game.Player = entities.SpawnEntity(entityList["player"],spawn);
-			map.CenterCameraOn(spawn);
-		}
+		if(Game.LevelSpawn.x != -1) spawn = Game.LevelSpawn;
+		map.CenterCameraOn(spawn);
+		Game.Player = entities.SpawnEntity(entityList["player"],spawn);
 	}
 	
+	//load for editor
 	public void Load(MapData mapData, TextAsset mapFile){
 		data = JSON.Parse(mapFile.text);
+		this.map = mapData.map;
 		ParseData ();
 		mapData.map.MarkDirty();
 		mapData.spawnX = (int)this.spawn.x;
 		mapData.spawnY = (int)this.spawn.y;
 		
-		if(Game.Mode == Game.GameMode.GAME){
-			if(Game.LevelSpawn.x != -1) spawn = Game.LevelSpawn;
-			Game.Player = entities.SpawnEntity(entityList["player"],spawn);
-			map.CenterCameraOn(spawn);
+		foreach(Tile t in mapData.map.Tiles.Values){
+			mapData.userTiles.Add(new EditorItem(t));
 		}
 	}
 	
