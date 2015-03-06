@@ -102,7 +102,13 @@ public class Map : MonoBehaviour {
 	/// Sets within the scale of the map's dimensions, not max dimensions
 	public void SetTileAt(int x, int y, string tile){
 		if(!IsLocValid(x,y)) return;
+		string old = map[x,y];
+		Tile oTile;
+		if(old != null && (oTile = tiles[old]) != null) oTile.OnRemoved(GetTileDataAt(x,y));
+		tileData[x,y] = null;
 		map[x,y] = tile;
+		Tile nTile = tiles[tile];
+		if(nTile != null) nTile.OnPlaced(GetTileDataAt(x,y));
 		this.MarkDirty();
 	}
 	
@@ -129,6 +135,12 @@ public class Map : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
+		if(this.IsDirty){
+			this.gameObject.BroadcastMessage("OnRepaintMap", SendMessageOptions.RequireReceiver);
+			this.MarkClean();
+		}
+		
 		if(Game.Paused || Game.Mode != Game.GameMode.GAME) return;
 		for(int x = 0; x<MAPDIM.x; x++){
 			for(int y = 0; y<MAPDIM.y; y++){

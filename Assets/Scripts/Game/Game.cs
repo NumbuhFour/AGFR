@@ -62,7 +62,10 @@ public class Game : MonoBehaviour {
 			}
 		}
 		Debug.Log("GAME INITIALIZED");
-		Game.instance = this;
+		if(instance == null) {
+			instance = this;
+			DontDestroyOnLoad(this.gameObject);
+		}
 		
 		if(mode == GameMode.GAME){
 			LoadLevel (startingTestLevelName);
@@ -70,6 +73,10 @@ public class Game : MonoBehaviour {
 	}
 	
 	void Update(){
+		if(instance == null) {
+			instance = this;
+			DontDestroyOnLoad(this.gameObject);
+		}
 		if(Paused) pauseDuration += Time.deltaTime;
 	}
 	

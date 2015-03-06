@@ -63,5 +63,5 @@ Shader "Sprites/Swap"
 		ENDCG
 	}
 
-Fallback "Legacy Shaders/Transparent/VertexLit"
+Fallback "Transparent/VertexLit"
 }

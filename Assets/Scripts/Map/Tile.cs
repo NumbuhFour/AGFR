@@ -64,6 +64,11 @@ public class Tile {
 		}
 	}
 	
+	public virtual void OnPlaced(TileData data){
+	}
+	public virtual void OnRemoved(TileData data){
+	}
+	
 	public virtual void OnEntityEnter(Entity e, TileData data){
 	}
 	public virtual void OnEntityExit(Entity e, TileData data){

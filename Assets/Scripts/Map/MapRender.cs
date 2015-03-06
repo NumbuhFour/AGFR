@@ -6,6 +6,7 @@ public class MapRender : MonoBehaviour {
 	
 	public Color backgroundColor = new Color(32f/255f,32f/255f,32f/255f,1f);
 	public Map map;
+	public bool paintViaBroadcast = false;
 	
 	private Texture2D tex;
 	private int tileRes;
@@ -21,13 +22,20 @@ public class MapRender : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-		if(map && map.IsDirty){
+		if(map && !paintViaBroadcast && map.IsDirty){
 			RepaintMap();
 			map.MarkClean();
 		}
 	}
 	
-	public void RepaintMap(){
+	public void OnRepaintMap(){
+		if(this.paintViaBroadcast){
+			Debug.Log("REPAINT MAP");
+			RepaintMap();
+		}
+	}
+	//Called by Map.cs via Broadcast if paintViaBroadcast is true
+	private void RepaintMap(){
 		int tileSize = tileRes+2;
 		
 		for(int x = 0; x< Map.MAPDIM.x*tileSize; x++){ //Clear

@@ -10,3 +10,10 @@ Sign:
 	speaker (string): speaker of the message
 	message (string): the message on the sign
 	
+Light:
+	intensity (float 0-1): Intensity of light
+	range (float 0-1): Range of light
+	r (float 0-1): Color.red of light
+	g (float 0-1): Color.green of light
+	b (float 0-1): Color.blue of light
+	

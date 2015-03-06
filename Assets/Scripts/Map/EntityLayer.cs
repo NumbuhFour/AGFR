@@ -91,7 +91,6 @@ public class EntityLayer : MonoBehaviour {
 	
 	//Called via SendMessage from map
 	public void CameraMove(){
-		Debug.Log("CAMERA " + map.CamLoc + " " + this.transform.localPosition);
 		Vector3 change = map.CamLoc;
 		this.transform.localPosition = -(Vector3)change*(map.sheet.tileResolution+2) + this.startingLoc;
 		

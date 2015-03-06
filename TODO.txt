@@ -16,6 +16,9 @@ Minor TODO:
 	-Level Editor Quick switch back tool 
 	-Arrow max distance
 	-Drop item into world
+	-Animated Tiles
+	-Lights iluminate holes in tiles
+	-Light flickering
 	
 	-Rework tile properties so they can be changed based on location/tiledata
 	-Level conditions: eg If all entities dead, unlock door
