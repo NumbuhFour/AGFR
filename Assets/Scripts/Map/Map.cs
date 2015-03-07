@@ -101,17 +101,20 @@ public class Map : MonoBehaviour {
 	
 	/// Sets within the scale of the map's dimensions, not max dimensions
 	public void SetTileAt(int x, int y, string tile){
-		tile = tile.Trim();
+		if(tile != null) tile = tile.Trim();
 		if(!IsLocValid(x,y)) return;
 		string old = map[x,y];
 		Tile oTile;
 		if(old != null && (oTile = tiles[old]) != null) oTile.OnRemoved(GetTileDataAt(x,y));
 		tileData[x,y] = null;
 		map[x,y] = tile;
-		Tile nTile = tiles[tile];
-		if(nTile != null) nTile.OnPlaced(GetTileDataAt(x,y));
+		if(tile != null){
+			Tile nTile = tiles[tile];
+			if(nTile != null) nTile.OnPlaced(GetTileDataAt(x,y));
+		}
 		this.MarkDirty();
-	}/// Sets within the scale of the map's dimensions, not max dimensions
+	}
+	/// Sets within the scale of the map's dimensions, not max dimensions
 	public void SetTileAndTileDataAt(int x, int y, string tile, TileData data){
 		tile = tile.Trim();
 		if(!IsLocValid(x,y)) return;
@@ -127,7 +130,13 @@ public class Map : MonoBehaviour {
 	
 	public TileData GetTileDataAt(int x, int y){
 		if(!IsLocValid(x,y)) return null;
-		if(tileData[x,y] == null) tileData[x,y] = new TileData(x,y);
+		if(tileData[x,y] == null){
+			Debug.Log("NO TILE DATA, MAKING");
+			Tile t = GetTileAt(x,y);
+			if(t != null) tileData[x,y] = t.GetDefaultTileData(x,y);
+			else tileData[x,y] = new TileData(x,y);
+		}else	
+			Debug.Log("TILE DATA ALREADY EXISTS " + tileData[x,y]);
 		return tileData[x,y];
 	}
 	

@@ -13,6 +13,7 @@ public class EditorUI : MonoBehaviour {
 	
 	public MapRender mapRen;
 	public MapLoader loader;
+	public GameObject mapContainer;
 	public GameObject noFileShade;
 	public Text coordLabel;
 	public UnityEngine.EventSystems.EventSystem events;
@@ -142,7 +143,7 @@ public class EditorUI : MonoBehaviour {
 		popupActive = true;
 		
 		foreach (string key in td.Data.Keys){
-			popup.AddEmptyAttrib(key, (string)td.Data[key]);
+			popup.AddEmptyAttrib(key, td.Data[key].ToString());
 		}
 		
 		popup.AddAddButton();
@@ -305,7 +306,7 @@ public class EditorUI : MonoBehaviour {
 			int height = int.Parse(data["height"]);
 			int mapInd = maps.Count;
 			maps[mapInd] = new MapData();
-			maps[mapInd].map = this.gameObject.AddComponent<Map>();
+			maps[mapInd].map = mapContainer.AddComponent<Map>();
 			maps[mapInd].map.Init(new Vector2(width,height));
 			
 			Debug.Log("NEW FILE " + width + "x" + height);
@@ -332,7 +333,6 @@ public class EditorUI : MonoBehaviour {
 			Destroy(this.userScroll.GetChild(iter).gameObject);
 			Destroy(this.userScroll.GetChild(iter));
 		}
-		Debug.Log("CLEARED USER TILES " + count + " " + this.userScroll.childCount);
 		
 		if(mapInd != -1 && maps[mapInd] != null){
 			//Set user tiles tab icons to mapData.userTiles
@@ -353,13 +353,14 @@ public class EditorUI : MonoBehaviour {
 		}
 		this.currentMap = mapInd;
 		if(mapInd != -1) {
-			this.mapRen.map = maps[currentMap].map;
-			this.mapRen.map.enabled = true;
-			this.mapRen.map.MarkDirty();
+			Map m = maps[currentMap].map;
+			mapContainer.BroadcastMessage("SetMap", m);
+			m.enabled = true;
+			m.MarkDirty();
 			UpdateMapPresets();
 		}
 		else {
-			this.mapRen.map = null;
+			mapContainer.BroadcastMessage("SetMap", null);
 			this.mapRen.Clear();
 		}
 		UnsetFileTabs();
@@ -487,7 +488,7 @@ public class EditorUI : MonoBehaviour {
 					
 					int mapInd = maps.Count;
 					maps[mapInd] = new MapData();
-					Map map = maps[mapInd].map = this.gameObject.AddComponent<Map>();
+					Map map = maps[mapInd].map = mapContainer.AddComponent<Map>();
 					
 					GameObject tab = AddFileTab(mapInd);
 					

@@ -4,6 +4,9 @@ using SimpleJSON;
 
 public class LitTile : Tile {
 	
+	public LitTile(){
+	}
+	
 	public LitTile(JSONNode data, SpriteSheet sheet):base(data,sheet){
 		
 	}
@@ -33,9 +36,17 @@ public class LitTile : Tile {
 			data["color"] = new Color(node["r"].AsFloat,node["g"].AsFloat,node["b"].AsFloat);
 		}
 		else{
-			data["intensity"] = 0.5f;
+			data["intensity"] = 0.05f;
 			data["range"] = 0.05f;
 			data["color"] = new Color(1,0.419f,0);
 		}
+	}
+	
+	public override TileData GetDefaultTileData(int x, int y){
+		TileData data = new TileData(x,y);
+		data["intensity"] = 0.05f;
+		data["range"] = 0.05f;
+		data["color"] = new Color(1,0.419f,0);
+		return data;
 	}
 }

@@ -72,7 +72,8 @@ public class EditorItem {
 	public Tile Tile {
 		get {
 			if(itemType == Types.TILE && tile == null){
-				tile = new Tile(name, spriteID, mainColor, swapColor, solidity, isLit, Game.GameObject.GetComponent<SpriteSheet>());
+				tile = MapLoader.MakeTileInstance(this.type);
+				tile.Init(name, spriteID, mainColor, swapColor, solidity, isLit, Game.GameObject.GetComponent<SpriteSheet>());
 			}
 			return tile;
 		}

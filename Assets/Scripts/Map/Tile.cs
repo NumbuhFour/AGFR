@@ -28,7 +28,19 @@ public class Tile {
 	public Color[] Pixels { get { return modifiedPixelData; } }
 	public Color[] UnmodifiedPixels { get { return pixelData; } }
 	
+	public Tile(){
+	}
+	
 	public Tile(JSONNode data, SpriteSheet sheet){
+		Init(data,sheet);
+	}
+	
+	
+	public Tile(string name, int spriteIndex, Color mainColor, Color swapColor, int solidity, bool hasLight, SpriteSheet sheet){
+		Init (name,spriteIndex,mainColor,swapColor,solidity, hasLight,sheet);
+	}
+	
+	public virtual void Init(JSONNode data, SpriteSheet sheet){
 		JSONNode mcNode = data["main_color"];
 		Color mc = MapLoader.ReadColor(mcNode);
 		JSONNode sNode = data["swap_color"];
@@ -36,10 +48,6 @@ public class Tile {
 		
 		Init (data["name"].Value, data["sprite"].AsInt, mc,sc, data["solidity"].AsInt, data["is_lit"].AsBool,  sheet);
 		if(data["type"] != null) this.type = data["type"];
-	}
-	
-	public Tile(string name, int spriteIndex, Color mainColor, Color swapColor, int solidity, bool hasLight, SpriteSheet sheet){
-		Init (name,spriteIndex,mainColor,swapColor,solidity, hasLight,sheet);
 	}
 	
 	public void Init(string name, int spriteIndex, Color mainColor, Color swapColor, int solidity, bool hasLight, SpriteSheet sheet){
@@ -62,6 +70,10 @@ public class Tile {
 			if(data[i] == key)
 				data[i] = result;
 		}
+	}
+	
+	public virtual TileData GetDefaultTileData(int x, int y){
+		return new TileData(x,y);
 	}
 	
 	public virtual void OnPlaced(TileData data){

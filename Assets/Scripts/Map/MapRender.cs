@@ -124,4 +124,9 @@ public class MapRender : MonoBehaviour {
 		
 		tex.Apply ();
 	}
+	
+	//Called via EditorUI.SwitchToMap.BroadcastMessage
+	public void SetMap(Map map){
+		this.map = map;
+	}
 }

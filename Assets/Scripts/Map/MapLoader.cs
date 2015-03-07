@@ -109,13 +109,19 @@ public class MapLoader : MonoBehaviour {
 	}
 	
 	//Converts tile-type to a tile class for the map
-	public static Tile MakeTileInstance(string type, JSONNode file, SpriteSheet sheet){
+	public static Tile MakeTileInstance(string type, JSONNode file=null, SpriteSheet sheet=null){
+		Tile rtn = null;
 		switch(type){
-		default: return new Tile(file,sheet);
-		case "button": return new Button(file,sheet);
-		case "sign": return new Sign(file,sheet);
-		case "door": return new Door(file,sheet);
-		case "light": return new LitTile(file,sheet);
+		default: rtn = new Tile(); break;
+		case "button": rtn = new Button(); break;
+		case "sign": rtn = new Sign(); break;
+		case "door": rtn = new Door(); break;
+		case "light": rtn = new LitTile(); break;
 		}
+		
+		if(file != null)
+			rtn.Init(file,sheet);
+		
+		return rtn;
 	}
 }

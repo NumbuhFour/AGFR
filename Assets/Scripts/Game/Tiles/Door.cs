@@ -4,6 +4,9 @@ using SimpleJSON;
 
 public class Door : Tile {
 	
+	public Door(){
+	}
+	
 	public Door(JSONNode data, SpriteSheet sheet):base(data,sheet){
 		
 	}
@@ -22,5 +25,14 @@ public class Door : Tile {
 			data["spawnx"] = node["spawnx"].AsInt;
 			data["spawny"] = node["spawny"].AsInt;
 		}
+	}
+	
+	public override TileData GetDefaultTileData(int x, int y){
+		TileData data = new TileData(x,y);
+		data["level"] = "map1";
+		data["spawnx"] = 0;
+		data["spawny"] = 0;
+		Debug.Log("DEFAULT DOOR WOO");
+		return data;
 	}
 }

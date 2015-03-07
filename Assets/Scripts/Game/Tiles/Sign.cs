@@ -4,6 +4,9 @@ using SimpleJSON;
 
 public class Sign : Tile {
 	
+	public Sign(){
+	}
+	
 	public Sign(JSONNode data, SpriteSheet sheet):base(data,sheet){
 		
 	}
@@ -18,5 +21,12 @@ public class Sign : Tile {
 			data["speaker"] = node["speaker"].Value;
 			data["message"] = node["message"].Value;
 		}
+	}
+	
+	public override TileData GetDefaultTileData(int x, int y){
+		TileData data = new TileData(x,y);
+		data["speaker"] = "[error] ";
+		data["message"] = "error";
+		return data;
 	}
 }

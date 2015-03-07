@@ -15,10 +15,18 @@ public class LightContainer : MonoBehaviour {
 	}
 	
 	public TileLight AddLight(int x, int y){
-		float tileRes = map.sheet.tileResolution+2;
-		GameObject add = (GameObject)Instantiate(lightPrefab);
-		add.transform.SetParent(this.transform);
-		add.transform.localPosition = new Vector3((x + 0.5f)*tileRes, (y + 0.5f)*tileRes, 0);
-		return add.GetComponent<TileLight>();
+		if(map != null){
+			float tileRes = map.sheet.tileResolution+2;
+			GameObject add = (GameObject)Instantiate(lightPrefab);
+			add.transform.SetParent(this.transform);
+			add.transform.localPosition = new Vector3((x + 0.5f)*tileRes, (y + 0.5f)*tileRes, 0);
+			return add.GetComponent<TileLight>();
+		}
+		return null;
+	}
+	
+	//Called via EditorUI.SwitchToMap.BroadcastMessage
+	public void SetMap(Map map){
+		this.map = map;
 	}
 }

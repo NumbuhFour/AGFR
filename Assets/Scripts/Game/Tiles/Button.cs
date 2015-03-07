@@ -4,8 +4,10 @@ using SimpleJSON;
 
 public class Button : Tile {
 	
+	public Button(){
+	}
+	
 	public Button(JSONNode data, SpriteSheet sheet):base(data,sheet){
-		
 	}
 	
 	public override void OnEntityEnter(Entity e, TileData data){
@@ -27,5 +29,11 @@ public class Button : Tile {
 				break;
 			}
 		}
+	}
+	
+	public override TileData GetDefaultTileData(int x, int y){
+		TileData data = new TileData(x,y);
+		data["action"] = "toggle lights";
+		return data;
 	}
 }

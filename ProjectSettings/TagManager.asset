@@ -63,6 +63,9 @@ TagManager:
   - name: Sprites
     uniqueID: 1428618897
     locked: 0
+  - name: GlowLighting
+    uniqueID: 3859770597
+    locked: 0
   - name: Noise
     uniqueID: 1688175597
     locked: 0
