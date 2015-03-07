@@ -101,11 +101,24 @@ public class Map : MonoBehaviour {
 	
 	/// Sets within the scale of the map's dimensions, not max dimensions
 	public void SetTileAt(int x, int y, string tile){
+		tile = tile.Trim();
 		if(!IsLocValid(x,y)) return;
 		string old = map[x,y];
 		Tile oTile;
 		if(old != null && (oTile = tiles[old]) != null) oTile.OnRemoved(GetTileDataAt(x,y));
 		tileData[x,y] = null;
+		map[x,y] = tile;
+		Tile nTile = tiles[tile];
+		if(nTile != null) nTile.OnPlaced(GetTileDataAt(x,y));
+		this.MarkDirty();
+	}/// Sets within the scale of the map's dimensions, not max dimensions
+	public void SetTileAndTileDataAt(int x, int y, string tile, TileData data){
+		tile = tile.Trim();
+		if(!IsLocValid(x,y)) return;
+		string old = map[x,y];
+		Tile oTile;
+		if(old != null && (oTile = tiles[old]) != null) oTile.OnRemoved(GetTileDataAt(x,y));
+		tileData[x,y] = data;
 		map[x,y] = tile;
 		Tile nTile = tiles[tile];
 		if(nTile != null) nTile.OnPlaced(GetTileDataAt(x,y));
@@ -116,6 +129,11 @@ public class Map : MonoBehaviour {
 		if(!IsLocValid(x,y)) return null;
 		if(tileData[x,y] == null) tileData[x,y] = new TileData(x,y);
 		return tileData[x,y];
+	}
+	
+	public TileData GetNewTileDataAt(int x, int y){
+		if(!IsLocValid(x,y)) return null;
+		return new TileData(x,y);
 	}
 	public TileData GetTileDataVisibleAt(int x, int y){
 		Vector2 dim = ConvertSceneToWorld(new Vector2(x,y));

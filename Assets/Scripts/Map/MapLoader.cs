@@ -57,9 +57,10 @@ public class MapLoader : MonoBehaviour {
 			for(int y = 0; y < dimensions.y; y++){
 				JSONNode tile = mapData[(int)dimensions.y-y-1][x];
 				if(tile.GetType() == typeof(SimpleJSON.JSONClass)){
-					map.SetTileAt(x,y, tile["style"].Value);
-					Tile t = map.GetTile(tile["style"].Value);
-					t.ReadData(tile, map.GetTileDataAt(x,y));
+					Tile t = map.GetTile(tile["style"].Value.Trim());
+					TileData data = map.GetTileDataAt(x,y);
+					t.ReadData(tile, data);
+					map.SetTileAndTileDataAt(x,y, tile["style"].Value.Trim(),data);
 				}
 				else {
 					map.SetTileAt(x,y, tile);
@@ -72,8 +73,8 @@ public class MapLoader : MonoBehaviour {
 		int count = tileJData.Count;
 		for (int i = 0; i < count; i++){
 			JSONNode t = tileJData[i];
-			string name = t["name"].Value;
-			string type = t["type"].Value;
+			string name = t["name"].Value.Trim();
+			string type = t["type"].Value.Trim();
 			if(type == null) type = "tile";
 			map.SetTile(name, MakeTileInstance(type, t, map.sheet));
 		}

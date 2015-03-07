@@ -91,7 +91,7 @@ Shader "Custom/StepperLight"
 		void surf (Input IN, inout SurfaceOutput o)
 		{
 			fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * IN.color;
-			if(c.x == _IgnoreColor.x && c.y == _IgnoreColor.y && c.z == _IgnoreColor.z || c.a == 0){
+			if(c.x == _IgnoreColor.x && c.y == _IgnoreColor.y && c.z == _IgnoreColor.z){
 				c.a = 0;
 			}else {
 				c = fixed4(1,1,1,1);

@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[ExecuteInEditMode]
 [AddComponentMenu("Scripts/Map/Tile Light")]
 public class TileLight : MonoBehaviour {
 	
 	public const float MIN_RANGE = -64.6f;
-	public const float MAX_RANGE = -0.2f;
+	public const float MAX_RANGE = -2.0f;
 	private const float rangeDiff =  MAX_RANGE-MIN_RANGE;
 
 	[SerializeField]
@@ -32,11 +31,12 @@ public class TileLight : MonoBehaviour {
 		set { change = (color != value); color = value; }
 	}
 	
-	private bool change = true;
+	private bool change = false;
 	private Light light;
 
 	// Use this for initialization
 	void Start () {
+		change = true;
 		this.light = this.GetComponent<Light>();
 	}
 	

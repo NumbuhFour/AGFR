@@ -30,7 +30,6 @@ public class MapRender : MonoBehaviour {
 	
 	public void OnRepaintMap(){
 		if(this.paintViaBroadcast){
-			Debug.Log("REPAINT MAP");
 			RepaintMap();
 		}
 	}

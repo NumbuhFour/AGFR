@@ -18,7 +18,7 @@ public class LightContainer : MonoBehaviour {
 		float tileRes = map.sheet.tileResolution+2;
 		GameObject add = (GameObject)Instantiate(lightPrefab);
 		add.transform.SetParent(this.transform);
-		add.transform.localPosition = new Vector3(x*tileRes, y*tileRes, 0);
+		add.transform.localPosition = new Vector3((x + 0.5f)*tileRes, (y + 0.5f)*tileRes, 0);
 		return add.GetComponent<TileLight>();
 	}
 }
