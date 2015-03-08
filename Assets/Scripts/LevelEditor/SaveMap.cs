@@ -50,4 +50,8 @@ public class SaveMap {
 		
 		File.WriteAllText(Environment.CurrentDirectory + "/Assets/Resources/Maps/Test" + @"\" +filename+".json", n.ToString());
 	}
+	
+	public static bool IsSaveableParameter(object data){
+		return (data is string || data is int || data is float || data is double || data is bool);
+	}
 }

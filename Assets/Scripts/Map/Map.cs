@@ -131,12 +131,10 @@ public class Map : MonoBehaviour {
 	public TileData GetTileDataAt(int x, int y){
 		if(!IsLocValid(x,y)) return null;
 		if(tileData[x,y] == null){
-			Debug.Log("NO TILE DATA, MAKING");
 			Tile t = GetTileAt(x,y);
 			if(t != null) tileData[x,y] = t.GetDefaultTileData(x,y);
 			else tileData[x,y] = new TileData(x,y);
-		}else	
-			Debug.Log("TILE DATA ALREADY EXISTS " + tileData[x,y]);
+		}
 		return tileData[x,y];
 	}
 	

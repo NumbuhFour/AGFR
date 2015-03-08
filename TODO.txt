@@ -17,8 +17,8 @@ Minor TODO:
 	-Arrow max distance
 	-Drop item into world
 	-Animated Tiles
-	-Lights iluminate holes in tiles
 	-Light flickering
+	-Lights update in editor
 	
 	-Rework tile properties so they can be changed based on location/tiledata
 	-Level conditions: eg If all entities dead, unlock door
@@ -42,9 +42,10 @@ Minor TODO:
 	-Can't open saved levels until restart (Unity probably needs to refresh Resources)
 	
 	##Graphical##
-	-Door sprite needs work. Fix bottom border?
 	
 Done:
+	-Door sprite needs work. Fix bottom border?
+	-Lights iluminate holes in tiles
 	-Editor load!
 	-Entities not visible when scrolled off
 	-Scrolling maps

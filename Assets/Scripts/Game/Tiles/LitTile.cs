@@ -19,7 +19,7 @@ public class LitTile : Tile {
 			data["light"] = light;
 			light.Intensity = (float)data["intensity"];
 			light.Range = (float)data["range"];
-			light.Color = (Color)data["color"];
+			light.Color = new Color((float)data["r"],(float)data["g"],(float)data["b"]);
 		}
 	}
 	public override void OnRemoved(TileData data){
@@ -33,12 +33,16 @@ public class LitTile : Tile {
 		if(node["intensity"] != null){
 			data["intensity"] = node["intensity"].AsFloat;
 			data["range"] = node["range"].AsFloat;
-			data["color"] = new Color(node["r"].AsFloat,node["g"].AsFloat,node["b"].AsFloat);
+			data["r"] = node["r"];
+			data["g"] = node["g"];
+			data["b"] = node["b"];
 		}
 		else{
 			data["intensity"] = 0.05f;
 			data["range"] = 0.05f;
-			data["color"] = new Color(1,0.419f,0);
+			data["r"] = 1;
+			data["g"] = 0.419f;
+			data["b"] = 0;
 		}
 	}
 	
@@ -46,7 +50,9 @@ public class LitTile : Tile {
 		TileData data = new TileData(x,y);
 		data["intensity"] = 0.05f;
 		data["range"] = 0.05f;
-		data["color"] = new Color(1,0.419f,0);
+		data["r"] = 1;
+		data["g"] = 0.419f;
+		data["b"] = 0;
 		return data;
 	}
 }

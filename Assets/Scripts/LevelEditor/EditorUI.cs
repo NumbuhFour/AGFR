@@ -143,7 +143,9 @@ public class EditorUI : MonoBehaviour {
 		popupActive = true;
 		
 		foreach (string key in td.Data.Keys){
-			popup.AddEmptyAttrib(key, td.Data[key].ToString());
+			object data = td.Data[key];
+			if(SaveMap.IsSaveableParameter(data))
+				popup.AddEmptyAttrib(key, td.Data[key].ToString());
 		}
 		
 		popup.AddAddButton();

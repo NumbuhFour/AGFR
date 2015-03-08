@@ -32,7 +32,6 @@ public class Door : Tile {
 		data["level"] = "map1";
 		data["spawnx"] = 0;
 		data["spawny"] = 0;
-		Debug.Log("DEFAULT DOOR WOO");
 		return data;
 	}
 }
