@@ -407,6 +407,10 @@ public class EditorUI : MonoBehaviour {
 	public void EditToolProperties(){
 		EditorPopup popup = MakePopup();
 		EditorItem tool = GetTool ();
+		if(tool == null) {
+			chat.PushText("No tool selected!");
+			return;
+		}
 		EditorItem backup = new EditorItem(tool);
 		EditorPopup.OnChange changer = (Dictionary<string,string> data) => {
 			try{
@@ -435,7 +439,7 @@ public class EditorUI : MonoBehaviour {
 		popup.InitStyle(tool, closer, changer);
 		popupActive = true;
 		popup.AddVar("type","" + tool.Type);
-		popup.AddVar("sprite","" + tool.SpriteID);
+		popup.AddSpriteVar("sprite",tool.SpriteID);
 		popup.AddVar("solidity","" + tool.Solidity);
 		popup.AddVar("color [r]", "" + (int)(tool.MainColor.r * 255));
 		popup.AddVar("color [g]", "" + (int)(tool.MainColor.g * 255));

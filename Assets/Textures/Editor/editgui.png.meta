@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d76b11c4749299442891a433aabefac9
-timeCreated: 1425528999
+timeCreated: 1425858440
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -130,6 +130,12 @@ TextureImporter:
     21300246: cancel highlight
     21300248: cancel dark
     21300250: popup label
+    21300252: sprite select
+    21300254: box outline
+    21300256: popup var button
+    21300258: select
+    21300260: select highlight
+    21300262: select dark
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -1402,6 +1408,66 @@ TextureImporter:
         y: 389
         width: 272
         height: 26
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: sprite select
+      rect:
+        serializedVersion: 2
+        x: 1346
+        y: 99
+        width: 480
+        height: 501
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: box outline
+      rect:
+        serializedVersion: 2
+        x: 1816
+        y: 92
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 2, y: 2, z: 2, w: 2}
+    - name: popup var button
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 416
+        width: 272
+        height: 26
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: select
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 481
+        width: 97
+        height: 18
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: select highlight
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 462
+        width: 97
+        height: 18
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: select dark
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 443
+        width: 97
+        height: 18
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

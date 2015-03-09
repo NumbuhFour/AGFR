@@ -89,4 +89,9 @@ public class SpriteSheet : MonoBehaviour {
 	void Update () {
 	
 	}
+	
+	//Called via inspector
+	public void RefreshTiles(){
+		tiles = ChopUpTiles();
+	}
 }

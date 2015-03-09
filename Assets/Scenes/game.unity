@@ -933,7 +933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37925d26cacd66146b5b9a360e7e5870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingTestLevelName: Test/bigtest2
+  startingTestLevelName: Test/atrium2
   mode: 0
   pauseOverlay: {fileID: 473229806}
 --- !u!114 &348302190

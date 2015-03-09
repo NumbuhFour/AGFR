@@ -33,7 +33,6 @@ Minor TODO:
 	-Pause on lost focus
 	-"Enable snarky comments"
 	-Weird offset tile rendering by a pixel? (big zoom)
-	-LevelEditor tile sprite browser
 	-Breakup EditorUI.cs
 	
 	##Bugs##
@@ -42,8 +41,10 @@ Minor TODO:
 	-Can't open saved levels until restart (Unity probably needs to refresh Resources)
 	
 	##Graphical##
+	-Add outline into sprite's shader
 	
 Done:
+	-LevelEditor tile sprite browser
 	-Door sprite needs work. Fix bottom border?
 	-Lights iluminate holes in tiles
 	-Editor load!

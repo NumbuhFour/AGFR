@@ -28,6 +28,9 @@ public class EditorPopup : MonoBehaviour {
 	
 	public GameObject labelPrefab;
 	
+	public GameObject selectorPrefab;
+	public GameObject spriteSelector;
+	
 	private List<GameObject> pieces;
 	
 	public Dictionary<string, string> values; //For preset attributes (x, y, width, etc)
@@ -137,6 +140,26 @@ public class EditorPopup : MonoBehaviour {
 		
 		titleText.GetComponent<InputField>().onValueChange.AddListener( (string value) => { SetAttributeTitle(attribInd,value); } );
 		inputText.GetComponent<InputField>().onValueChange.AddListener( (string value) => { SetAttributeValue(attribInd,value); } );
+	}
+	
+	public void AddSpriteVar(string title, int defaultValue){
+		if(values == null) values = new Dictionary<string, string>();
+		
+		GameObject add = AddPiece(selectorPrefab);
+		GameObject titleText = add.transform.GetChild(0).gameObject;
+		GameObject button = add.transform.GetChild(1).gameObject;
+		SetValue(title, defaultValue + "");
+		titleText.GetComponent<Text>().text = title;
+		button.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => { 
+			GameObject selectorMenu = (GameObject)Instantiate(spriteSelector);
+			selectorMenu.transform.parent = this.transform.parent;
+			selectorMenu.transform.localPosition = Vector3.zero;
+			
+			SpriteSelector sel = selectorMenu.GetComponent<SpriteSelector>();
+			sel.Init(defaultValue, (spriteID) => {
+				SetValue(title,spriteID + ""); //When menu closes, set sprite to that 
+			});
+		} );
 	}
 	
 	private GameObject AddPiece(GameObject prefab){
