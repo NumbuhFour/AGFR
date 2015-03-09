@@ -43,7 +43,10 @@ public class EditorInvSlot : MonoBehaviour {
 	}
 	
 	public void OnClick(){
-		invMan.SetTool(this.Item);
+		if(Input.GetKey("left shift")) {
+			invMan.AddTilePresetFromUser(this.Item);
+		} else
+			invMan.SetTool(this.Item);
 	}
 	
 	public void Update(){

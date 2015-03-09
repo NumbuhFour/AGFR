@@ -43,7 +43,7 @@ public class MapRender : MonoBehaviour {
 			}
 		}
 		
-		if(Game.Mode == Game.GameMode.LEVEL_EDITOR){  //Alignment line thingies
+		if(Game.Mode == Game.GameMode.LEVEL_EDITOR && this.map != null){  //Alignment line thingies
 			int step = 7;
 			Vector2 offset = this.map.CamLoc;
 			offset.x -= ((int)this.map.Dimensions.x/2) %step;

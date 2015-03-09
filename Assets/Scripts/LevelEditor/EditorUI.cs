@@ -78,9 +78,9 @@ public class EditorUI : MonoBehaviour {
 				}
 				Cursor.SetCursor(icon, new Vector2(16f,16f), CursorMode.Auto);
 				
-				if(Input.GetMouseButton (0) && GetTool() != null){ //Left click place
+				if(Input.GetMouseButton (0)){ //Left click place
 					Vector2 pos = GetMousePos (mouse);
-					if(!inspect) {
+					if(!inspect && GetTool() != null) {
 						maps[currentMap].map.SetTileAt((int)pos.x, (int)pos.y, GetTool().Name);
 					}else {
 						this.InspectTile(maps[currentMap].map, (int)pos.x, (int)pos.y);
@@ -208,6 +208,15 @@ public class EditorUI : MonoBehaviour {
 		}
 		data.userTiles.Add(item);
 		this.AddPreset(item, userScroll);
+	}
+	
+	
+	//called by EditorInvSlot buttons
+	public void AddTilePresetFromUser(EditorItem item){
+		if(this.currentTab == "user"){ //Dont add presets from presets page
+			this.AddPreset(item, tileScroll);
+			this.tilePresets.Add(item);
+		}
 	}
 	
 	public void AddTilePreset(EditorItem item){
@@ -498,9 +507,17 @@ public class EditorUI : MonoBehaviour {
 					
 					GameObject tab = AddFileTab(mapInd);
 					
+					SwitchToMap(mapInd,tab);
+					
 					loader.Load(maps[mapInd], file);
 					
-					SwitchToMap(mapInd,tab);
+					
+					//Set user tiles tab icons to mapData.userTiles
+					int count = this.userScroll.childCount;
+					List<EditorItem> tiles = maps[mapInd].userTiles;
+					foreach(EditorItem item in tiles){
+						AddPreset(item,this.userScroll, count);
+					}
 					
 					Debug.Log("Loaded map: " + filename + " Dimensions: " + map.Dimensions);
 				}else{

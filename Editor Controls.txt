@@ -1,0 +1,10 @@
+Controls:
+	WASD: Pan
+	Left-Click on Map: Place tile
+	Right-Click on Map: Erase tile
+	Shift + Left-Click on Map: Inspect tile's metadata
+	Middle-click on Map: Fill highlighted tile with current tile
+	
+	Left-Click on Tiles Toolbar: Add copy of tile to the user tiles tab for use and editing
+	Shift + Left-Click on User Toolbar: Add selected tile to Tiles presets
+	
