@@ -53,7 +53,8 @@ public class TileData {
 		JSONNode n = new JSONClass();
 		n.Add("style", new JSONData(style));
 		foreach(string key in this.data.Keys){
-			n.Add(key, new JSONData((string)data[key]));
+			if(SaveMap.IsSaveableParameter(data[key]))
+				n.Add(key, new JSONData(data[key].ToString()));
 		}
 		json.Add(n);
 	}
