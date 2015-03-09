@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 425976}
   - 114: {fileID: 11445238}
   m_Layer: 8
-  m_Name: Light Container 1
+  m_Name: Light Container
   m_TagString: LightContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

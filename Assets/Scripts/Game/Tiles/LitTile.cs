@@ -12,7 +12,7 @@ public class LitTile : Tile {
 	}
 	
 	public override void OnPlaced(TileData data){
-		if(data["color"] != null){
+		if(data["intensity"] != null){
 			GameObject cont = GameObject.FindGameObjectWithTag("LightContainer");
 			LightContainer container = cont.GetComponent<LightContainer>();
 			TileLight light = container.AddLight(data.x, data.y); 
@@ -33,9 +33,9 @@ public class LitTile : Tile {
 		if(node["intensity"] != null){
 			data["intensity"] = node["intensity"].AsFloat;
 			data["range"] = node["range"].AsFloat;
-			data["r"] = node["r"];
-			data["g"] = node["g"];
-			data["b"] = node["b"];
+			data["r"] = node["r"].AsFloat;
+			data["g"] = node["g"].AsFloat;
+			data["b"] = node["b"].AsFloat;
 		}
 		else{
 			data["intensity"] = 0.05f;
