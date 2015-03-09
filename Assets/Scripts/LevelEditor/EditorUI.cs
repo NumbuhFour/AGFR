@@ -496,7 +496,7 @@ public class EditorUI : MonoBehaviour {
 			//On close
 			popupActive = false;
 			if(!cancelled){
-				string filename = data["file name"];
+				string filename = data["File Name"];
 				
 				TextAsset file = (TextAsset) Resources.LoadAssetAtPath<TextAsset>("Assets/Resources/Maps/" + filename + ".json");
 				if(file != null){
@@ -527,7 +527,7 @@ public class EditorUI : MonoBehaviour {
 		});
 		this.popupActive = true;
 		
-		popup.AddVar("file name", "");
+		popup.AddVar("File Name", "");
 		popup.AddSubmit();
 		popup.End();
 	}
