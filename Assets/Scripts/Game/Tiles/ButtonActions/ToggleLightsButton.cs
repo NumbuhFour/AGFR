@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using SimpleJSON;
 
 public class ToggleLightsButton : IButtonAction
 {
 	private TileData data;
 	private LightNoise lights;
-	public ToggleLightsButton(TileData data){
+	public ToggleLightsButton(JSONNode node, TileData data){
 		this.data = data;
 		this.lights = GameObject.FindGameObjectWithTag("LightOverlay").GetComponent<LightNoise>();
 	}

@@ -33,6 +33,12 @@ public class Map : MonoBehaviour {
 	//private Vector2 offset;
 	//public Vector2 Offset { get { return offset; } }
 	
+	private string camType = "follow"; //follow, locked
+	public string CamType {
+		get { return camType; }
+		set { camType = value; }
+	}
+	
 	private Vector2 camLoc;
 	public Vector2 CamLoc{ 
 		get { return camLoc; } 

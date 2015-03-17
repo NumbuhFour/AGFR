@@ -20,6 +20,7 @@ public class SaveMap {
 		
 		jinfo.Add("width", new JSONData((int)map.Dimensions.x));
 		jinfo.Add("height", new JSONData((int)map.Dimensions.y));
+		jinfo.Add ("camera", new JSONData(map.CamType));
 		JSONNode jspawn = jinfo["spawn"] = new JSONArray();
 		jspawn.Add (new JSONData(mapData.spawnX));
 		jspawn.Add (new JSONData(mapData.spawnY));
