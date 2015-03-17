@@ -20,6 +20,10 @@ Minor TODO:
 	-Light flickering
 	-Lights update in editor
 	-Write better "Editor Controls" file
+	-Preset tile files per area
+	-Per-map Instantiateable gameobjects for extra things?
+	-Camera centers
+	-Tooltips
 	
 	-Rework tile properties so they can be changed based on location/tiledata
 	-Level conditions: eg If all entities dead, unlock door
@@ -35,6 +39,8 @@ Minor TODO:
 	-"Enable snarky comments"
 	-Weird offset tile rendering by a pixel? (big zoom)
 	-Breakup EditorUI.cs
+	- #ifndef UNITY_EDITOR for start menu
+	-Multi layer?
 	
 	##Bugs##
 	-[Press E to continue] chat occasionally doesnt register on start?
