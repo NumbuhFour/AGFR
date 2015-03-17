@@ -257,21 +257,21 @@ public class EditorPopup : MonoBehaviour {
 	}
 	
 	public void SetValue(string title, string value){
-		values[title] = value.ToLower();
+		values[title] = value;
 		
 		CallChange ();
 	}
 	
 	public void SetAttributeTitle(int attrib, string title){
 		Attribute get = attributes[attrib];
-		get.title = title.ToLower();
+		get.title = title;
 		attributes[attrib] = get;
 		
 		CallChange ();
 	}
 	public void SetAttributeValue(int attrib, string value){
 		Attribute get = attributes[attrib];
-		get.value = value.ToLower();
+		get.value = value;
 		attributes[attrib] = get;
 		
 		CallChange ();
