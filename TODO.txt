@@ -1,6 +1,5 @@
 Major TOD:
 	-Sound
-	-Lighting
 	-Shades
 	-Separate slots for weapon and (subweapon? Accessory?)
 		-Perhaps replace with other bars for other properties (energy, temp, etc)
@@ -51,6 +50,7 @@ Minor TODO:
 	-Add outline into sprite's shader
 	
 Done:
+	-Lighting
 	-(Editor)Copy presets across open files 
 	-LevelEditor tile sprite browser
 	-Door sprite needs work. Fix bottom border?
