@@ -113,7 +113,7 @@ public class MapLoader : MonoBehaviour {
 		Tile rtn = null;
 		switch(type){
 		default: rtn = new Tile(); break;
-		case "button": rtn = new Button(); break;
+		case "button": rtn = new Trigger(); break;
 		case "sign": rtn = new Sign(); break;
 		case "door": rtn = new Door(); break;
 		case "light": rtn = new LitTile(); break;

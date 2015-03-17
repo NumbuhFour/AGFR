@@ -2,12 +2,12 @@
 using System.Collections;
 using SimpleJSON;
 
-public class Button : Tile {
+public class Trigger : Tile {
 	
-	public Button(){
+	public Trigger(){
 	}
 	
-	public Button(JSONNode data, SpriteSheet sheet):base(data,sheet){
+	public Trigger(JSONNode data, SpriteSheet sheet):base(data,sheet){
 	}
 	
 	public override void OnEntityEnter(Entity e, TileData data){
@@ -25,7 +25,10 @@ public class Button : Tile {
 			string actionName = node["action"].Value;
 			switch(actionName){
 			case "toggle lights":
-				data["action"] = new ToggleLightsButton(data);
+				data["action"] = new ToggleLightsButton(node,data);
+				break;
+			case "set camera":
+				data["action"] = new SetCameraButton(node,data);
 				break;
 			}
 		}
